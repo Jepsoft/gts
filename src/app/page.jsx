@@ -4,6 +4,7 @@ import User from "./icons/user.svg";
 import Search from "./icons/search.svg";
 import Link from "next/link";
 import Import from "./icons/import.svg";
+import Login_Signup from "./icons/login_signup.svg";
 import Export from "./icons/export.svg";
 import Event from "./icons/event.svg";
 import Web from "./icons/webdesign.svg";
@@ -45,11 +46,9 @@ export default function Home() {
                 </li>
               </ul>
             </div>
-            <span className="bg-white bg-opacity-30 rounded-3xl pt-3 pb-3 absolute right-10 md:right-10 lg:right-10 top-10 sm:pt-2 sm:pb-2 sm:right-2 sm:top-9">
-              <Link href="/login">
-                <span className="bg-[#3E68FD] p-3 rounded-3xl ml-1 mt-1 mb-1 mr-2 pr-5 sm:p-2 sm:pl-3 sm:mr-1 text-white">Login</span>
-              </Link>
-            </span>
+            <Link href="/login" className="absolute right-10">
+            <Image src={Login_Signup} alt="login_signup" className=" cursor-pointer  "/>
+            </Link>
           </div>
         </nav>
         <div className="flex-grow flex flex-col justify-center items-center">
