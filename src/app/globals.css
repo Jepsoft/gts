@@ -18,4 +18,19 @@ body{
 .span_s{
   color: #3E68FD;
 }
-
+@media only screen and (max-width: 768px) {
+  .special_mt{
+    margin-top: 70px;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+  }
+  .special_logo{
+    left: -10px !important;
+  }
+  .special-signup_in_button{
+    right: 20px !important;
+  }
+  .specical_profile{
+    margin-top: 80px;
+  }
+}

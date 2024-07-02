@@ -1,10 +1,11 @@
+'use client'
+import { useEffect, useState } from 'react';
 import Image from "next/image";
 import Logo from "./icons/logo.svg";
 import User from "./icons/user.svg";
 import Search from "./icons/search.svg";
 import Link from "next/link";
 import Import from "./icons/import.svg";
-import Login_Signup from "./icons/login_signup.svg";
 import Export from "./icons/export.svg";
 import Event from "./icons/event.svg";
 import Web from "./icons/webdesign.svg";
@@ -16,14 +17,51 @@ import Find_job from "./icons/findjob.svg";
 import Pot_job from "./icons/postjob.svg";
 import Social from "./icons/socialm.svg";
 import Tour from "./icons/tour.svg";
+import Poster1 from "./posters/bannerone.png";
+import Poster2 from "./posters/bannertwo.png";
+import Poster3 from "./posters/bannerthree.png";
+import Poster4 from "./posters/bannerfore.png";
 export default function Home() {
+  const token = localStorage.getItem("gts_token");
+  const user_login_done = token ? "visible" : "hidden";
+  const user_not_login = token ? "hidden" : "visible";
+  const posters = [Poster1, Poster2, Poster3, Poster4];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  // Function to go to the next slide
+  const nextSlide = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) => (prevIndex === posters.length - 1 ? 0 : prevIndex + 1));
+      setIsTransitioning(false);
+    }, 300); // Adjust the duration to match your CSS transition duration
+  };
+
+  // Function to go to the previous slide
+  const prevSlide = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) => (prevIndex === 0 ? posters.length - 1 : prevIndex - 1));
+      setIsTransitioning(false);
+    }, 300); // Adjust the duration to match your CSS transition duration
+  };
+
+  // Auto slide change every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000);
+
+    // Cleanup function to clear interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
   return (
     <>
       <div className="min-h-[100vh] flex flex-col">
         <nav className="p-4  md:p-10">
-          <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
+          <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto h-full">
             <div></div>
-            <Image src={Logo} alt="gts logo" className="absolute h-40 w-52 left-3 top-[-14px] sm:left-1" />
+            <Image src={Logo} alt="gts logo" className="special_logo absolute h-40 w-52 left-3 top-[-14px] sm:left-1" />
             <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
               <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown"></div>
             </div>
@@ -46,62 +84,58 @@ export default function Home() {
                 </li>
               </ul>
             </div>
-            <Link href="/login" className="absolute right-10">
-            <Image src={Login_Signup} alt="login_signup" className=" cursor-pointer  "/>
-            </Link>
+            <div className={`absolute right-10 text-white top-8 text-center special-signup_in_button ${user_not_login}`}>
+              <div className=' bg-white bg-opacity-30 flex justify-center  rounded-[20px]'>
+                <Link href='/sign-in'>
+                  <div className='pr-2 pl-3 p-2'>
+                    Signin
+                  </div>
+                </Link>
+                <Link href='/sign-up'>
+                  <div className='pl-3 pr-3 p-2 bg-blue-600 rounded-[20px] '>
+                    Signup
+                  </div>
+                </Link>
+              </div>
+            </div>
+            <div className={`absolute right-10 text-white top-8 text-center special-signup_in_button ${user_login_done}`}>
+              <Link href='/profile'>
+                <Image src={User} className=' bg-white h-[40px] w-[40px] rounded-full p-1.5' />
+              </Link>
+            </div>
           </div>
         </nav>
+        <div className=' special_mt'></div>
         <div className="flex-grow flex flex-col justify-center items-center">
           <div className="text-center text-white">
-            <h1 className="font-bold md:text-4xl lg:text-3xl sm:text-2xl">Make Work Easier And Life Better With</h1>
-            <h1 className="font-bold md:text-3xl lg:text-2xl sm:text-xl"><span className="span_g">G</span>lobal <span className="span_t">T</span>alent <span className="span_s">S</span>olutions</h1>
+            <h1 className="font-bold md:text-2xl lg:text-2xl sm:text-2xl text-2xl">Make Work Easier And Life Better With</h1>
+            <h1 className="font-bold md:text-2xl lg:text-2xl sm:text-xl"><span className="span_g">G</span>lobal <span className="span_t">T</span>alent <span className="span_s">S</span>olutions</h1>
           </div>
           <div className="flex justify-center mt-4 w-full">
-            <input type="search" placeholder="Search Here..." className="w-1/2 max-w-lg p-2.5 pl-5 text-white bg-[#D9D9D9] bg-opacity-30 rounded-3xl" />
+            <input type="search" placeholder="Search Here..." className="w-3/4 max-w-lg p-2.5 pl-5 text-white bg-[#D9D9D9] bg-opacity-30 rounded-3xl" />
             <Image src={Search} alt="search icon" className="w-7 p-1 h-8 mt-1 -ml-10 cursor-pointer" />
           </div>
         </div>
         <div id="default-carousel" className="relative mt-5 mb-5" data-carousel="slide">
-          <div className="relative h-48 ml-12 mr-12 overflow-hidden rounded-lg md:h-96 bg-white bg-opacity-30">
-            <div className="hidden duration-700 ease-in-out" data-carousel-item>
-              <img src="/docs/images/carousel/carousel-1.svg" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-            </div>
-            <div className="hidden duration-700 ease-in-out" data-carousel-item>
-              <img src="/docs/images/carousel/carousel-2.svg" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-            </div>
-            <div className="hidden duration-700 ease-in-out" data-carousel-item>
-              <img src="/docs/images/carousel/carousel-3.svg" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-            </div>
-            <div className="hidden duration-700 ease-in-out" data-carousel-item>
-              <img src="/docs/images/carousel/carousel-4.svg" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-            </div>
-            <div className="hidden duration-700 ease-in-out" data-carousel-item>
-              <img src="/docs/images/carousel/carousel-5.svg" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-            </div>
+          <div className="relative h-96 ml-12 mr-12 overflow-hidden rounded-lg bg-white bg-opacity-30">
+            {posters.map((poster, index) => (
+              <div
+                key={index}
+                className={`absolute w-full h-full transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
+                style={{ zIndex: index === currentIndex ? 10 : 1 }}
+              >
+                <Link href='#'>
+                  <Image
+                    src={poster} // Assuming `poster` is the path to your image
+                    unoptimized
+                    className="absolute block w-full h-full object-cover cursor-pointer"
+                    alt={`Slide ${index + 1}`}
+                  />
+                </Link>
+              </div>
+            ))}
           </div>
-          <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-            <button type="button" className="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-            <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-            <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-            <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
-            <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
-          </div>
-          <button type="button" className="absolute ml-12 top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-              <svg className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1L1 5l4 4" />
-              </svg>
-              <span className="sr-only">Previous</span>
-            </span>
-          </button>
-          <button type="button" className="absolute mr-12 top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-              <svg className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-              </svg>
-              <span className="sr-only">Next</span>
-            </span>
-          </button>
+
         </div>
       </div>
       <br />
@@ -285,7 +319,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <br /><br/>
+      <br /><br />
       <div className="p-2">
         <footer className="">
           <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
