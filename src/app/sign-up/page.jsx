@@ -5,10 +5,13 @@ import Link from "next/link";
 import Search from "../icons/search.svg";
 import red_verify from "../icons/red_verify.svg";
 import green_verify from "../icons/green_verify.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { enqueueSnackbar } from "notistack";
 export default function Sign_up() {
     const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    const [vefify_update, setVerify_update] = useState(red_verify);
+    const [status, setstatus] = useState(false);
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -19,13 +22,20 @@ export default function Sign_up() {
         gender: '',
         nic: '',
     });
-    const handle_verify = async (e) => {
+    const handle_verify = async () => {
         if (formData.phone) {
             const response = await axios.post(`${apiUrl}/verify_phone`, {
+                for: 'send',
                 phone: formData.phone,
             });
-        }else{
-            const response=" Enter Your Phone Number";
+            if (response.data.result) {
+                const code = response.data.result;
+                localStorage.setItem("gtsvch", code);
+            }
+            blur_contrall();
+        } else {
+            const response = " Enter Your Phone Number";
+            enqueueSnackbar(response, { variant: 'info' });
         }
         //add success or fail message
     }
@@ -41,30 +51,108 @@ export default function Sign_up() {
 
         // Validate form data before sending
         if (formData.password !== formData.confirmPassword) {
-            alert('Passwords do not match');
+            enqueueSnackbar("Passwords do not match", { variant: 'error' });
+            return;
+        }
+        
+        if (formData.password.length < 8) {
+            enqueueSnackbar("Password must be 8 characters", { variant: 'error' });
             return;
         }
 
         try {
-            const response = await axios.post(`${apiUrl}/signup`, {
-                First_Name: formData.firstName,
-                Last_Name: formData.lastName,
-                email: formData.email,
-                phone: formData.phone,
-                password: formData.password,
-                password_confirmation: formData.confirmPassword,
-                Gender: formData.gender,
-                NIC_Number: formData.nic,
-            });
-
-            console.log('Success:', response.data);
+            if (status == true) {
+                const response = await axios.post(`${apiUrl}/signup`, {
+                    First_Name: formData.firstName,
+                    Last_Name: formData.lastName,
+                    email: formData.email,
+                    phone: formData.phone,
+                    status: status,
+                    password: formData.password,
+                    password_confirmation: formData.confirmPassword,
+                    Gender: formData.gender,
+                    NIC_Number: formData.nic,
+                });
+                enqueueSnackbar("Registration Successfully", { variant: 'success' });
+                setTimeout(() => {
+                    window.location.href = './';
+                }, 2000);
+            } else {
+                enqueueSnackbar("Verify Phone", { variant: 'info' });
+            }
         } catch (error) {
-            console.error('Error:', error.response ? error.response.data : error.message);
+            enqueueSnackbar("Registration Failed", { variant: 'error' });
+        }
+    };
+    const [blurscreen, setBlurscreen] = useState('');
+    const [hide_item, sethideitem] = useState('hidden');
+    const blur_contrall = () => {
+        sethideitem('visible');
+        if (blurscreen == "blur") {
+            setBlurscreen("");
+        } else {
+            setBlurscreen("blur");
+        }
+    }
+    const [code, setCode] = useState('');
+    const verify_code = async (event) => {
+        event.preventDefault();
+        try {
+            const gtscode = localStorage.getItem("gtsvch");
+            const response = await axios.post(`${apiUrl}/verify`, {
+                for: 'check',
+                code: code,
+                gtscode: gtscode
+            });
+            if (response.data.status == 'Verified') {
+                enqueueSnackbar("Verification Success", { variant: 'success' });
+                setBlurscreen("");
+                sethideitem("hidden");
+                setstatus(true)
+                setVerify_update(green_verify);
+                localStorage.removeItem('gtsvch');
+            } else {
+                enqueueSnackbar("Verification Failed", { variant: 'error' });
+            }
+        } catch (error) {
+            console.error('Verification failed:', error);
         }
     };
     return (
-        <div>
-            <div className="min-h-[100vh] flex flex-col">
+        <div >
+            <div className={`${hide_item} z-10 flex justify-center items-center absolute left-0 right-0 top-0 bottom-0 h-full mt-auto mb-auto`}>
+                <div tabindex="-1" aria-hidden="true" className=" ">
+                    <div class="relative p-4 w-full max-w-md max-h-full">
+                        <div class="relative bg-white bg-opacity-30 bg-blur rounded-lg shadow ">
+                            <h3 class="text-xl text-white dark:text-white text-center pt-5 ">
+                                Verify Your Phone
+                            </h3>
+                            <div class="p-4 md:p-5">
+                                <form class="space-y-4" action="#">
+                                    <div>
+                                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Verification Code</label>
+                                        <input
+                                            type="text"
+                                            name="code"
+                                            id="code"
+                                            value={code}
+                                            onChange={(e) => setCode(e.target.value)}
+                                            className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            placeholder="Verification Code"
+                                            required
+                                        />
+                                    </div>
+                                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={verify_code}>Verify</button>
+                                    <div class="text-sm font-medium text-white text-center">
+                                        Didn't Get Code? <a href="#" class="text-blue-700 hover:underline dark:text-blue-700">Resend</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className={`min-h-[100vh] flex flex-col ${blurscreen}`} >
                 <nav className="p-4  md:p-10">
                     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
                         <div></div>
@@ -98,7 +186,7 @@ export default function Sign_up() {
                         </span>
                     </div>
                 </nav>
-                <div className="flex-grow flex flex-col justify-center items-center mt-28">
+                <div class="flex-grow flex flex-col justify-center items-center">
                     <div className="w-11/12 max-w-[800px] bg-white bg-opacity-20 p-5 rounded-[25px]">
                         <h1 className="text-center text-[30px] font-bold text-white">Sign Up Now</h1>
                         <form onSubmit={handleSubmit}>
@@ -144,7 +232,9 @@ export default function Sign_up() {
                                         onChange={handleChange}
                                         className="ml-3 mr-3 p-2 rounded-[18px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
                                     />
-                                    <Image src={green_verify} alt="Verify" onClick={handle_verify} className="cursor-pointer absolute h-10 mt-4" />
+                                    <Image src={vefify_update} unoptimized width={88} height={100} alt="Verify" onClick={() => {
+                                        handle_verify();
+                                    }} className="cursor-pointer absolute h-10 mt-4" />
                                 </div>
                             </div>
                             <div className="flex flex-col sm:flex-row justify-center">

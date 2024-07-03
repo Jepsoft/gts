@@ -3,18 +3,49 @@ import Image from "next/image";
 import Logo from "../icons/logo.svg";
 import Link from "next/link";
 import User from "../icons/user.svg";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 export default function Profile() {
     const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    const token = localStorage.getItem("gts_token");
     const check_login = () => {
-        const token = localStorage.getItem("gts_token");
         const user_login_done = token ? "visible" : "hidden";
         const user_not_login = token ? "hidden" : "visible";
         return { user_login_done, user_not_login };
     }
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [NIC, setNIC] = useState("");
+    const [Email, setEmail] = useState("");
+    const [Gender, setGender] = useState("");
     const { user_login_done, user_not_login } = check_login();
     useEffect(() => {
         check_login();
+        const get_data = async () => {
+            try {
+                const token_unlock = localStorage.getItem("gts_token");
+
+                const response = await axios.post(
+                    `${apiUrl}/profile`,
+                    null, // No data to send in the POST body?
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token_unlock}`
+                        }
+                    }
+                );
+                setFirstName(response.data.result.First_Name);
+                setLastName(response.data.result.Last_Name);
+                setPhone(response.data.result.Phone);
+                setNIC(response.data.result.NIC);
+                setGender(response.data.result.Gender);
+                setEmail(response.data.result.Email);
+            } catch (error) {
+                console.error("Error fetching profile data:", error);
+            }
+        };
+        get_data();
     }, []);
     return (
         <div>
@@ -54,30 +85,27 @@ export default function Profile() {
                 </nav>
                 <div className=" text-white bg-white bg-opacity-30 rounded-[35px] ml-[10%] mr-[10%] specical_profile">
                     <h1 className="text-white text-center text-[20px] mt-5 mb-5 font-bold"><span className="font-bold span_g">G</span> <span className="font-bold span_t">T</span> <span className="font-bold span_s">S</span> User Profile</h1>
-                        <div class=" ml-[5%] mr-[5%]">
-                            <div className=" flex justify-center mt-8 mb-8">
-                                <h2>User Name </h2><h1 className=" font-bold ml-2 mr-2">-</h1><h1> Kavindu Ravishan</h1>
-                            </div>
-                            <div className=" flex justify-center mt-8 mb-8">
-                                <h2>Email </h2><h1 className=" font-bold ml-2 mr-2">-</h1><h1> Kavindu Ravishan</h1>
-                            </div>
-                            <div className=" flex justify-center mt-8 mb-8">
-                                <h2>Mobile Number </h2><h1 className=" font-bold ml-2 mr-2">-</h1><h1> Kavindu Ravishan</h1>
-                            </div>
-                            <div className=" flex justify-center mt-8 mb-8">
-                                <h2>Password </h2><h1 className=" font-bold ml-2 mr-2">-</h1><h1> Kavindu Ravishan</h1>
-                            </div>
-                            <div className=" flex justify-center mt-8 mb-8">
-                                <h2>Gender </h2><h1 className=" font-bold ml-2 mr-2">-</h1><h1> Kavindu Ravishan</h1>
-                            </div>
-                            <div className=" flex justify-center mt-8 mb-8">
-                                <h2>NIC Number </h2><h1 className=" font-bold ml-2 mr-2">-</h1><h1> Kavindu Ravishan</h1>
-                            </div>
+                    <div class=" ml-[5%] mr-[5%]">
+                        <div className=" flex justify-center mt-8 mb-8">
+                            <h2>User Name </h2><h1 className=" font-bold ml-2 mr-2">-</h1><h1>{firstName} {lastName}</h1>
                         </div>
-                        <div className=" flex justify-center ">
-                            <h1 className=" font-bold text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[15px] ml-auto mt-5 mb-5  mr-auto">Edit Profile</h1>
-                            <h1 className=" font-bold text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[15px] ml-auto mt-5 mb-5  mr-auto">Logout</h1>
+                        <div className=" flex justify-center mt-8 mb-8">
+                            <h2>Email </h2><h1 className=" font-bold ml-2 mr-2">-</h1><h1>{Email}</h1>
                         </div>
+                        <div className=" flex justify-center mt-8 mb-8">
+                            <h2>Mobile Number </h2><h1 className=" font-bold ml-2 mr-2">-</h1><h1>{phone}</h1>
+                        </div>
+                        <div className=" flex justify-center mt-8 mb-8">
+                            <h2>Gender </h2><h1 className=" font-bold ml-2 mr-2">-</h1><h1>{Gender}</h1>
+                        </div>
+                        <div className=" flex justify-center mt-8 mb-8">
+                            <h2>NIC Number </h2><h1 className=" font-bold ml-2 mr-2">-</h1><h1>{Gender}</h1>
+                        </div>
+                    </div>
+                    <div className=" flex justify-center ">
+                        <h1 className=" font-bold text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[15px] ml-auto mt-5 mb-5  mr-auto">Edit Profile</h1>
+                        <h1 className=" font-bold text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[15px] ml-auto mt-5 mb-5  mr-auto">Logout</h1>
+                    </div>
                 </div>
             </div>
         </div>
