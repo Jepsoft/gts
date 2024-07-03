@@ -1,11 +1,17 @@
 'use client'
 import { useEffect, useState } from 'react';
 import Image from "next/image";
+import Linkedin from "./icons/linkedin.svg"
+import whatsapp from "./icons/whatsapp.svg"
+import facebook from "./icons/facebook.svg"
+import Aravinda from "./director/arvinda.svg";
+import one_of_one from "./director/one_of_one.svg";
 import Logo from "./icons/logo.svg";
 import User from "./icons/user.svg";
 import Search from "./icons/search.svg";
 import Link from "next/link";
 import Import from "./icons/import.svg";
+import Contact_us from "./icons/contact_us.svg";
 import Export from "./icons/export.svg";
 import Event from "./icons/event.svg";
 import Web from "./icons/webdesign.svg";
@@ -57,8 +63,8 @@ export default function Home() {
   }, []);
   return (
     <>
-      <div className="min-h-[100vh] flex flex-col">
-        <nav className="p-4  md:p-10">
+      <div className="flex flex-col">
+        <nav className="p-4  md:p-10 text-white">
           <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto h-full">
             <div></div>
             <Image src={Logo} alt="gts logo" className="special_logo absolute h-40 w-52 left-3 top-[-14px] sm:left-1" />
@@ -106,36 +112,36 @@ export default function Home() {
           </div>
         </nav>
         <div className=' special_mt'></div>
-        <div className="flex-grow flex flex-col justify-center items-center">
-          <div className="text-center text-white">
-            <h1 className="font-bold md:text-2xl lg:text-2xl sm:text-2xl text-2xl">Make Work Easier And Life Better With</h1>
-            <h1 className="font-bold md:text-2xl lg:text-2xl sm:text-xl"><span className="span_g">G</span>lobal <span className="span_t">T</span>alent <span className="span_s">S</span>olutions</h1>
+        <div className='promotion_box_margins'>
+          <div className="flex-grow flex flex-col justify-center items-center">
+            <div className="text-center text-white">
+              <h1 className="font-bold md:text-2xl lg:text-2xl sm:text-2xl text-2xl">Make Work Easier And Life Better With</h1>
+              <h1 className="font-bold md:text-2xl lg:text-2xl sm:text-xl"><span className="span_g">G</span>lobal <span className="span_t">T</span>alent <span className="span_s">S</span>olutions</h1>
+            </div>
+            <div className="flex justify-center mt-4 w-full">
+              <input type="search" placeholder="Search Here..." className="w-3/4 max-w-lg p-2.5 pl-5 text-white bg-[#D9D9D9] bg-opacity-30 rounded-3xl" />
+              <Image src={Search} alt="search icon" className="w-7 p-1 h-8 mt-1 -ml-10 cursor-pointer" />
+            </div>
           </div>
-          <div className="flex justify-center mt-4 w-full">
-            <input type="search" placeholder="Search Here..." className="w-3/4 max-w-lg p-2.5 pl-5 text-white bg-[#D9D9D9] bg-opacity-30 rounded-3xl" />
-            <Image src={Search} alt="search icon" className="w-7 p-1 h-8 mt-1 -ml-10 cursor-pointer" />
+            <div id="default-carousel" className="mt-5 mb-5 " data-carousel="slide">
+              <div className="relative min-h-44 ml-12 mr-12 rounded-lg bg-opacity-30">
+                {posters.map((poster, index) => (
+                  <div
+                    key={index}
+                    className={`absolute w-full max-h-[550px] lg:max-h-[550px] sm: md:max-h-[440px]   transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
+                    style={{ zIndex: index === currentIndex ? 10 : 1 }}>
+                    <Link href='#'>
+                      <Image
+                        src={poster} // Assuming poster is the path to your image
+                        unoptimized
+                        className="absolute block w-svh max-h-[550px] lg:max-h-[550px] sm: md:max-h-[440px] object-contain cursor-pointer"
+                        alt={`Slide ${index + 1}`}
+                      />
+                    </Link>
+                  </div>
+                ))}
+            </div>
           </div>
-        </div>
-        <div id="default-carousel" className="relative mt-5 mb-5" data-carousel="slide">
-          <div className="relative h-96 ml-12 mr-12 overflow-hidden rounded-lg bg-white bg-opacity-30">
-            {posters.map((poster, index) => (
-              <div
-                key={index}
-                className={`absolute w-full h-full transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
-                style={{ zIndex: index === currentIndex ? 10 : 1 }}
-              >
-                <Link href='#'>
-                  <Image
-                    src={poster} // Assuming `poster` is the path to your image
-                    unoptimized
-                    className="absolute block w-full h-full object-cover cursor-pointer"
-                    alt={`Slide ${index + 1}`}
-                  />
-                </Link>
-              </div>
-            ))}
-          </div>
-
         </div>
       </div>
       <br />
@@ -207,30 +213,21 @@ export default function Home() {
       <br />
       <br />
       <br />
-      <div className="bg-white bg-opacity-30 ml-[20%] mr-[20%] rounded-xl p-5">
+      <div className="bg-white bg-opacity-30 ml-[10%] mr-[10%] rounded-xl p-5">
         <h1 className="text-3xl font-bold text-center text-white">Top Management</h1>
         <br />
         <div className="flex flex-wrap justify-center">
-          <Link href="/vehicle" className="bg-white bg-opacity-30 w-24 text-center rounded-xl m-2 sm:m-10 h-35 p-3">
-            <div className="flex items-center justify-center">
-              <div className="rounded-full bg-white bg-opacity-50 w-20 h-20 p-5 mb-2">
-              </div>
-            </div>
-            <span className="h-svh text-white">Vehicle</span>
+          <Link href="#" className="bg-white bg-opacity-30 w-32 text-center rounded-xl m-2 sm:m-10 h-35 p-3">
+            <Image src={one_of_one} className="flex items-center justify-center rounded-full mb-1" />
+            <span className="h-svh text-white">Director</span>
           </Link>
-          <Link href="/vehicle" className="bg-white bg-opacity-30 w-24 text-center rounded-xl m-2 sm:m-10 h-35 p-3">
-            <div className="flex items-center justify-center">
-              <div className="rounded-full bg-white bg-opacity-50 w-20 h-20 p-5 mb-2">
-              </div>
-            </div>
-            <span className="h-svh text-white">Vehicle</span>
+          <Link href="#" className="bg-white bg-opacity-30 w-32 text-center rounded-xl m-2 sm:m-10 h-35 p-3">
+            <Image src={Aravinda} className="flex items-center justify-center rounded-full mb-1" />
+            <span className="h-svh text-white">Managing Director</span>
           </Link>
-          <Link href="/vehicle" className="bg-white bg-opacity-30 w-24 text-center rounded-xl m-2 sm:m-10 h-35 p-3">
-            <div className="flex items-center justify-center">
-              <div className="rounded-full bg-white bg-opacity-50 w-20 h-20 p-5 mb-2">
-              </div>
-            </div>
-            <span className="h-svh text-white">Vehicle</span>
+          <Link href="#" className="bg-white bg-opacity-30 w-32 text-center rounded-xl m-2 sm:m-10 h-35 p-3">
+            <Image src={one_of_one} className="flex items-center justify-center rounded-full mb-1" />
+            <span className="h-svh text-white">Director</span>
           </Link>
         </div>
       </div>
@@ -252,72 +249,37 @@ export default function Home() {
         </h4>
         <br />
         <br />
-        <div className="ml-[10%] mr-[10%] flex justify-center">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <div className=" bg-white bg-opacity-10 p-2 rounded-3xl ">
-              <h1 className=" text-center text-white font-bold mt-3 text-[30px]">Get In Touch</h1>
-              <p className="text-white text-center">We are here for you! How can we help?</p>
-              <div className=" ml-8 mt-8 mr-8">
-                <input type="text" placeholder="Enter Your Name" className=" p-2 rounded-[18px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white" /><br />
-                <input type="text" placeholder="Enter Your Email Address" className="text-white p-2 rounded-[18px] mt-4 mb-4 w-full bg-[#d9d9d920] " /><br />
-                <input type="text" placeholder="Let Us Know How We Can Help You" className=" text-white p-2 rounded-[18px] mt-4 mb-4 w-full bg-[#d9d9d920] " />
+        <br />
+        <div className="flex justify-center  ml-[5%] mr-[5%]">
+          <div className="w-full md:w-1/2">
+            <div className="bg-white bg-opacity-10 p-2 rounded-3xl">
+              <h1 className="text-center text-white font-bold mt-5 mb-5 text-[30px]">Get In Touch</h1>
+              <p className="text-white text-center mt-5 mb-5">We are here for you! How can we help?</p>
+              <div className="ml-8 mt-8 mb-5 mr-8">
+                <input type="text" placeholder="Enter Your Name" className="p-2 rounded-[18px] mt-5 mb-5 w-full bg-[#d9d9d920] text-white" /><br />
+                <input type="text" placeholder="Enter Your Email Address" className="text-white p-2 rounded-[18px] mt-5 mb-5 w-full bg-[#d9d9d920]" /><br />
+                <input type="text" placeholder="Let Us Know How We Can Help You" className="text-white p-2 rounded-[18px] mt-5 mb-5 w-full bg-[#d9d9d920]" />
               </div>
-              <div className="flex justify-center">
-                <div className="bg-blue-500 rounded-[15px] text-center p-2">
-                  <h1 className=" text-bold text-white font-bold">Submit</h1>
+              <div className="flex justify-center mt-5 mb-5">
+                <div className="bg-blue-600 rounded-[15px] text-center mt-5 mb-5 p-2">
+                  <h1 className="text-bold text-white font-bold ml-5 mr-5 cursor-pointer">Submit</h1>
                 </div>
               </div>
             </div>
-            <div className=" p-4 h-fit">
-              <p className="mt-4  text-lg text-gray-500 lg:mx-auto">
-                Welcome to Jepsoft , where innovation meets efficiency. As a leading software company, we specialize in crafting tailored solutions to
-                meet your unique needs. Whether you're seeking cutting-edge technology, seamless integration, or expert support, our team is here                                                                           to empower your success.
-              </p>
-              <br />
-              <p className="mt-4 max-w-3xl  text-lg text-gray-500 lg:mx-auto">
-                Contact us today to explore how our software solutions can elevate your business to new heights.
-                Let's embark on a journey of digital transformation together.
-              </p>
-              <br /><br /><br />
-              <ul className="flex justify-center mt-5 space-x-5 ">
-                <li>
-                  <a href="https://web.facebook.com/profile.php?id=61558793650349" className="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400">
-                    <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path fill-rule="evenodd"
-                        d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                        clip-rule="evenodd"></path>
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com/jepsoft?igsh=MTd1dHplcHcweTJleA==" className="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400">
-                    <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path fill-rule="evenodd"
-                        d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                        clip-rule="evenodd"></path>
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://wa.link/6rkzec" className="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400">
-                    <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path fill="currentColor" fill-rule="evenodd" d="M12 4a8 8 0 0 0-6.895 12.06l.569.718-.697 2.359 2.32-.648.379.243A8 8 0 1 0 12 4ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.96 9.96 0 0 1-5.016-1.347l-4.948 1.382 1.426-4.829-.006-.007-.033-.055A9.958 9.958 0 0 1 2 12Z" clip-rule="evenodd" />
-                      <path fill="currentColor" d="M16.735 13.492c-.038-.018-1.497-.736-1.756-.83a1.008 1.008 0 0 0-.34-.075c-.196 0-.362.098-.49.291-.146.217-.587.732-.723.886-.018.02-.042.045-.057.045-.013 0-.239-.093-.307-.123-1.564-.68-2.751-2.313-2.914-2.589-.023-.04-.024-.057-.024-.057.005-.021.058-.074.085-.101.08-.079.166-.182.249-.283l.117-.14c.121-.14.175-.25.237-.375l.033-.066a.68.68 0 0 0-.02-.64c-.034-.069-.65-1.555-.715-1.711-.158-.377-.366-.552-.655-.552-.027 0 0 0-.112.005-.137.005-.883.104-1.213.311-.35.22-.94.924-.94 2.16 0 1.112.705 2.162 1.008 2.561l.041.06c1.161 1.695 2.608 2.951 4.074 3.537 1.412.564 2.081.63 2.461.63.16 0 .288-.013.4-.024l.072-.007c.488-.043 1.56-.599 1.804-1.276.192-.534.243-1.117.115-1.329-.088-.144-.239-.216-.43-.308Z" />
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.linkedin.com/company/jepsoft/about/" className="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400">
-                    <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M12.51 8.796v1.697a3.738 3.738 0 0 1 3.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168ZM7.2 6.106a1.61 1.61 0 0 1-.988 1.483 1.595 1.595 0 0 1-1.743-.348A1.607 1.607 0 0 1 5.6 4.5a1.601 1.601 0 0 1 1.6 1.606Z" clip-rule="evenodd" />
-                      <path d="M7.2 8.809H4V19.5h3.2V8.809Z" />
-                    </svg>
-                  </a>
-                </li>
-              </ul>
+          </div>
+          <div className="p-4 hidden md:block w-1/2">
+            <div className="flex-grow flex flex-col justify-center items-center w-full p-10">
+              <Image src={Contact_us} alt='contact_us_img m-5' />
             </div>
+            <div className=' flex justify-center mt-10'>
+              <Image src={Linkedin} alt='linkedin' className=' cursor-pointer p-4' />
+              <Image src={whatsapp} alt='whatsapp' className=' cursor-pointer p-4' />
+              <Image src={facebook} alt='facebook' className=' cursor-pointer p-4' />
+            </div>
+            <br /><br /><br />
           </div>
         </div>
+
       </div>
       <br /><br />
       <div className="p-2">

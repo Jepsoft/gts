@@ -25,9 +25,7 @@ export default function Sign_in() {
             const token = response.data.token;
             localStorage.setItem("gts_token", token);
             enqueueSnackbar(response?.data?.message, { variant: 'success' })
-            setTimeout(() => {
                 window.location.href = './';
-            }, 2000);
         } catch (error) {
             enqueueSnackbar(error?.response?.data?.message, { variant: 'error' })
         }
@@ -35,7 +33,7 @@ export default function Sign_in() {
     return (
         <div>
             <div className="min-h-[100vh] flex flex-col">
-                <nav className="p-4  md:p-10">
+                <nav className="p-4  md:p-10 text-white">
                     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
                         <div></div>
                         <Image src={Logo} alt="gts logo" className="absolute h-40 w-52 left-3 top-[-14px] sm:left-1" />
@@ -68,14 +66,9 @@ export default function Sign_in() {
                         </span>
                     </div>
                 </nav>
-                <div className="flex flex-col md:flex-row mt-20 justify-center">
-                    <div className="hidden md:flex md:w-1/2 h-[80vh] items-center justify-center mr-10">
-                        <div className="max-w-[300px] text-center text-[20px] text-white ml-5 mr-5">
-                            <h1>Welcome to Global Talent Solutions sign in page. Log in to access your <span className="font-bold span_g">G</span> <span className="font-bold span_t">T</span> <span className="font-bold span_s">S</span> account and explore our exclusive features and services. Not a member yet? <span className="font-bold">Sign Up</span> to join our company and start enjoying the benefits today.</h1>
-                        </div>
-                    </div>
-                    <div className="md:w-1/2 h-[80vh] flex items-center justify-center md:ml-10 sm:ml-[5%] sm:mr-[5%] ml-3 mr-3">
-                        <div className="w-full md:w-4/6 bg-white bg-opacity-20 p-5 rounded-lg">
+                <div class="flex-grow flex flex-col justify-center items-center">
+                    <div className="w-[80%] md:w-[50%] lg:w-[30%] h-[80vh] flex items-center justify-center ">
+                        <div className="w-full bg-white bg-opacity-20 p-5 rounded-lg">
                             <h1 className="text-center text-3xl font-bold text-white mb-10 mt-10">Sign In Now</h1>
                             <form onSubmit={handleSubmit} className="w-full">
                                 <div className="relative mb-4">

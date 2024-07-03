@@ -5,9 +5,11 @@ import Link from "next/link";
 import User from "../icons/user.svg";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { enqueueSnackbar } from "notistack";
 export default function Profile() {
     const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const token = localStorage.getItem("gts_token");
+    
     const check_login = () => {
         const user_login_done = token ? "visible" : "hidden";
         const user_not_login = token ? "hidden" : "visible";
@@ -22,6 +24,12 @@ export default function Profile() {
     const { user_login_done, user_not_login } = check_login();
     useEffect(() => {
         check_login();
+        if(!token){
+            enqueueSnackbar("Please Login" ,{ variant: 'error' })
+            setTimeout(() => {
+                window.location.href = '/sign-in';
+            }, 2000);
+        }
         const get_data = async () => {
             try {
                 const token_unlock = localStorage.getItem("gts_token");
@@ -47,10 +55,23 @@ export default function Profile() {
         };
         get_data();
     }, []);
+    const handle_logout=()=>{
+        const isloged_In=localStorage.getItem("gts_token");
+        if(isloged_In){
+        enqueueSnackbar("User Login Out..." ,{ variant: 'error' });
+        localStorage.removeItem('gts_token');
+            window.location.href = './';
+    }else{
+        enqueueSnackbar("Redirecting to Login" ,{ variant: 'success' })
+        setTimeout(() => {
+            window.location.href = '/sign-in';
+        }, 100);
+    }
+    }
     return (
         <div>
             <div className="min-h-[100vh] flex flex-col">
-                <nav className="p-4  md:p-10">
+                <nav className="p-4  md:p-10 text-white">
                     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto h-full">
                         <div></div>
                         <Image src={Logo} alt="gts logo" className="special_logo absolute h-40 w-52 left-3 top-[-14px] sm:left-1" />
@@ -104,7 +125,7 @@ export default function Profile() {
                     </div>
                     <div className=" flex justify-center ">
                         <h1 className=" font-bold text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[15px] ml-auto mt-5 mb-5  mr-auto">Edit Profile</h1>
-                        <h1 className=" font-bold text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[15px] ml-auto mt-5 mb-5  mr-auto">Logout</h1>
+                        <h1 className=" cursor-pointer font-bold text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[15px] ml-auto mt-5 mb-5  mr-auto" onClick={handle_logout}>Logout</h1>
                     </div>
                 </div>
             </div>

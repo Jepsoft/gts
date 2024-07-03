@@ -11,7 +11,7 @@ import { enqueueSnackbar } from "notistack";
 export default function Sign_up() {
     const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const [vefify_update, setVerify_update] = useState(red_verify);
-    const [status, setstatus] = useState(false);
+    const [status, setstatus] = useState(true);
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -153,7 +153,7 @@ export default function Sign_up() {
                 </div>
             </div>
             <div className={`min-h-[100vh] flex flex-col ${blurscreen}`} >
-                <nav className="p-4  md:p-10">
+                <nav className="p-4  md:p-10 text-white">
                     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
                         <div></div>
                         <Image src={Logo} alt="gts logo" className="absolute h-40 w-52 left-3 top-[-14px] sm:left-1" />

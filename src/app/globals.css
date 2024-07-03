@@ -2,35 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background: linear-gradient(to right, #011521, #03395A);
-  height: 100vh; 
+body {
+  background: linear-gradient(to right, #011521, #03395A);
+  height: 100vh;
 }
-*{
+
+* {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-.span_g{
-  color:#38D35A;
+
+.span_g {
+  color: #38D35A;
 }
-.span_t{
+
+.span_t {
   color: #20B7AE;
 }
-.span_s{
+
+.span_s {
   color: #3E68FD;
 }
+
 @media only screen and (max-width: 768px) {
-  .special_mt{
+  .special_mt {
     margin-top: 70px;
     margin-left: 10px !important;
     margin-right: 10px !important;
   }
-  .special_logo{
+
+  .special_logo {
     left: -10px !important;
   }
-  .special-signup_in_button{
+
+  .special-signup_in_button {
     right: 20px !important;
   }
-  .specical_profile{
+
+  .specical_profile {
     margin-top: 80px;
   }
 }
+
+@media only screen and (min-width: 300px) and (max-width: 489px)  {
+  .promotion_box_margins {
+    height: 350px;
+  }
+}
+
+@media only screen and (min-width: 489px) and (max-width: 550px)  {
+  .promotion_box_margins {
+    height: 350px;
+  }
+}
+
+@media only screen and (min-width: 550px) and (max-width: 624px)  {
+  .promotion_box_margins {
+    height: 400px;
+  }
+}
+@media only screen and (min-width: 624px) and (max-width: 684px)  {
+  .promotion_box_margins {
+    height: 450px;
+  }
+}
+@media only screen and (min-width: 684px) and (max-width: 770px)  {
+  .promotion_box_margins {
+    height: 500px;
+  }
+}
+@media only screen and (min-width: 778px) and (max-width: 1022px)  {
+  .promotion_box_margins {
+    height: 570px;
+  }
+}
+@media only screen and (min-width: 1022px) and (max-width: 3000px)  {
+  .promotion_box_margins {
+    height: 670px;
+  }
+}
+
