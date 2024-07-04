@@ -8,7 +8,7 @@ import axios from "axios";
 import { enqueueSnackbar } from "notistack";
 export default function Profile() {
     const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    const token = localStorage.getItem("gts_token");
+    const token = typeof window !== 'undefined' ? localStorage.getItem("gts_token") : null;
     
     const check_login = () => {
         const user_login_done = token ? "visible" : "hidden";
@@ -22,52 +22,55 @@ export default function Profile() {
     const [Email, setEmail] = useState("");
     const [Gender, setGender] = useState("");
     const { user_login_done, user_not_login } = check_login();
+    
     useEffect(() => {
-        check_login();
-        if(!token){
-            enqueueSnackbar("Please Login" ,{ variant: 'error' })
+        if (!token) {
+            enqueueSnackbar("Please Login", { variant: 'error' });
             setTimeout(() => {
                 window.location.href = '/sign-in';
             }, 2000);
-        }
-        const get_data = async () => {
-            try {
-                const token_unlock = localStorage.getItem("gts_token");
+        } else {
+            const get_data = async () => {
+                try {
+                    const token_unlock = localStorage.getItem("gts_token");
 
-                const response = await axios.post(
-                    `${apiUrl}/profile`,
-                    null, // No data to send in the POST body?
-                    {
-                        headers: {
-                            'Authorization': `Bearer ${token_unlock}`
+                    const response = await axios.post(
+                        `${apiUrl}/profile`,
+                        null,
+                        {
+                            headers: {
+                                'Authorization': `Bearer ${token_unlock}`
+                            }
                         }
-                    }
-                );
-                setFirstName(response.data.result.First_Name);
-                setLastName(response.data.result.Last_Name);
-                setPhone(response.data.result.Phone);
-                setNIC(response.data.result.NIC);
-                setGender(response.data.result.Gender);
-                setEmail(response.data.result.Email);
-            } catch (error) {
-                console.error("Error fetching profile data:", error);
-            }
-        };
-        get_data();
-    }, []);
-    const handle_logout=()=>{
-        const isloged_In=localStorage.getItem("gts_token");
-        if(isloged_In){
-        enqueueSnackbar("User Login Out..." ,{ variant: 'error' });
-        localStorage.removeItem('gts_token');
-            window.location.href = './';
-    }else{
-        enqueueSnackbar("Redirecting to Login" ,{ variant: 'success' })
-        setTimeout(() => {
-            window.location.href = '/sign-in';
-        }, 100);
-    }
-    }
+                    );
+                    setFirstName(response.data.result.First_Name);
+                    setLastName(response.data.result.Last_Name);
+                    setPhone(response.data.result.Phone);
+                    setNIC(response.data.result.NIC);
+                    setGender(response.data.result.Gender);
+                    setEmail(response.data.result.Email);
+                } catch (error) {
+                    console.error("Error fetching profile data:", error);
+                    enqueueSnackbar("Failed to fetch profile data", { variant: 'error' });
+                }
+            };
+            get_data();
+        }
+    }, [token]);
+
+    const handle_logout = () => {
+        const isloged_In = localStorage.getItem("gts_token");
+        if (isloged_In) {
+            enqueueSnackbar("User Logout...", { variant: 'success' });
+            localStorage.removeItem('gts_token');
+            window.location.href = '/';
+        } else {
+            enqueueSnackbar("Redirecting to Login", { variant: 'success' });
+            setTimeout(() => {
+                window.location.href = '/sign-in';
+            }, 100);
+        }
+    };
     return (
         <div>
             <div className="min-h-[100vh] flex flex-col">
