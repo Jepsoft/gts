@@ -25,14 +25,14 @@ export default function Sign_in() {
             const token = response.data.token;
             localStorage.setItem("gts_token", token);
             enqueueSnackbar(response?.data?.message, { variant: 'success' })
-                window.location.href = './';
+            window.location.href = './';
         } catch (error) {
             enqueueSnackbar(error?.response?.data?.message, { variant: 'error' })
         }
     };
     return (
         <div>
-            <div className="min-h-[100vh] flex flex-col">
+            <div className="flex flex-col">
                 <nav className="p-4  md:p-10 text-white">
                     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
                         <div></div>
@@ -66,7 +66,7 @@ export default function Sign_in() {
                         </span>
                     </div>
                 </nav>
-                <div class="flex-grow flex flex-col justify-center items-center">
+                <div class="flex-grow flex flex-col justify-center items-center mt-28 lg:mt-0 md:mt-0">
                     <div className="w-[80%] md:w-[50%] lg:w-[30%] h-[80vh] flex items-center justify-center ">
                         <div className="w-full bg-white bg-opacity-20 p-5 rounded-lg">
                             <h1 className="text-center text-3xl font-bold text-white mb-10 mt-10">Sign In Now</h1>
@@ -118,7 +118,7 @@ export default function Sign_in() {
                     </div>
                 </div>
             </div>
-            <h1 className=" text-white text-center mb-5 ">©2024 <span className=" font-bold text-blue-700">Jepsoft</span>. All Rights Reserved.</h1>
+            <h1 className=" text-white text-center mb-5 mt-5 ">©2024 <span className=" font-bold text-blue-700">Jepsoft</span>. All Rights Reserved.</h1>
         </div>
     )
 }

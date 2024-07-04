@@ -64,6 +64,20 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col">
+      <div class="area" >
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+    </div >
         <nav className="p-4  md:p-10 text-white">
           <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto h-full">
             <div></div>
@@ -123,23 +137,23 @@ export default function Home() {
               <Image src={Search} alt="search icon" className="w-7 p-1 h-8 mt-1 -ml-10 cursor-pointer" />
             </div>
           </div>
-            <div id="default-carousel" className="mt-5 mb-5 " data-carousel="slide">
-              <div className="relative min-h-44 ml-12 mr-12 rounded-lg bg-opacity-30">
-                {posters.map((poster, index) => (
-                  <div
-                    key={index}
-                    className={`absolute w-full max-h-[550px] lg:max-h-[550px] sm: md:max-h-[440px]   transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
-                    style={{ zIndex: index === currentIndex ? 10 : 1 }}>
-                    <Link href='#'>
-                      <Image
-                        src={poster} // Assuming poster is the path to your image
-                        unoptimized
-                        className="absolute block w-svh max-h-[550px] lg:max-h-[550px] sm: md:max-h-[440px] object-contain cursor-pointer"
-                        alt={`Slide ${index + 1}`}
-                      />
-                    </Link>
-                  </div>
-                ))}
+          <div id="default-carousel" className="mt-5 mb-5 " data-carousel="slide">
+            <div className="relative min-h-44 ml-12 mr-12 rounded-lg bg-opacity-30">
+              {posters.map((poster, index) => (
+                <div
+                  key={index}
+                  className={`absolute w-full max-h-[550px] lg:max-h-[550px] sm: md:max-h-[440px]   transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
+                  style={{ zIndex: index === currentIndex ? 10 : 1 }}>
+                  <Link href='#'>
+                    <Image
+                      src={poster} // Assuming poster is the path to your image
+                      unoptimized
+                      className="absolute block w-svh max-h-[550px] lg:max-h-[550px] sm: md:max-h-[440px] object-contain cursor-pointer"
+                      alt={`Slide ${index + 1}`}
+                    />
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
         </div>

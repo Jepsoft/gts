@@ -12,8 +12,11 @@
     "axios": "^1.7.2",
     "next": "14.2.3",
     "notistack": "^3.0.1",
+    "particles.js": "^2.0.0",
     "react": "^18",
     "react-dom": "^18",
+    "sass": "^1.77.6",
+    "scss": "^0.2.4",
     "sharp": "^0.33.4"
   },
   "devDependencies": {
