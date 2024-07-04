@@ -8,7 +8,7 @@ import axios from "axios";
 import { enqueueSnackbar } from "notistack";
 export default function Profile() {
     const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    const token = typeof window !== 'undefined' ? localStorage.getItem("gts_token") : null;
+    const token = typeof window != 'undefined' ? localStorage.getItem("gts_token") : null;
     
     const check_login = () => {
         const user_login_done = token ? "visible" : "hidden";

@@ -28,7 +28,8 @@ import Poster1 from "./posters/bannerone.svg";
 import Poster2 from "./posters/bannertwo.svg";
 import Poster3 from "./posters/bannerthree.svg";
 import Poster4 from "./posters/bannerfore.svg";
-export default function Home() { 
+export default function Home() {
+  const token = localStorage.getItem('gts_token');
   const [pageLoaded, setPageLoaded] = useState(false);
   const [loaderStatus, setLoaderStatus] = useState('visible');
   const [background, setBackgroundStatus] = useState('blur');
@@ -55,8 +56,6 @@ export default function Home() {
       document.removeEventListener('DOMContentLoaded', handlePageLoad);
     };
   }, []);
-
-  const token = typeof window !== 'undefined' ? localStorage.getItem("gts_token") : null;
   const user_login_done = token ? "visible" : "hidden";
   const user_not_login = token ? "hidden" : "visible";
   const posters = [Poster1, Poster2, Poster3, Poster4];
