@@ -24,7 +24,6 @@ class UserController extends Controller
             'Gender' => 'required|string',
             'NIC_Number' => 'required|string|max:20',
         ]);
-
         $user = User::create([
             'First_Name' => $validatedData['First_Name'],
             'Last_Name' => $validatedData['Last_Name'],
@@ -67,5 +66,37 @@ class UserController extends Controller
             'NIC' => $request->user()->NIC_Number
         ];
         return response()->json(['result' => $userDetails], 200);
+    }
+    public function update_user_data(Request $request)
+    {
+        $validatedData = $request->validate([
+            'First_Name' => 'required|string|max:255',
+            'Last_Name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'Phone' => 'required|string|max:20',
+            'NIC' => 'required|string|max:20',
+        ]);
+        $user = $request->user();
+        $user->update($validatedData);
+        return response()->json(['message' => 'User data updated successfully'], 200);
+    }
+    public function reset(Request $request)
+    {
+        $validatedData = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:8'
+        ]);
+        $email = $validatedData['email'];
+        $user = User::where('email', $email)->first();
+        if ($user) {
+            $phoneNumber = $user->phone;
+            return response()->json(['status' => 'success', 'phone' => $phoneNumber], 200);
+        }
+        $pathToFile = base_path('vendor/notifylk/notify-php/docs/Api/SmsApi.php');
+        include_once($pathToFile);
+        return response()->json([
+            'status' => $status,
+            'result' => $result
+        ], 200);
     }
 }

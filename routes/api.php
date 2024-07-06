@@ -19,7 +19,9 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/signup', [UserController::class, 'signup']);
 Route::post('/verify', [MessageController::class, 'send']);
 Route::post('/verify_phone', [MessageController::class, 'send']);
+Route::post('/forgot-password', [UserController::class, 'reset']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/profile', [UserController::class, 'get_user_data']);
+    Route::post('/update_profile', [UserController::class, 'update_user_data']);
 });
