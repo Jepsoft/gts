@@ -127,7 +127,7 @@ export default function Profile() {
                         </div>
                     </div>
                     <div className=" flex justify-center ">
-                        <h1 className=" font-bold text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[15px] ml-auto mt-5 mb-5  mr-auto">Edit Profile</h1>
+                        <Link href={'/edit-profile'} className=" font-bold text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[15px] ml-auto mt-5 mb-5  mr-auto">Edit Profile</Link>
                         <h1 className=" cursor-pointer font-bold text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[15px] ml-auto mt-5 mb-5  mr-auto" onClick={handle_logout}>Logout</h1>
                     </div>
                 </div>

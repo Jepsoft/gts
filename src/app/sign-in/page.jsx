@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Logo from "../icons/logo.svg";
 import Link from "next/link";
-import Search from "../icons/search.svg";
 import email_icon from "./email.svg";
 import password_icon from "./password.svg"
 import google from "./google.svg"
@@ -99,7 +98,7 @@ export default function Sign_in() {
                                         className="absolute right-2 top-2 h-6 w-6"
                                     />
                                 </div>
-                                <h1 className="cursor-pointer text-white text-sm text-right">Forgot Password?</h1>
+                                <Link href='/forgot-password' className="cursor-pointer text-white text-sm text-right">Forgot Password?</Link>
                                 <h1 className="text-center text-white font-bold mt-6">OR</h1>
                                 <div className="flex justify-center">
                                     <div className="cursor-pointer flex justify-center bg-white bg-opacity-30 rounded-lg mt-4 mb-4">

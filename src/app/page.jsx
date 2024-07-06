@@ -29,13 +29,22 @@ import Poster2 from "./posters/bannertwo.svg";
 import Poster3 from "./posters/bannerthree.svg";
 import Poster4 from "./posters/bannerfore.svg";
 export default function Home() {
-  const token = localStorage.getItem('gts_token');
+  var token;
+  const [user_login_done, set_login_done] = useState('visible');
+  const [user_not_login, set_not_login_done] = useState('blur');
   const [pageLoaded, setPageLoaded] = useState(false);
   const [loaderStatus, setLoaderStatus] = useState('visible');
   const [background, setBackgroundStatus] = useState('blur');
 
   // Set timeout to hide loader after 2 seconds
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      token = localStorage.getItem('gts_token');
+      set_login_done(token ? "visible" : "hidden");
+      set_not_login_done(token ? "hidden" : "visible");
+    } else {
+      token = null;
+    }
     const timer = setTimeout(() => {
       setLoaderStatus('hidden');
       setBackgroundStatus('');
@@ -56,8 +65,7 @@ export default function Home() {
       document.removeEventListener('DOMContentLoaded', handlePageLoad);
     };
   }, []);
-  const user_login_done = token ? "visible" : "hidden";
-  const user_not_login = token ? "hidden" : "visible";
+
   const posters = [Poster1, Poster2, Poster3, Poster4];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -96,20 +104,6 @@ export default function Home() {
         </div>
         <div className={`${background}`}>
           <div className="flex flex-col">
-            {/* <div className="area"  >
-              <ul class="circles">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-              </ul>
-            </div > */}
             <nav className="p-4  md:p-10 text-white">
               <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto h-full">
                 <div></div>
