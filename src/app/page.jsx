@@ -6,6 +6,7 @@ import Linkedin from "./icons/linkedin.svg"
 import whatsapp from "./icons/whatsapp.svg"
 import facebook from "./icons/facebook.svg"
 import Aravinda from "./director/arvinda.svg";
+import A_DIR from "./director/a_director.svg";
 import one_of_one from "./director/one_of_one.svg";
 import Logo from "./icons/logo.svg";
 import User from "./icons/user.svg";
@@ -17,6 +18,7 @@ import Export from "./icons/export.svg";
 import Event from "./icons/event.svg";
 import Web from "./icons/webdesign.svg";
 import Air from "./icons/air.svg";
+import BG from "./icons/background.svg";
 import Counselling from "./icons/counselling.svg";
 import Real from "./icons/state.svg";
 import Logistic from "./icons/logistic.svg";
@@ -25,6 +27,8 @@ import Pot_job from "./icons/postjob.svg";
 import Social from "./icons/socialm.svg";
 import Tour from "./icons/tour.svg";
 import Poster1 from "./posters/bannerone.svg";
+import AOS from "aos";
+import 'aos/dist/aos.css';
 import Poster2 from "./posters/bannertwo.svg";
 import Poster3 from "./posters/bannerthree.svg";
 import Poster4 from "./posters/bannerfore.svg";
@@ -65,6 +69,13 @@ export default function Home() {
       document.removeEventListener('DOMContentLoaded', handlePageLoad);
     };
   }, []);
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+      easing: 'ease-in-out',
+      once: true,
+    });
+  }, []);
 
   const posters = [Poster1, Poster2, Poster3, Poster4];
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -98,16 +109,19 @@ export default function Home() {
   }, []);
   return (
     <>
-      <div>
-        <div class={`flex-grow flex flex-col justify-center  items-center h-svh fixed left-0 right-0  top-0 bottom-0 z-20 ${loaderStatus}`}>
+      <div className='all'>
+        <div className={`fixed left-0 right-0 top-0 bottom-0 -z-50 ${background}`}>
+          <Image src={BG} className=' object-cover w-full h-full opacity-15' />
+        </div>
+        <div class={` flex-grow flex flex-col justify-center  items-center h-svh fixed left-0 right-0  top-0 bottom-0 z-20 ${loaderStatus}`}>
           <Image unoptimized src={loader} alt='loader' className='w-20' />
         </div>
         <div className={`${background}`}>
           <div className="flex flex-col">
-            <nav className="p-4  md:p-10 text-white">
-              <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto h-full">
+            <nav data-aos='fade-top' className="p-4  md:p-10 text-white ">
+              <div className=" max-w-screen-xl flex flex-wrap items-center justify-between mx-auto h-full">
                 <div></div>
-                <Image src={Logo} alt="gts logo" className="special_logo absolute h-40 w-52 left-3 top-[-14px] sm:left-1" />
+                <Image src={Logo} data-aos="fade-up" alt="gts logo" className="special_logo absolute h-40 w-52 left-3 top-[-14px] sm:left-1" />
                 <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                   <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown"></div>
                 </div>
@@ -130,20 +144,23 @@ export default function Home() {
                     </li>
                   </ul>
                 </div>
+
                 <div className={`absolute right-10 text-white top-8 text-center special-signup_in_button ${user_not_login}`}>
-                  <div className=' bg-white bg-opacity-30 flex justify-center  rounded-[20px]'>
-                    <Link href='/sign-in'>
-                      <div className='pr-2 pl-3 p-2'>
-                        Signin
-                      </div>
-                    </Link>
-                    <Link href='/sign-up'>
-                      <div className='pl-3 pr-3 p-2 bg-blue-600 rounded-[20px] '>
-                        Signup
-                      </div>
-                    </Link>
-                  </div>
-                </div>
+  <div className='bg-white bg-opacity-30 flex justify-center rounded-[20px]'>
+    <Link href='/sign-in'>
+      <div className='pr-2 pl-3 p-2 transition-all rounded-[20px] hover:-pr-5 duration-500 ease-in-out transform hover:bg-white hover:text-blue-600 hover:scale-105 hover:shadow-lg'>
+        Signin
+      </div>
+    </Link>
+    <Link href='/sign-up'>
+      <div className='pl-3 pr-3 p-2 bg-blue-600 rounded-[20px] transition-all duration-500 ease-in-out transform hover:bg-white hover:text-blue-600 hover:scale-105 hover:shadow-lg'>
+        Signup
+      </div>
+    </Link>
+  </div>
+</div>
+
+
                 <div className={`absolute right-10 text-white top-8 text-center special-signup_in_button ${user_login_done}`}>
                   <Link href='/profile'>
                     <Image src={User} className=' bg-white h-[40px] w-[40px] rounded-full p-1.5' />
@@ -165,7 +182,7 @@ export default function Home() {
               </div>
 
               <div id="default-carousel" className="mt-5 mb-5 " data-carousel="slide">
-                <div className="relative min-h-44 ml-12 mr-12 rounded-lg bg-opacity-30">
+                <div className="relative min-h-44 ml-12 mr-12 rounded-lg bg-opacity-30 -z-10">
                   {posters.map((poster, index) => (
                     <div
                       key={index}
@@ -175,7 +192,7 @@ export default function Home() {
                         <Image
                           src={poster} // Assuming poster is the path to your image
                           unoptimized
-                          className="absolute block w-svh max-h-[550px] lg:max-h-[550px] sm: md:max-h-[440px] object-contain cursor-pointer"
+                          className="absolute block w-svh max-h-[550px] lg:max-h-[550px] sm: md:max-h-[440px] object-contain cursor-pointer rounded-[20px]"
                           alt={`Slide ${index + 1}`}
                         />
                       </Link>
@@ -190,55 +207,56 @@ export default function Home() {
           <h1 className="text-3xl font-bold text-center text-white">Our Services</h1>
           <br />
           <br />
-          <div className="flex flex-wrap justify-center">
+          <div className="flex flex-wrap justify-center ml-[5%] mr-[5%]">
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-              <Link href="/Event-Planning" className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
+              <Link data-aos="fade-right" href="/Event-Planning" className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Event} alt="car" className="h-20 sm:h-24 lg:h-28 w-20 p-2 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2">Event Planning</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Event Planning</span>
               </Link>
-              <Link href='/Web-Designing' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
+              <Link data-aos="fade-right" href='/Web-Designing' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Web} alt="bike" className="h-20 sm:h-24 lg:h-28 w-20 p-2 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2">Web Designing</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Web Designing</span>
               </Link>
-              <Link href='/tires' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
+              <Link data-aos="fade-left" href='/tires' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Find_job} alt="tires" className="h-20 sm:h-24  p-2lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2">Tires</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Find a Job</span>
               </Link>
-              <Link href='/parts' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
+              <Link data-aos="fade-left" href='/parts' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Pot_job} alt="parts" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2">Parts</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Post a Job</span>
               </Link>
-              <Link href='/service' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
+              <Link data-aos="fade-right" href='/service' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Import} alt="service" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2" style={{ textAlign: "center" }}>Services</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]" style={{ textAlign: "center" }}>Import & Export</span>
               </Link>
-              <Link href="/post-ad" className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
+              <Link data-aos="fade-right" href="/post-ad" className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Tour} alt="post ad" className="h-20 sm:h-24  p-2lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2">Post Ad</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Tour Operations</span>
               </Link>
-              <Link href="/vehicle" className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
+              <Link data-aos="fade-left" href="/vehicle" className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Logistic} alt="car" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2">Vehicle</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Logistic Service</span>
               </Link>
-              <Link href="/post-ad" className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
+              <Link data-aos="fade-left" href="/post-ad" className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Social} alt="post ad" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2">Post Ad</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Social media
+                  marketing</span>
               </Link>
-              <Link href='/bike' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
+              <Link data-aos="fade-right" href='/bike' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Air} alt="bike" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2">Bikes</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Air Ticketing</span>
               </Link>
-              <Link href='/tires' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
+              <Link data-aos="fade-right" href='/tires' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Counselling} alt="tires" className="h-20 p-2 sm:h-24 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2">Tires</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Counseling</span>
               </Link>
-              <Link href='/parts' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
+              <Link data-aos="fade-left" href='/parts' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Real} alt="parts" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2">Parts</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Real estate management </span>
               </Link>
-              <Link href='/service' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
+              <Link data-aos="fade-left" href='/service' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Export} alt="service" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2" style={{ textAlign: "center" }}>Services</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]" style={{ textAlign: "center" }}>Services</span>
               </Link>
             </div>
           </div>
@@ -247,7 +265,7 @@ export default function Home() {
           <h1 className="text-3xl font-bold text-center text-white">About Us</h1>
           <br />
           <br />
-          <h4 className="text-md ml-10 mr-10  text-center text-white">At Global talent Solutions , our mission is to simplify and enhance the lives of our clients by providing a comprehensive suite of  We are dedicated to excellence
+          <h4 className="text-md ml-10 mr-10  text-center text-white text-bold">At Global talent Solutions , our mission is to simplify and enhance the lives of our clients by providing a comprehensive suite of  We are dedicated to excellence
             and innovation across logistics, travel, trade, workforce, protection, education, marketing, event management, real estate, and web solutions.
             By unifying these diverse services under one roof, we aim to deliver unmatched convenience, efficiency, and quality,
             empowering our clients to achieve their goals seamlessly and effectively.</h4>
@@ -258,16 +276,24 @@ export default function Home() {
             <h1 className="text-3xl font-bold text-center text-white">Top Management</h1>
             <br />
             <div className="flex flex-wrap justify-center">
-              <Link href="#" className="bg-white bg-opacity-30 w-32 text-center rounded-xl m-2 sm:m-10 h-35 p-3">
-                <Image src={one_of_one} className="flex items-center justify-center rounded-full mb-1" />
-                <span className="h-svh text-white">Director</span>
-              </Link>
-              <Link href="#" className="bg-white bg-opacity-30 w-32 text-center rounded-xl m-2 sm:m-10 h-35 p-3">
-                <Image src={Aravinda} className="flex items-center justify-center rounded-full mb-1" />
+
+              <Link href="#" className="bg-white bg-opacity-30 w-44 text-center rounded-xl m-2 sm:m-10 h-35 p-3">
+                <div className='flex justify-center'>
+                  <Image src={Aravinda} className="flex w-32 items-center  rounded-full mb-1" />
+                </div><br />
+                <span className="h-svh text-white">Mr.Aravinda Athukoralage</span><br />
                 <span className="h-svh text-white">Managing Director</span>
               </Link>
-              <Link href="#" className="bg-white bg-opacity-30 w-32 text-center rounded-xl m-2 sm:m-10 h-35 p-3">
-                <Image src={one_of_one} className="flex items-center justify-center rounded-full mb-1" />
+              <Link href="#" className="bg-white bg-opacity-30 w-44 text-center rounded-xl m-2 sm:m-10 h-35 p-3">
+                <div className='flex justify-center'>
+                  <Image src={A_DIR} className="flex w-32 items-center  rounded-full mb-1" />
+                </div>
+                <span className="h-svh text-white">Director</span>
+              </Link>
+              <Link href="#" className="bg-white bg-opacity-30 w-44 text-center rounded-xl m-2 sm:m-10 h-35 p-3">
+                <div className='flex justify-center'>
+                  <Image src={one_of_one} className="flex w-32 items-center  rounded-full mb-1" />
+                </div>
                 <span className="h-svh text-white">Director</span>
               </Link>
             </div>
@@ -292,11 +318,11 @@ export default function Home() {
             <br />
             <br />
             <div className="flex justify-center  ml-[5%] mr-[5%]">
-              <div className="w-full md:w-1/2">
-                <div className="bg-white bg-opacity-10 p-2 rounded-3xl">
+              <div className="w-full md:w-1/2 flex justify-center ">
+                <div className="bg-white bg-opacity-10 p-2 rounded-3xl max-w-[370px] pl-[5%] pr-[5%]">
                   <h1 className="text-center text-white font-bold mt-5 mb-5 text-[30px]">Get In Touch</h1>
                   <p className="text-white text-center mt-5 mb-5">We are here for you! How can we help?</p>
-                  <div className="ml-8 mt-8 mb-5 mr-8">
+                  <div className=" mt-8 mb-5 ">
                     <input type="text" placeholder="Enter Your Name" className="p-2 rounded-[18px] mt-5 mb-5 w-full bg-[#d9d9d920] text-white" /><br />
                     <input type="text" placeholder="Enter Your Email Address" className="text-white p-2 rounded-[18px] mt-5 mb-5 w-full bg-[#d9d9d920]" /><br />
                     <input type="text" placeholder="Let Us Know How We Can Help You" className="text-white p-2 rounded-[18px] mt-5 mb-5 w-full bg-[#d9d9d920]" />
@@ -320,7 +346,6 @@ export default function Home() {
                 <br /><br /><br />
               </div>
             </div>
-
           </div>
           <br /><br />
           <div className="p-2">

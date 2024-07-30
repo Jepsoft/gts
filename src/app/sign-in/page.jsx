@@ -3,8 +3,8 @@ import Image from "next/image";
 import Logo from "../icons/logo.svg";
 import Link from "next/link";
 import email_icon from "./email.svg";
-import password_icon from "./password.svg"
-import google from "./google.svg"
+import password_icon from "./password.svg";
+import google from "./google.svg";
 import { useState } from "react";
 import axios from "axios";
 import { enqueueSnackbar } from "notistack";
@@ -12,10 +12,8 @@ export default function Sign_in() {
     const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const response = await axios.post(`${apiUrl}/login`, {
                 email,
@@ -40,23 +38,8 @@ export default function Sign_in() {
                             <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown"></div>
                         </div>
                         <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
-                            <ul className="flex flex-col font-medium p-4 md:p-0 border rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
-                                <li>
-                                    <Link href="./" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</Link>
-                                </li>
-                                <li>
-                                    <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
-                                </li>
-                                <li>
-                                    <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
-                                </li>
-                                <li>
-                                    <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pricing</a>
-                                </li>
-                                <li>
-                                    <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
-                                </li>
-                            </ul>
+                        <h1 className="font-bold md:text-2xl lg:text-2xl sm:text-xl"><span className="span_g">G</span>lobal <span className="span_t">T</span>alent <span className="span_s">S</span>olutions</h1>
+
                         </div>
                         <span className="bg-white bg-opacity-30 rounded-3xl pt-3 pb-3 absolute right-10 md:right-10 lg:right-10 top-10 sm:pt-2 sm:pb-2 sm:right-2 sm:top-9">
                             <Link href="/sign-up">
@@ -76,7 +59,7 @@ export default function Sign_in() {
                                         placeholder="Email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="p-2 rounded-lg w-full bg-[#d9d9d920] text-white"
+                                        className="p-2 rounded-[20px] w-full bg-[#d9d9d920] text-white"
                                     />
                                     <Image
                                         src={email_icon}
@@ -90,7 +73,7 @@ export default function Sign_in() {
                                         placeholder="Password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        className="p-2 rounded-lg w-full bg-[#d9d9d920] text-white"
+                                        className="p-2 rounded-[20px] w-full bg-[#d9d9d920] text-white"
                                     />
                                     <Image
                                         src={password_icon}
@@ -101,7 +84,7 @@ export default function Sign_in() {
                                 <Link href='/forgot-password' className="cursor-pointer text-white text-sm text-right">Forgot Password?</Link>
                                 <h1 className="text-center text-white font-bold mt-6">OR</h1>
                                 <div className="flex justify-center">
-                                    <div className="cursor-pointer flex justify-center bg-white bg-opacity-30 rounded-lg mt-4 mb-4">
+                                    <div className="cursor-pointer flex justify-center bg-white bg-opacity-30 rounded-[20px] mt-4 mb-4">
                                         <Image src={google} className="ml-2 mt-2  h-6" alt="Google icon" />
                                         <h1 className="text-white ml-3 mr-3 mt-2 mb-2">Continue With Google</h1>
                                     </div>
@@ -109,7 +92,7 @@ export default function Sign_in() {
                                 <Link href="./sign-up">
                                     <h1 className="cursor-pointer text-center mt-4 mb-2 text-white">Don't Have an Account? <span className="font-bold">Sign Up</span></h1>
                                 </Link>
-                                <button type="submit" className="w-full bg-blue-600 font-bold text-white text-lg py-2 rounded-lg cursor-pointer mt-4 mb-3">
+                                <button type="submit" className="w-full bg-blue-600 font-bold text-white text-lg py-2 rounded-[20px] cursor-pointer mt-4 mb-3">
                                     Sign In
                                 </button>
                             </form>
