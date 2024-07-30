@@ -21,7 +21,7 @@ export default function Profile() {
             token = null;
         }
     }, [token]);
-    
+
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [phone, setPhone] = useState("");
@@ -69,6 +69,7 @@ export default function Profile() {
         if (isloged_In) {
             enqueueSnackbar("User Logout...", { variant: 'success' });
             localStorage.removeItem('gts_token');
+            localStorage.removeItem('phone');
             window.location.href = '/';
         } else {
             enqueueSnackbar("Redirecting to Login", { variant: 'success' });

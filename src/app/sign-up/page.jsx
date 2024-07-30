@@ -12,6 +12,7 @@ export default function Sign_up() {
     const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const [vefify_update, setVerify_update] = useState(red_verify);
     const [status, setstatus] = useState();
+    const [enableornot, setenabledornot] = useState();
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -23,7 +24,7 @@ export default function Sign_up() {
         nic: '',
     });
     const handle_verify = async () => {
-        if (formData.phone) {
+        if (formData.phone && enableornot != 'disabled:cursor-not-allowed') {
             const response = await axios.post(`${apiUrl}/verify_phone`, {
                 for: 'send',
                 phone: formData.phone,
@@ -33,6 +34,10 @@ export default function Sign_up() {
                 localStorage.setItem("gtsvch", code);
             }
             blur_contrall();
+            setenabledornot('disabled:cursor-not-allowed')
+            setTimeout(() => {
+                setenabledornot('')
+            }, 60000);
         } else {
             const response = " Enter Your Phone Number";
             enqueueSnackbar(response, { variant: 'info' });
@@ -122,7 +127,7 @@ export default function Sign_up() {
         <div >
             <div className={`${hide_item} z-10 flex justify-center items-center absolute left-0 right-0 top-0 bottom-0 h-full mt-auto mb-auto`}>
                 <div tabindex="-1" aria-hidden="true" className=" ">
-                    <div class="relative p-4 w-full max-w-md max-h-full">
+                    <div class=" relative p-4 w-full max-w-md max-h-full">
                         <div class="relative bg-white bg-opacity-30 bg-blur rounded-lg shadow ">
                             <h3 class="text-xl text-white dark:text-white text-center pt-5 ">
                                 Verify Your Phone
@@ -144,7 +149,7 @@ export default function Sign_up() {
                                     </div>
                                     <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={verify_code}>Verify</button>
                                     <div class="text-sm font-medium text-white text-center">
-                                        Didn't Get Code? <a href="#" class="text-blue-700 hover:underline dark:text-blue-700">Resend</a>
+                                        Didn't Get Code? <a href="#" onClick={handle_verify} className={` disabled:cursor-not-allowed text-blue-700 hover:underline dark:text-blue-700`}>Resend</a>
                                     </div>
                                 </form>
                             </div>

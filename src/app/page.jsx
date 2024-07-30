@@ -146,21 +146,19 @@ export default function Home() {
                 </div>
 
                 <div className={`absolute right-10 text-white top-8 text-center special-signup_in_button ${user_not_login}`}>
-  <div className='bg-white bg-opacity-30 flex justify-center rounded-[20px]'>
-    <Link href='/sign-in'>
-      <div className='pr-2 pl-3 p-2 transition-all rounded-[20px] hover:-pr-5 duration-500 ease-in-out transform hover:bg-white hover:text-blue-600 hover:scale-105 hover:shadow-lg'>
-        Signin
-      </div>
-    </Link>
-    <Link href='/sign-up'>
-      <div className='pl-3 pr-3 p-2 bg-blue-600 rounded-[20px] transition-all duration-500 ease-in-out transform hover:bg-white hover:text-blue-600 hover:scale-105 hover:shadow-lg'>
-        Signup
-      </div>
-    </Link>
-  </div>
-</div>
-
-
+                  <div className='bg-white bg-opacity-30 flex justify-center rounded-[20px]'>
+                    <Link href='/sign-in'>
+                      <div className='pr-2 pl-3 p-2 transition-all rounded-[20px] hover:-pr-5 duration-500 ease-in-out transform hover:bg-white hover:text-blue-600 hover:scale-105 hover:shadow-lg'>
+                        Signin
+                      </div>
+                    </Link>
+                    <Link href='/sign-up'>
+                      <div className='pl-3 pr-3 p-2 bg-blue-600 rounded-[20px] transition-all duration-500 ease-in-out transform hover:bg-white hover:text-blue-600 hover:scale-105 hover:shadow-lg'>
+                        Signup
+                      </div>
+                    </Link>
+                  </div>
+                </div>
                 <div className={`absolute right-10 text-white top-8 text-center special-signup_in_button ${user_login_done}`}>
                   <Link href='/profile'>
                     <Image src={User} className=' bg-white h-[40px] w-[40px] rounded-full p-1.5' />
