@@ -8,7 +8,7 @@ import green_verify from "../icons/green_verify.svg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { enqueueSnackbar } from "notistack";
-export default function become_service_provider() {
+export default function usebecome_service_provider() {
     const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const [vefify_update, setVerify_update] = useState(red_verify);
     const [status, setstatus] = useState();

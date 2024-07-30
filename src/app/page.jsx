@@ -39,8 +39,6 @@ export default function Home() {
   const [pageLoaded, setPageLoaded] = useState(false);
   const [loaderStatus, setLoaderStatus] = useState('visible');
   const [background, setBackgroundStatus] = useState('blur');
-
-  // Set timeout to hide loader after 2 seconds
   useEffect(() => {
     if (typeof window !== 'undefined') {
       token = localStorage.getItem('gts_token');
@@ -54,10 +52,8 @@ export default function Home() {
       setBackgroundStatus('');
     }, 2000);
 
-    return () => clearTimeout(timer); // Cleanup the timer on component unmount or re-run
+    return () => clearTimeout(timer); 
   }, []);
-
-  // Listen for DOMContentLoaded event to mark page as fully loaded
   useEffect(() => {
     const handlePageLoad = () => {
       setPageLoaded(true);
@@ -88,8 +84,6 @@ export default function Home() {
       setIsTransitioning(false);
     }, 300); // Adjust the duration to match your CSS transition duration
   };
-
-  // Function to go to the previous slide
   const prevSlide = () => {
     setIsTransitioning(true);
     setTimeout(() => {
@@ -107,6 +101,30 @@ export default function Home() {
     // Cleanup function to clear interval on component unmount
     return () => clearInterval(interval);
   }, []);
+  const [boxcolor, setboxcolor] = useState('');
+  const [signincolor, setsignincolor] = useState('');
+  const [signuploer, setsignupcolor] = useState('');
+  useEffect(() => {
+    setsignincolor("bg-white");
+    setboxcolor("bg-white text-blue-600");
+    setsignupcolor("bg-blue-600 text-white");
+  }, []);
+  const hadleanimate = () => {
+    setsignincolor("bg-blue-600");
+    setboxcolor("bg-blue-600");
+    setsignupcolor("bg-white text-blue-600");
+  };
+  const hadleleave = () => {
+    setsignincolor("bg-white");
+    setboxcolor("bg-white text-blue-600");
+    setsignupcolor("bg-blue-600 text-white");
+  };
+
+  const hadleanimatep = () => {
+    setsignincolor("bg-blue-600 ");
+    setboxcolor("bg-white text-blue-600");
+    setsignupcolor("bg-blue-600");
+  }
   return (
     <>
       <div className='all'>
@@ -144,16 +162,15 @@ export default function Home() {
                     </li>
                   </ul>
                 </div>
-
                 <div className={`absolute right-10 text-white top-8 text-center special-signup_in_button ${user_not_login}`}>
-                  <div className='bg-white bg-opacity-30 flex justify-center rounded-[20px]'>
-                    <Link href='/sign-in'>
-                      <div className='pr-2 pl-3 p-2 transition-all rounded-[20px] hover:-pr-5 duration-500 ease-in-out transform hover:bg-white hover:text-blue-600 hover:scale-105 hover:shadow-lg'>
+                  <div className={`${boxcolor} flex justify-center rounded-[20px]`}>
+                    <Link href='/sign-in' onMouseEnter={hadleanimate} onMouseLeave={hadleleave}>
+                      <div className='pr-2 pl-3  p-2 transition-all rounded-[20px] hover:-pr-5 duration-500 ease-in-out transform  hover:scale-100 hover:shadow-lg'>
                         Signin
                       </div>
                     </Link>
-                    <Link href='/sign-up'>
-                      <div className='pl-3 pr-3 p-2 bg-blue-600 rounded-[20px] transition-all duration-500 ease-in-out transform hover:bg-white hover:text-blue-600 hover:scale-105 hover:shadow-lg'>
+                    <Link href='/sign-up' onMouseEnter={hadleanimatep} onMouseLeave={hadleleave} >
+                      <div className={`pl-3 pr-3 p-2 ${signuploer} hover:text-white rounded-[20px] transition-all duration-500 ease-in-out transform hover:scale-100 hover:shadow-lg`}>
                         Signup
                       </div>
                     </Link>

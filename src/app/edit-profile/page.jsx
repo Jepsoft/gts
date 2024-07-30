@@ -12,8 +12,9 @@ import { enqueueSnackbar } from "notistack";
 export default function Edit_profile() {
     const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
     var token;
-    var thephone = null;
-    thephone = localStorage.getItem("phone");
+    const [thephone, setthephone] = useState(null);
+
+
     const [user_login_done, set_login_done] = useState('visible');
     const [status, setstatus] = useState(green_verify);
 
@@ -21,6 +22,7 @@ export default function Edit_profile() {
     useEffect(() => {
         if (typeof window !== 'undefined') {
             token = localStorage.getItem('gts_token');
+            setthephone(localStorage.getItem("phone"));
             set_login_done(token ? "visible" : "hidden");
             set_not_login_done(token ? "hidden" : "visible");
         } else {
@@ -142,6 +144,7 @@ export default function Edit_profile() {
     };
     const handle_upadate = () => {
         const token_unlock = localStorage.getItem("gts_token");
+        console.log(thephone,phone);
             if (stvf == true || thephone == phone) {
                 const update_data = async () => {
                     try {
