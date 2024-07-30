@@ -31,6 +31,7 @@ export default function Edit_profile() {
     const [lastName, setLastName] = useState("");
     const [phone, setPhone] = useState("");
     const [NIC, setNIC] = useState("");
+    const [enableornot, setenabledornot] = useState();
     const [Email, setEmail] = useState("");
     const handle_verify = async () => {
         if (phone != thephone && /^[0-9]*0[0-9]*$/.test(phone) && phone.length === 10) {
@@ -43,6 +44,10 @@ export default function Edit_profile() {
                 localStorage.setItem("gtsvch", code);
             }
             blur_contrall();
+            setenabledornot('disabled:cursor-not-allowed')
+            setTimeout(() => {
+                setenabledornot('')
+            }, 60000);
         } else {
             const response = "Same or Invalid Number";
             enqueueSnackbar(response, { variant: 'info' });
@@ -196,7 +201,7 @@ export default function Edit_profile() {
                                     </div>
                                     <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={verify_code}>Verify</button>
                                     <div class="text-sm font-medium text-white text-center">
-                                        Didn't Get Code? <a href="#" class="text-blue-700 hover:underline dark:text-blue-700">Resend</a>
+                                        Didn't Get Code? <a href="#" onClick={handle_verify} className={`${setenabledornot} text-blue-700 hover:underline dark:text-blue-700`}>Resend</a>
                                     </div>
                                 </form>
                             </div>
