@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import Image from "next/image";
 import BG from "../icons/background.svg";
 import Logo from "../icons/logo.svg";
@@ -7,39 +8,33 @@ import User from "../icons/user.svg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { enqueueSnackbar } from "notistack";
+
 export default function Profile() {
     const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    var token;
     const [user_login_done, set_login_done] = useState('visible');
     const [user_not_login, set_not_login_done] = useState('blur');
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            token = localStorage.getItem('gts_token');
-            set_login_done(token ? "visible" : "hidden");
-            set_not_login_done(token ? "hidden" : "visible");
-        } else {
-            token = null;
-        }
-    }, [token]);
-
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [phone, setPhone] = useState("");
     const [NIC, setNIC] = useState("");
     const [Email, setEmail] = useState("");
     const [Gender, setGender] = useState("");
+    var token=localStorage.getItem('gts_token');
 
     useEffect(() => {
+
         if (!token) {
             enqueueSnackbar("Please Login", { variant: 'error' });
             setTimeout(() => {
                 window.location.href = '/sign-in';
-            }, 2000);
+            }, 500);
         } else {
+            set_login_done("visible");
+            set_not_login_done("hidden");
+
             const get_data = async () => {
                 try {
-                    const token_unlock = localStorage.getItem("gts_token");
-
+                    const token_unlock = localStorage.getItem('gts_token') ;
                     const response = await axios.post(
                         `${apiUrl}/profile`,
                         null,
@@ -63,6 +58,7 @@ export default function Profile() {
             get_data();
         }
     }, [token]);
+
 
     const handle_logout = () => {
         const isloged_In = localStorage.getItem("gts_token");

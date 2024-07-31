@@ -11,7 +11,7 @@ import { enqueueSnackbar } from "notistack";
 export default function Sign_up() {
     const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const [vefify_update, setVerify_update] = useState(red_verify);
-    const [status, setstatus] = useState();
+    const [status, setstatus] = useState('');
     const [enableornot, setenabledornot] = useState();
     const [formData, setFormData] = useState({
         firstName: '',

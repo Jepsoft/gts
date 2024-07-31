@@ -13,15 +13,23 @@ export default function Edit_profile() {
     const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
     var token;
     const [thephone, setthephone] = useState(null);
-
-
     const [user_login_done, set_login_done] = useState('visible');
     const [status, setstatus] = useState(green_verify);
-
     const [user_not_login, set_not_login_done] = useState('blur');
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [NIC, setNIC] = useState("");
+    const [enableornot, setenabledornot] = useState();
+    const [Email, setEmail] = useState("");
+    const [blurscreen, setBlurscreen] = useState('');
+    const [hide_item, sethideitem] = useState('hidden');
+    const [code, setCode] = useState('');
+    const [stvf, setstatus_vf] = useState(false);
+    token = localStorage.getItem('gts_token');
+
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            token = localStorage.getItem('gts_token');
             setthephone(localStorage.getItem("phone"));
             set_login_done(token ? "visible" : "hidden");
             set_not_login_done(token ? "hidden" : "visible");
@@ -29,12 +37,6 @@ export default function Edit_profile() {
             token = null;
         }
     }, [token]);
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [phone, setPhone] = useState("");
-    const [NIC, setNIC] = useState("");
-    const [enableornot, setenabledornot] = useState();
-    const [Email, setEmail] = useState("");
     const handle_verify = async () => {
         if (phone != thephone && /^[0-9]*0[0-9]*$/.test(phone) && phone.length === 10) {
             const response = await axios.post(`${apiUrl}/verify_phone`, {
@@ -56,8 +58,6 @@ export default function Edit_profile() {
         }
         //add success or fail message
     }
-    const [blurscreen, setBlurscreen] = useState('');
-    const [hide_item, sethideitem] = useState('hidden');
     const blur_contrall = () => {
         sethideitem('visible');
         if (blurscreen == "blur") {
@@ -117,8 +117,6 @@ export default function Edit_profile() {
             get_data();
         }
     }, [token]);
-    const [code, setCode] = useState('');
-    const [stvf, setstatus_vf] = useState(false);
     const verify_code = async (event) => {
         event.preventDefault();
         try {
@@ -132,7 +130,7 @@ export default function Edit_profile() {
                 enqueueSnackbar("Verification Success", { variant: 'success' });
                 setBlurscreen("");
                 sethideitem("hidden");
-                setstatus_vf(true)
+                setstatus_vf(true);
                 setVerify_update(green_verify);
                 localStorage.removeItem('gtsvch');
             } else {
@@ -144,39 +142,39 @@ export default function Edit_profile() {
     };
     const handle_upadate = () => {
         const token_unlock = localStorage.getItem("gts_token");
-        console.log(thephone,phone);
-            if (stvf == true || thephone == phone) {
-                const update_data = async () => {
-                    try {
-                        const response = await axios.post(
-                            `${apiUrl}/update_profile`,
-                            {
-                                First_Name: firstName,
-                                Last_Name: lastName,
-                                email: Email,
-                                Phone: phone,
-                                NIC_Number: NIC,
-                            },
-                            {
-                                headers: {
-                                    'Authorization': `Bearer ${token_unlock}`
-                                }
+        console.log(thephone, phone);
+        if (stvf == true || thephone == phone) {
+            const update_data = async () => {
+                try {
+                    const response = await axios.post(
+                        `${apiUrl}/update_profile`,
+                        {
+                            First_Name: firstName,
+                            Last_Name: lastName,
+                            email: Email,
+                            Phone: phone,
+                            NIC_Number: NIC,
+                        },
+                        {
+                            headers: {
+                                'Authorization': `Bearer ${token_unlock}`
                             }
-                        );
-                        enqueueSnackbar(response.data.message, { variant: 'success' });
-                        setTimeout(() => {
-                            window.location.href = '/profile';
-                        }, 2000);
-                    } catch (error) {
-                        enqueueSnackbar("User Data Update Failed", { variant: 'error' });
-                    }
-                };
+                        }
+                    );
+                    enqueueSnackbar(response.data.message, { variant: 'success' });
+                    setTimeout(() => {
+                        window.location.href = '/profile';
+                    }, 2000);
+                } catch (error) {
+                    enqueueSnackbar("User Data Update Failed", { variant: 'error' });
+                }
+            };
 
-                update_data();
-            } else {
-                enqueueSnackbar("Please Verify Your Phone", { variant: 'error' });
-            }
-        
+            update_data();
+        } else {
+            enqueueSnackbar("Please Verify Your Phone", { variant: 'error' });
+        }
+
     }
     return (
         <div>
