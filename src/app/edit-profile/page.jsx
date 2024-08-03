@@ -189,9 +189,7 @@ export default function Edit_profile() {
                 }
             );
             if (response.data.result = "success") {
-
-                setTimeout(() => {
-                    enqueueSnackbar("Account Deleting...", { variant: 'success' });
+                enqueueSnackbar("Account Deleting...", { variant: 'success' });
                 localStorage.removeItem('gts_token');
                 localStorage.removeItem('phone');
                 localStorage.removeItem('firstName');
@@ -199,10 +197,11 @@ export default function Edit_profile() {
                 localStorage.removeItem('NIC');
                 localStorage.removeItem('Email');
                 localStorage.removeItem('Gender');
-                }, 2000);
-                enqueueSnackbar("Account Deleted", { variant: 'success' });
                 setTimeout(() => {
-                    window.location.href = '../';
+                    enqueueSnackbar("Account Deleted", { variant: 'success' });
+                    setTimeout(() => {
+                        window.location.href = '../';
+                    }, 2000);
                 }, 2000);
             }
         } catch (error) {
@@ -296,7 +295,7 @@ export default function Edit_profile() {
                                                 unoptimized
                                                 width={50}
                                                 height={50}
-                                                className="h-[55px] w-[50px] absolute -mt-[12px]"
+                                                className="h-[55px] w-[50px] absolute -mt-[12px] cursor-pointer"
                                                 onClick={handle_verify}
                                             />
                                             <input
@@ -307,7 +306,7 @@ export default function Edit_profile() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="flex justify-between items-center mt-2 mb-2" onClick={() => handle_upadate()}>
+                                    <div className=" cursor-pointer flex justify-between items-center mt-2 mb-2" onClick={() => handle_upadate()}>
                                         <h2 className="text-white w-full bg-blue-600 p-1.5 rounded-[15px] text-center">Update Phone</h2>
                                     </div>
                                 </div>
@@ -331,11 +330,11 @@ export default function Edit_profile() {
                                             value={ConfirmPassword}
                                         />
                                     </div>
-                                    <div className="flex justify-between items-center mt-2 mb-2" onClick={() => update_password()}>
+                                    <div className="cursor-pointer flex justify-between items-center mt-2 mb-2" onClick={() => update_password()}>
                                         <h2 className="text-white w-full bg-blue-600 p-1.5 rounded-[15px] text-center">Update Password</h2>
                                     </div>
                                 </div>
-                                <div className="flex justify-between items-center mt-2 mb-2" onClick={() => delete_account()}>
+                                <div className=" cursor-pointer flex justify-between items-center mt-2 mb-2" onClick={() => delete_account()}>
                                     <h2 className="text-white w-full bg-red-700 p-1.5 rounded-[15px] text-center">Delete Account</h2>
                                 </div>
                             </div>
