@@ -32,6 +32,8 @@ import 'aos/dist/aos.css';
 import Poster2 from "./posters/bannertwo.svg";
 import Poster3 from "./posters/bannerthree.svg";
 import Poster4 from "./posters/bannerfore.svg";
+import { enqueueSnackbar } from 'notistack';
+
 export default function Home() {
   var token;
   const [user_login_done, set_login_done] = useState('visible');
@@ -39,6 +41,12 @@ export default function Home() {
   const [pageLoaded, setPageLoaded] = useState(false);
   const [loaderStatus, setLoaderStatus] = useState('visible');
   const [background, setBackgroundStatus] = useState('blur');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [NIC, setNIC] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Gender, setGender] = useState("");
   useEffect(() => {
     if (typeof window !== 'undefined') {
       token = localStorage.getItem('gts_token');
@@ -47,12 +55,49 @@ export default function Home() {
     } else {
       token = null;
     }
+
+    const getData = async () => {
+      if(localStorage.getItem("firstName") && localStorage.getItem("lastName") && localStorage.getItem("phone") && localStorage.getItem("NIC") && localStorage.getItem("Gender") && localStorage.getItem("Email")){
+      }else{
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+        const tokenUnlock = localStorage.getItem('gts_token');
+        const response = await fetch(`${apiUrl}/profile`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${tokenUnlock}`
+          }
+        });
+
+        const data = await response.json();
+        setFirstName(data.result.First_Name);
+        setLastName(data.result.Last_Name);
+        setPhone(data.result.Phone);
+        setNIC(data.result.NIC);
+        setGender(data.result.Gender);
+        setEmail(data.result.Email);
+        localStorage.setItem("firstName", data.result.First_Name);
+        localStorage.setItem("lastName", data.result.Last_Name);
+        localStorage.setItem("phone", data.result.Phone);
+        localStorage.setItem("NIC", data.result.NIC);
+        localStorage.setItem("Gender", data.result.Gender);
+        localStorage.setItem("Email", data.result.Email);
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+        enqueueSnackbar("Failed to fetch profile data", { variant: 'error' });
+      }
+    }
+    };
+    if (token) {
+      getData();
+    }
     const timer = setTimeout(() => {
       setLoaderStatus('hidden');
       setBackgroundStatus('');
     }, 2000);
 
-    return () => clearTimeout(timer); 
+    return () => clearTimeout(timer);
   }, []);
   useEffect(() => {
     const handlePageLoad = () => {

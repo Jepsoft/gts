@@ -19,53 +19,34 @@ export default function Profile() {
     const [NIC, setNIC] = useState("");
     const [Email, setEmail] = useState("");
     const [Gender, setGender] = useState("");
-    var token=localStorage.getItem('gts_token');
-
+    const [pageLoaded, setPageLoaded] = useState(false);
+    const [loaderStatus, setLoaderStatus] = useState('visible');
+    const [background, setBackgroundStatus] = useState('blur');
     useEffect(() => {
-
-        if (!token) {
-            enqueueSnackbar("Please Login", { variant: 'error' });
-            setTimeout(() => {
-                window.location.href = '/sign-in';
-            }, 500);
-        } else {
-            set_login_done("visible");
-            set_not_login_done("hidden");
-
-            const get_data = async () => {
-                try {
-                    const token_unlock = localStorage.getItem('gts_token') ;
-                    const response = await axios.post(
-                        `${apiUrl}/profile`,
-                        null,
-                        {
-                            headers: {
-                                'Authorization': `Bearer ${token_unlock}`
-                            }
-                        }
-                    );
-                    setFirstName(response.data.result.First_Name);
-                    setLastName(response.data.result.Last_Name);
-                    setPhone(response.data.result.Phone);
-                    setNIC(response.data.result.NIC);
-                    setGender(response.data.result.Gender);
-                    setEmail(response.data.result.Email);
-                } catch (error) {
-                    console.error("Error fetching profile data:", error);
-                    enqueueSnackbar("Failed to fetch profile data", { variant: 'error' });
-                }
-            };
-            get_data();
+        try{
+            if(typeof window !== 'undefined'){
+                setFirstName(localStorage.getItem("firstName"));
+                setLastName(localStorage.getItem("lastName"));
+                setPhone(localStorage.getItem("phone"));
+                setNIC(localStorage.getItem("NIC"));
+                setEmail(localStorage.getItem("Email"));
+                setGender(localStorage.getItem("Gender"));
+                set_login_done("visible");
+                set_not_login_done("hidden");
+            }
+        }catch(error){
         }
-    }, [token]);
-
-
-    const handle_logout = () => {
+    }, []);    const handle_logout = () => {
         const isloged_In = localStorage.getItem("gts_token");
         if (isloged_In) {
             enqueueSnackbar("User Logout...", { variant: 'success' });
             localStorage.removeItem('gts_token');
             localStorage.removeItem('phone');
+            localStorage.removeItem('firstName');
+            localStorage.removeItem('lastName');
+            localStorage.removeItem('NIC');
+            localStorage.removeItem('Email');
+            localStorage.removeItem('Gender');
             window.location.href = '/';
         } else {
             enqueueSnackbar("Redirecting to Login", { variant: 'success' });

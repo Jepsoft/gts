@@ -24,7 +24,7 @@ export default function Sign_in() {
             enqueueSnackbar(response?.data?.message, { variant: 'success' })
             window.location.href = './';
         } catch (error) {
-            enqueueSnackbar(error?.response?.data?.message, { variant: 'error' })
+            enqueueSnackbar("invalid username or password", { variant: 'error' })
         }
     };
     return (

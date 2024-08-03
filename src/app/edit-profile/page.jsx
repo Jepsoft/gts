@@ -11,30 +11,54 @@ import green_verify from "../icons/green_verify.svg";
 import { enqueueSnackbar } from "notistack";
 export default function Edit_profile() {
     const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    var token;
+    const [token, setToken] = useState();
     const [thephone, setthephone] = useState(null);
     const [user_login_done, set_login_done] = useState('visible');
     const [status, setstatus] = useState(green_verify);
     const [user_not_login, set_not_login_done] = useState('blur');
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
     const [phone, setPhone] = useState("");
-    const [NIC, setNIC] = useState("");
+    const [Password, setPassword] = useState("");
+    const [ConfirmPassword, setConfirmPassword] = useState("");
     const [enableornot, setenabledornot] = useState();
-    const [Email, setEmail] = useState("");
     const [blurscreen, setBlurscreen] = useState('');
     const [hide_item, sethideitem] = useState('hidden');
     const [code, setCode] = useState('');
     const [stvf, setstatus_vf] = useState(false);
-    token = localStorage.getItem('gts_token');
-
+    const update_password = async () => {
+        if (Password == ConfirmPassword) {
+            if (Password.length < 8) {
+                enqueueSnackbar("Password must be at least 8 characters", { variant: 'error' });
+            } else {
+                try {
+                    const tokenUnlock = localStorage.getItem('gts_token');
+                    const response = await axios.post(`${apiUrl}/update_password`, {
+                        password: Password,
+                    }, {
+                        headers: {
+                            'Authorization': `Bearer ${tokenUnlock}`
+                        }
+                    });
+                    if (response.data.result = "success") {
+                        enqueueSnackbar("Password Update Successfully", { variant: 'success' });
+                        setTimeout(() => {
+                            window.location.href = '/profile';
+                        }, 2000);
+                    }
+                } catch (error) {
+                    enqueueSnackbar("Password Update Failed", { variant: 'error' });
+                }
+            }
+        } else {
+            enqueueSnackbar("Password not matched", { variant: 'error' });
+        }
+    }
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            setthephone(localStorage.getItem("phone"));
+            setToken(localStorage.getItem('gts_token'));
             set_login_done(token ? "visible" : "hidden");
             set_not_login_done(token ? "hidden" : "visible");
         } else {
-            token = null;
+            setToken(null);
         }
     }, [token]);
     const handle_verify = async () => {
@@ -76,45 +100,24 @@ export default function Edit_profile() {
         }
     };
     useEffect(() => {
-        if (!token) {
+        if (!localStorage.getItem('gts_token')) {
             enqueueSnackbar("Please Login", { variant: 'error' });
             setTimeout(() => {
                 window.location.href = '/sign-in';
             }, 2000);
         } else {
-            const get_data = async () => {
-                try {
-                    const token_unlock = localStorage.getItem("gts_token");
-
-                    const response = await axios.post(
-                        `${apiUrl}/profile`,
-                        null,
-                        {
-                            headers: {
-                                'Authorization': `Bearer ${token_unlock}`
-                            }
-                        }
-                    );
-                    setFirstName(response.data.result.First_Name);
-                    setLastName(response.data.result.Last_Name);
-                    setPhone(response.data.result.Phone);
-                    setNIC(response.data.result.NIC);
-                    setEmail(response.data.result.Email);
-                    setstatus(response.data.result.Status);
-                    if (response.data.result.Status == 1) {
-                        setstatus(green_verify);
-                    } else {
-                        setstatus(red_verify);
-                    }
-                    localStorage.setItem("phone", response.data.result.Phone);
-
-                } catch (error) {
-                    console.error("Error fetching profile data:", error);
-                    enqueueSnackbar("Failed to fetch profile data", { variant: 'error' });
+            try {
+                if (typeof window !== 'undefined') {
+                    setPhone(localStorage.getItem("phone"));
+                    setthephone(localStorage.getItem("phone"));
+                    setNIC(localStorage.getItem("NIC"));
+                    setEmail(localStorage.getItem("Email"));
+                    setGender(localStorage.getItem("Gender"));
+                    set_login_done("visible");
+                    set_not_login_done("hidden");
                 }
-
-            };
-            get_data();
+            } catch (error) {
+            }
         }
     }, [token]);
     const verify_code = async (event) => {
@@ -149,11 +152,7 @@ export default function Edit_profile() {
                     const response = await axios.post(
                         `${apiUrl}/update_profile`,
                         {
-                            First_Name: firstName,
-                            Last_Name: lastName,
-                            email: Email,
                             Phone: phone,
-                            NIC_Number: NIC,
                         },
                         {
                             headers: {
@@ -161,12 +160,13 @@ export default function Edit_profile() {
                             }
                         }
                     );
-                    enqueueSnackbar(response.data.message, { variant: 'success' });
+                    localStorage.setItem("phone", phone);
+                    enqueueSnackbar("Update Success", { variant: 'success' });
                     setTimeout(() => {
-                        window.location.href = '/profile';
+                        window.location.href = './';
                     }, 2000);
                 } catch (error) {
-                    enqueueSnackbar("User Data Update Failed", { variant: 'error' });
+                    enqueueSnackbar("phone Update Failed", { variant: 'error' });
                 }
             };
 
@@ -176,6 +176,40 @@ export default function Edit_profile() {
         }
 
     }
+    const delete_account = async () => {
+        const token_unlock = localStorage.getItem("gts_token");
+        try {
+            const response = await axios.post(
+                `${apiUrl}/delete_account`,
+                {},
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token_unlock}`
+                    }
+                }
+            );
+            if (response.data.result = "success") {
+
+                setTimeout(() => {
+                    enqueueSnackbar("Account Deleting...", { variant: 'success' });
+                localStorage.removeItem('gts_token');
+                localStorage.removeItem('phone');
+                localStorage.removeItem('firstName');
+                localStorage.removeItem('lastName');
+                localStorage.removeItem('NIC');
+                localStorage.removeItem('Email');
+                localStorage.removeItem('Gender');
+                }, 2000);
+                enqueueSnackbar("Account Deleted", { variant: 'success' });
+                setTimeout(() => {
+                    window.location.href = '../';
+                }, 2000);
+            }
+        } catch (error) {
+            enqueueSnackbar("Account Delete Failed", { variant: 'error' });
+        }
+    }
+
     return (
         <div>
             <div className={`${hide_item} z-10 flex justify-center items-center absolute left-0 right-0 top-0 bottom-0 h-full mt-auto mb-auto`}>
@@ -248,37 +282,62 @@ export default function Edit_profile() {
                             </div>
                         </div>
                     </nav>
-                    <div className="flex items-center justify-center">
-                        <div className=" text-black bg-white bg-opacity-30 min-w-[400px] max-w-[600px] rounded-[35px] ml-[10%] mr-[10%] specical_profile">
-                            <div className="ml-[5%] mr-[5%]">
-                                <div className="flex justify-between items-center mt-8 mb-8">
-                                    <h2 className="text-white w-1/4 text-left">First Name</h2>
-                                    <input type="text" className="bg-white bg-opacity-10 text-white ml-2 border-b border-gray-400 outline-none rounded-[20px] p-1 w-3/4" onChange={(e) => setFirstName(e.target.value)} value={firstName} />
-                                </div>
-                                <div className="flex justify-between items-center mt-8 mb-8">
-                                    <h2 className="text-white w-1/4 text-left">Last Name</h2>
-                                    <input type="text" className="bg-white bg-opacity-10 text-white ml-2 border-b border-gray-400 outline-none rounded-[20px] p-1 w-3/4" onChange={(e) => setLastName(e.target.value)} value={lastName} />
-                                </div>
-                                <div className="flex justify-between items-center mt-8 mb-8">
-                                    <h2 className="text-white w-1/4 text-left">Email</h2>
-                                    <input type="email" className="bg-white bg-opacity-10 text-white ml-2 border-b border-gray-400 outline-none rounded-[20px] p-1 w-3/4" onChange={(e) => setEmail(e.target.value)} value={Email} />
-                                </div>
-                                <div className="flex justify-between items-center mt-8 mb-8">
-                                    <h2 className="text-white w-1/4 text-left">Mobile Number</h2>
-                                    <div className="flex justify-end w-full ">
-                                        <Image src={status} unoptimized width={50} height={50} className="h-[55px] w-[50px]  absolute -mt-[12px]" onClick={handle_verify} />
-                                        <input type="tel" className="bg-white bg-opacity-10 text-white ml-2 border-b border-gray-400 outline-none rounded-[20px] p-1 w-11/12" onChange={phone_proccess} value={phone} />
+                    <div className="flex items-center justify-center h-full p-4 md:p-0">
+                        <div className="text-black bg-white bg-opacity-30 min-w-[90%] md:min-w-[400px]  md:max-w-[600px] rounded-[35px] mx-auto specical_profile">
+                            <div className="px-4 md:px-6 p-5">
+                                <div className=" bg-black bg-opacity-30 p-4 rounded-3xl mb-5">
+                                    <h2 className="text-white text-left w-full md:w-auto mb-2 md:mb-0">Update Phone</h2>
+                                    <div className="flex flex-col md:flex-row justify-between items-center mt-3 mb-3">
+
+                                        <h2 className="text-white text-left w-full md:w-auto mb-2 md:mb-0">Mobile</h2>
+                                        <div className="flex justify-end w-full">
+                                            <Image
+                                                src={status}
+                                                unoptimized
+                                                width={50}
+                                                height={50}
+                                                className="h-[55px] w-[50px] absolute -mt-[12px]"
+                                                onClick={handle_verify}
+                                            />
+                                            <input
+                                                type="tel"
+                                                className="bg-white bg-opacity-10 text-white ml-2 border-b border-gray-400 outline-none rounded-[20px] h-8 p-1 w-full md:w-10/12"
+                                                onChange={phone_proccess}
+                                                value={phone}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-between items-center mt-2 mb-2" onClick={() => handle_upadate()}>
+                                        <h2 className="text-white w-full bg-blue-600 p-1.5 rounded-[15px] text-center">Update Phone</h2>
                                     </div>
                                 </div>
-                                <div className="flex justify-between items-center mt-8 mb-8">
-                                    <h2 className="text-white w-1/4 text-left">NIC Number</h2>
-                                    <input type="text" className="bg-white bg-opacity-10 text-white ml-2 border-b border-gray-400 outline-none rounded-[20px] p-1 w-3/4" onChange={(e) => setNIC(e.target.value)} value={NIC} />
+                                <div className=" bg-black bg-opacity-30 p-4 rounded-3xl">
+                                    <h2 className="text-white text-left w-full md:w-auto mb-2 md:mb-0">Change Password</h2>
+                                    <div className="flex flex-col md:flex-row justify-between items-center mt-3 mb-3">
+                                        <h2 className="text-white w-full md:w-1/4 text-left mb-2 md:mb-0">Password</h2>
+                                        <input
+                                            type="password"
+                                            className="bg-white bg-opacity-10 text-white ml-2 border-b border-gray-400 outline-none rounded-[20px] p-1 w-full md:w-3/4"
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            value={Password}
+                                        />
+                                    </div>
+                                    <div className="flex flex-col md:flex-row justify-between items-center mt-3 mb-3">
+                                        <h2 className="text-white w-full md:w-1/4 text-left mb-2 md:mb-0">Confirm</h2>
+                                        <input
+                                            type="password"
+                                            className="bg-white bg-opacity-10 text-white ml-2 border-b border-gray-400 outline-none rounded-[20px] p-1 w-full md:w-3/4"
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                            value={ConfirmPassword}
+                                        />
+                                    </div>
+                                    <div className="flex justify-between items-center mt-2 mb-2" onClick={() => update_password()}>
+                                        <h2 className="text-white w-full bg-blue-600 p-1.5 rounded-[15px] text-center">Update Password</h2>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div className=" flex justify-center ">
-                                <Link href={'/profile'} className=" font-bold text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[20px] ml-auto mt-5 mb-5  mr-auto">Back</Link>
-                                <h1 className=" cursor-pointer font-bold text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[20px] ml-auto mt-5 mb-5  mr-auto" onClick={handle_upadate}>Update</h1>
+                                <div className="flex justify-between items-center mt-2 mb-2" onClick={() => delete_account()}>
+                                    <h2 className="text-white w-full bg-red-700 p-1.5 rounded-[15px] text-center">Delete Account</h2>
+                                </div>
                             </div>
                         </div>
                     </div>
