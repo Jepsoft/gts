@@ -28,7 +28,7 @@ class UserController extends Controller
             'First_Name' => $validatedData['First_Name'],
             'Last_Name' => $validatedData['Last_Name'],
             'email' => $validatedData['email'],
-            'phone' => $validatedData['phone'],
+            'Phone' => $validatedData['phone'],
             'status' => $validatedData['status'],
             'password' => Hash::make($validatedData['password']),
             'Gender' => $validatedData['Gender'],
@@ -55,26 +55,41 @@ class UserController extends Controller
         $rememberToken =  $user->createToken('auth_token')->plainTextToken;
         return response()->json(['message' => 'User Sign In successfully', 'token' => $rememberToken], 200);
     }
+    public function delete_account(Request $request){
+        $user = $request->user();
+        $user->delete();
+        return response()->json(['result' => 'success'], 200);
+    }
+
     public function get_user_data(Request $request)
     {
         $userDetails = [
             'First_Name' => $request->user()->First_Name,
             'Last_Name' => $request->user()->Last_Name,
             'Email' => $request->user()->email,
-            'Phone' => $request->user()->phone,
+            'Status' => $request->user()->status,
+            'Phone' => $request->user()->Phone,
             'Gender' => $request->user()->Gender,
             'NIC' => $request->user()->NIC_Number
         ];
         return response()->json(['result' => $userDetails], 200);
     }
+    public function update_password(Request $request){
+        $validatedData = $request->validate([
+            'password' => 'required|string|min:8'
+        ]);
+
+        $user = $request->user();
+        $user->password = Hash::make($validatedData['password']);
+        $user->save();
+
+        return response()->json(['result' => 'success'], 200);
+    }
+
     public function update_user_data(Request $request)
     {
         $validatedData = $request->validate([
-            'First_Name' => 'required|string|max:255',
-            'Last_Name' => 'required|string|max:255',
-            'email' => 'required|email',
             'Phone' => 'required|string|max:20',
-            'NIC' => 'required|string|max:20',
         ]);
         $user = $request->user();
         $user->update($validatedData);
