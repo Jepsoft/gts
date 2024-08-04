@@ -7,6 +7,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -60,7 +61,6 @@ class UserController extends Controller
         $user->delete();
         return response()->json(['result' => 'success'], 200);
     }
-
     public function get_user_data(Request $request)
     {
         $userDetails = [
@@ -114,4 +114,28 @@ class UserController extends Controller
             'result' => $result
         ], 200);
     }
+
+public function contact(Request $request) {
+    $validatedData = $request->validate([
+        'name' => 'required',
+        'email' => 'required|email',
+        'message' => 'required'
+    ]);
+    $sender_email = $validatedData['email'];
+
+    // Send email to the user
+    Mail::send('emails.test', $validatedData, function ($message) use ($sender_email) {
+        $message->to($sender_email)
+                ->subject('Test Email');
+    });
+
+    // Send email to your info email
+    Mail::send('emails.us', $validatedData, function ($message) {
+        $message->to('info@gtsglobaltalentsolutions.com')
+                ->subject('Test Email');
+    });
+
+    return 'Email sent successfully!';
+}
+
 }

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::post('/login', [UserController::class, 'login']);
+Route::post('/contact', [UserController::class, 'contact']);
 Route::post('/signup', [UserController::class, 'signup']);
 Route::post('/verify', [MessageController::class, 'send']);
 Route::post('/verify_phone', [MessageController::class, 'send']);
