@@ -11,8 +11,8 @@
 
 # next.js
 /.next/
-/.public/
-/.src/
+/public
+/src
 
 # production
 /build
@@ -35,3 +35,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Note: Only need to upload the 'out' folder for production builds

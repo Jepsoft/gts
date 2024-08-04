@@ -1,0 +1,27 @@
+<IfModule mod_rewrite.c>
+# Enable rewrite engine
+RewriteEngine On
+
+# Set default index file
+DirectoryIndex index.html
+
+# Rewrite rules to handle URLs   
+RewriteRule ^edit-profile/?$ edit-profile.html [NC,L]
+RewriteRule ^profile/?$ profile.html [NC,L]
+RewriteRule ^sign-in/?$ sign-in.html [NC,L]
+RewriteRule ^backend/?$ /backend [NC,L]
+RewriteRule ^sign-up/?$ sign-up.html [NC,L]
+RewriteRule ^event-planning/?$ Event-Planning.html [NC,L]
+RewriteRule ^web-designing/?$ Web-Designing.html [NC,L]
+
+# Redirect to 404.html if file not found
+ErrorDocument 404 /404.html
+
+# Prevent directory listings
+Options -Indexes
+
+# MIME types
+AddType image/svg+xml svg
+AddType image/x-icon .ico
+
+</IfModule>
