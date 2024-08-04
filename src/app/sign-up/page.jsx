@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Logo from "../icons/logo.svg";
 import Link from "next/link";
+import BG from "../icons/background.svg";
 import Search from "../icons/search.svg";
 import red_verify from "../icons/red_verify.svg";
 import green_verify from "../icons/green_verify.svg";
@@ -125,6 +126,9 @@ export default function Sign_up() {
     };
     return (
         <div >
+            <div className={`fixed left-0 right-0 top-0 bottom-0 -z-50 `}>
+                <Image src={BG} className=' object-cover w-full h-full opacity-15' />
+            </div>
             <div className={`${hide_item} z-10 flex justify-center items-center absolute left-0 right-0 top-0 bottom-0 h-full mt-auto mb-auto`}>
                 <div tabindex="-1" aria-hidden="true" className=" ">
                     <div class=" relative p-4 w-full max-w-md max-h-full">
@@ -157,7 +161,7 @@ export default function Sign_up() {
                     </div>
                 </div>
             </div>
-            <div className={`min-h-[100vh] flex flex-col ${blurscreen}`} >
+            <div className={`min-h-svh flex flex-col ${blurscreen} mt-20 md:mt-0`} >
                 <nav className="p-4  md:p-10 text-white">
                     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
                         <div></div>
@@ -165,19 +169,19 @@ export default function Sign_up() {
                         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                         </div>
                         <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
-                        <h1 className="font-bold md:text-2xl lg:text-2xl sm:text-xl"><span className="span_g">G</span>lobal <span className="span_t">T</span>alent <span className="span_s">S</span>olutions</h1>
+                            <h1 className="font-bold md:text-2xl lg:text-2xl sm:text-xl"><span className="span_g">G</span>lobal <span className="span_t">T</span>alent <span className="span_s">S</span>olutions</h1>
 
                         </div>
-                        <span className="bg-white bg-opacity-30 rounded-3xl pt-3 pb-3 absolute right-10 md:right-10 lg:right-10 top-10 sm:pt-2 sm:pb-2 sm:right-2 sm:top-9">
+                        <span className=" bg-opacity-30 rounded-3xl pt-3 pb-3 absolute right-10 md:right-10 lg:right-10 top-10 sm:pt-2 sm:pb-2 sm:right-2 sm:top-9">
                             <Link href="/sign-in">
-                                <span className="bg-[#3E68FD] p-3 rounded-3xl ml-1 mt-1 mb-1 mr-2 pr-5 sm:p-2 sm:pl-3 sm:mr-1 text-white">Sign In</span>
+                                <span className="bg-[#3E68FD] p-3 text-[14px] md:text-[15px] rounded-3xl ml-1 mt-1 mb-1 mr-1 sm:p-2  text-white">Sign In</span>
                             </Link>
                         </span>
                     </div>
                 </nav>
                 <div class="flex-grow flex flex-col justify-center items-center">
-                    <div className="w-11/12 max-w-[800px] bg-white bg-opacity-20 p-5 rounded-[25px]">
-                        <h1 className="text-center text-[30px] font-bold text-white">Sign Up Now</h1>
+                    <div className="w-11/12 max-w-[800px] bg-white bg-opacity-25 p-5 rounded-[25px]">
+                        <h1 className="text-center text-[30px] font-bold text-white mb-5 mt-5">Sign Up Now</h1>
                         <form onSubmit={handleSubmit}>
                             <div className="flex flex-col sm:flex-row justify-center">
                                 <div className="flex justify-end w-full">
@@ -276,17 +280,22 @@ export default function Sign_up() {
                                     />
                                 </div>
                             </div>
-                            <h2
-                                className="m-3 text-center text-white cursor-pointer bg-white bg-opacity-30 p-2 rounded-[15px]"
-                                onClick={handleSubmit}
-                            >
-                                Sign Up
-                            </h2>
+                            <div className="flex justify-center">
+                                <h2
+                                    className=" pl-10 pr-10 m-3 text-center text-white cursor-pointer bg-blue-700 p-2 rounded-[15px]"
+                                    onClick={handleSubmit}
+                                >
+                                    Sign Up
+                                </h2>
+                            </div>
+                            <div className="mb-5"></div>
                         </form>
                     </div>
                 </div>
             </div>
-            <h1 className=" text-white text-center mb-5 ">©2024 <span className=" font-bold text-blue-700">Jepsoft</span>. All Rights Reserved.</h1>
+            <Link href="https://jepsoft.com" className="mt-5 flex justify-center">
+                <h1 className=" text-white text-center mb-5 ">©2024 <span className="">Jepsoft</span>. All Rights Reserved.</h1>
+            </Link>
         </div>
     )
 }

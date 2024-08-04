@@ -130,6 +130,7 @@ export default function Edit_profile() {
                 gtscode: gtscode
             });
             if (response.data.status == 'Verified') {
+                setstatus(green_verify);
                 enqueueSnackbar("Verification Success", { variant: 'success' });
                 setBlurscreen("");
                 sethideitem("hidden");
@@ -146,7 +147,10 @@ export default function Edit_profile() {
     const handle_upadate = () => {
         const token_unlock = localStorage.getItem("gts_token");
         console.log(thephone, phone);
-        if (stvf == true || thephone == phone) {
+        if (stvf == true || thephone == phone ) {
+            if(thephone == phone && /^[0-9]*0[0-9]*$/.test(phone) && phone.length === 10){
+                enqueueSnackbar("Same or Invalid Number", { variant: 'info' });
+            }else{
             const update_data = async () => {
                 try {
                     const response = await axios.post(
@@ -169,11 +173,14 @@ export default function Edit_profile() {
                     enqueueSnackbar("phone Update Failed", { variant: 'error' });
                 }
             };
-
+        
             update_data();
+        }
         } else {
             enqueueSnackbar("Please Verify Your Phone", { variant: 'error' });
         }
+    
+
 
     }
     const delete_account = async () => {
@@ -251,13 +258,15 @@ export default function Edit_profile() {
                     <nav className="p-4  md:p-10 text-white">
                         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto h-full">
                             <div></div>
-                            <Image src={Logo} alt="gts logo" className="special_logo absolute h-40 w-52 left-3 top-[-14px] sm:left-1" />
+                            <Link href='../' className=" z-40">
+                                <Image src={Logo} data-aos="fade-up" alt="gts logo" className=" cursor-pointer special_logo absolute h-40 w-52 left-3 top-[-14px] sm:left-1" />
+                            </Link>
                             <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                                 <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown"></div>
                             </div>
-                            <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
-                                <ul className="flex flex-col font-medium p-4 md:p-0 border rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 text-white">
-                                    <h1 className="text-white text-center text-[20px] mt-5 mb-5 font-bold"><span className="font-bold span_g">G</span> <span className="font-bold span_t">T</span> <span className="font-bold span_s">S</span> User Profile</h1>
+                            <div className=" absolute left-0 right-0 md:block hidden top-[17px]" id="navbar-user">
+                            <ul className="flex  justify-center p-4 mt-4 md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-medium">
+                                <h1 className="font-bold md:text-2xl lg:text-2xl sm:text-xl"><span className="span_g">G</span>lobal <span className="span_t">T</span>alent <span className="span_s">S</span>olutions</h1>
                                 </ul>
                             </div>
                             <div className={`absolute right-10 text-white top-8 text-center special-signup_in_button ${user_not_login}`}>
@@ -281,8 +290,8 @@ export default function Edit_profile() {
                             </div>
                         </div>
                     </nav>
-                    <div className="flex items-center justify-center h-full p-4 md:p-0">
-                        <div className="text-black bg-white bg-opacity-30 min-w-[90%] md:min-w-[400px]  md:max-w-[600px] rounded-[35px] mx-auto specical_profile">
+                    <div className="flex items-center justify-center h-full p-4 md:p-0 md:mt-[60px]">
+                        <div className="text-black bg-white bg-opacity-30 min-w-[90%] md:min-w-[700px]  md:max-w-[600px] rounded-[35px] mx-auto specical_profile">
                             <div className="px-4 md:px-6 p-5">
                                 <div className=" bg-black bg-opacity-30 p-4 rounded-3xl mb-5">
                                     <h2 className="text-white text-left w-full md:w-auto mb-2 md:mb-0">Update Phone</h2>
@@ -340,6 +349,9 @@ export default function Edit_profile() {
                             </div>
                         </div>
                     </div>
+                    <Link href="https://jepsoft.com" className="mt-5 flex justify-center">
+                <h1 className=" text-white text-center mb-5 ">©2024 <span className="">Jepsoft</span>. All Rights Reserved.</h1>
+            </Link>
                 </div>
             </div>
         </div>

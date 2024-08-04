@@ -6,6 +6,7 @@ import email_icon from "./email.svg";
 import password_icon from "./password.svg";
 import google from "./google.svg";
 import { useState } from "react";
+import BG from "../icons/background.svg";
 import axios from "axios";
 import { enqueueSnackbar } from "notistack";
 export default function Sign_in() {
@@ -29,28 +30,36 @@ export default function Sign_in() {
     };
     return (
         <div>
-            <div className="flex flex-col">
+            <div className={`fixed left-0 right-0 top-0 bottom-0 -z-50 `}>
+                <Image src={BG} className=' object-cover w-full h-full opacity-15' />
+            </div>
+            <div className=" min-h-svh flex flex-col">
                 <nav className="p-4  md:p-10 text-white">
                     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
                         <div></div>
+                        <Link href='./'>
                         <Image src={Logo} alt="gts logo" className="absolute h-40 w-52 left-3 top-[-14px] sm:left-1" />
+                        </Link>
                         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                             <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown"></div>
                         </div>
+                        <div className=" absolute left-0 right-0 top-10 flex justify-center">
                         <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
-                        <h1 className="font-bold md:text-2xl lg:text-2xl sm:text-xl"><span className="span_g">G</span>lobal <span className="span_t">T</span>alent <span className="span_s">S</span>olutions</h1>
-
+                            <h1 className="font-bold md:text-2xl lg:text-2xl sm:text-xl"><span className="span_g">G</span>lobal <span className="span_t">T</span>alent <span className="span_s">S</span>olutions</h1>
+                            </div>
                         </div>
-                        <span className="bg-white bg-opacity-30 rounded-3xl pt-3 pb-3 absolute right-10 md:right-10 lg:right-10 top-10 sm:pt-2 sm:pb-2 sm:right-2 sm:top-9">
+                        <span className="bg-opacity-30 rounded-3xl pt-3 pb-3 absolute right-10 md:right-10 lg:right-10 top-10 sm:pt-2 sm:pb-2 sm:right-2 sm:top-9">
                             <Link href="/sign-up">
-                                <span className="bg-[#3E68FD] p-3 rounded-3xl ml-1 mt-1 mb-1 mr-2 pr-5 sm:p-2 sm:pl-3 sm:mr-1 text-white">Sign Up</span>
+                                <span className="bg-[#3E68FD] p-3 text-[14px] md:text-[15px] rounded-3xl ml-1 mt-1 mb-1 mr-1 sm:p-2  text-white">Sign Up</span>
                             </Link>
                         </span>
                     </div>
                 </nav>
-                <div class="flex-grow flex flex-col justify-center items-center mt-28 lg:mt-0 md:mt-0">
+                <br />
+                br
+                <div class="flex-grow flex flex-col justify-center items-center mt-28 lg:mt-0 md:mt-">
                     <div className="w-[80%] md:w-[50%] lg:w-[30%] h-[80vh] flex items-center justify-center ">
-                        <div className="w-full bg-white bg-opacity-20 p-5 rounded-lg">
+                        <div className="w-full bg-white bg-opacity-25 p-5 rounded-[20px]">
                             <h1 className="text-center text-3xl font-bold text-white mb-10 mt-10">Sign In Now</h1>
                             <form onSubmit={handleSubmit} className="w-full">
                                 <div className="relative mb-4">
@@ -100,7 +109,9 @@ export default function Sign_in() {
                     </div>
                 </div>
             </div>
-            <h1 className=" text-white text-center mb-5 mt-5 ">©2024 <span className=" font-bold text-blue-700">Jepsoft</span>. All Rights Reserved.</h1>
+            <Link href="https://jepsoft.com" className="mt-10 flex justify-center">
+                <h1 className=" text-white text-center mb-5 ">©2024 <span className="">Jepsoft</span>. All Rights Reserved.</h1>
+            </Link>
         </div>
     )
 }

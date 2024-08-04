@@ -23,8 +23,8 @@ export default function Profile() {
     const [loaderStatus, setLoaderStatus] = useState('visible');
     const [background, setBackgroundStatus] = useState('blur');
     useEffect(() => {
-        try{
-            if(typeof window !== 'undefined'){
+        try {
+            if (typeof window !== 'undefined') {
                 setFirstName(localStorage.getItem("firstName"));
                 setLastName(localStorage.getItem("lastName"));
                 setPhone(localStorage.getItem("phone"));
@@ -34,9 +34,9 @@ export default function Profile() {
                 set_login_done("visible");
                 set_not_login_done("hidden");
             }
-        }catch(error){
+        } catch (error) {
         }
-    }, []);    const handle_logout = () => {
+    }, []); const handle_logout = () => {
         const isloged_In = localStorage.getItem("gts_token");
         if (isloged_In) {
             enqueueSnackbar("User Logout...", { variant: 'success' });
@@ -64,13 +64,15 @@ export default function Profile() {
                 <nav className="p-4  md:p-10 text-white">
                     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto h-full">
                         <div></div>
-                        <Image src={Logo} alt="gts logo" className="special_logo absolute h-40 w-52 left-3 top-[-14px] sm:left-1" />
+                        <Link href='./' className=" z-40">
+                            <Image src={Logo} data-aos="fade-up" alt="gts logo" className=" cursor-pointer special_logo absolute h-40 w-52 left-3 top-[-14px] sm:left-1" />
+                        </Link>
                         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                             <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown"></div>
                         </div>
-                        <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
-                            <ul className="flex flex-col font-medium p-4 md:p-0 border rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 text-white">
-                                <h1 className="text-white text-center text-[20px] mt-5 mb-5 font-bold"><span className="font-bold span_g">G</span> <span className="font-bold span_t">T</span> <span className="font-bold span_s">S</span> User Profile</h1>
+                        <div className=" absolute left-0 right-0 md:block hidden top-[17px]" id="navbar-user">
+                            <ul className="flex  justify-center p-4 mt-4 md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-medium">
+                                <h1 className="font-bold md:text-2xl lg:text-2xl sm:text-xl"><span className="span_g">G</span>lobal <span className="span_t">T</span>alent <span className="span_s">S</span>olutions</h1>
                             </ul>
                         </div>
                         <div className={`absolute right-10 text-white top-8 text-center special-signup_in_button ${user_not_login}`}>
@@ -94,42 +96,48 @@ export default function Profile() {
                         </div>
                     </div>
                 </nav>
-                <div className="flex justify-center">
-                    <div className=" text-white bg-white bg-opacity-30 min-w-[400px] max-w-[600px] rounded-[35px] ml-[10%] mr-[10%] specical_profile">
-                        <div className="ml-[5%] mr-[5%]">
-                            <div className="flex justify-center mt-8 mb-8">
-                                <h2 className="text-left w-1/2">User Name</h2>
-                                <h1 className="font-bold ml-2 mr-2">-</h1>
-                                <h1 className="text-right w-1/2">{firstName} {lastName}</h1>
+                <div className="absolute md:top-20 top-0  left-0 right-0 bottom-0 flex items-center justify-center ">
+                    <div className=" flex justify-center items-center  ">
+                        <div className=" text-white bg-white bg-opacity-30  max-w-[700px] min-w-[300px] lg:min-w-[700px] md:min-w-[500px]  rounded-[35px]  ml-[10%] mr-[10%] specical_profile">
+                            <div className="ml-[5%] mr-[5%] md:ml-[15%] md:mr-[15%] md:mt-[10%] md:mb-[10%]">
+                                <div className="flex justify-center mt-8 mb-8">
+                                    <h2 className="text-left w-1/2">User Name</h2>
+                                    <h1 className="font-bold ml-2 mr-2">-</h1>
+                                    <h1 className="text-right w-1/2">{firstName} {lastName}</h1>
+                                </div>
+                                <div className="flex justify-center mt-8 mb-8">
+                                    <h2 className="text-left w-1/2">Email</h2>
+                                    <h1 className="font-bold ml-2 mr-2">-</h1>
+                                    <h1 className="text-right w-1/2 ">{Email}</h1>
+                                </div>
+                                <div className="flex justify-center mt-8 mb-8">
+                                    <h2 className="text-left w-1/2">Mobile Number</h2>
+                                    <h1 className="font-bold ml-2 mr-2">-</h1>
+                                    <h1 className="text-right w-1/2">{phone}</h1>
+                                </div>
+                                <div className="flex justify-center mt-8 mb-8">
+                                    <h2 className="text-left w-1/2">Gender</h2>
+                                    <h1 className="font-bold ml-2 mr-2">-</h1>
+                                    <h1 className="text-right w-1/2">{Gender}</h1>
+                                </div>
+                                <div className="flex justify-center mt-8 mb-8">
+                                    <h2 className="text-left w-1/2">NIC Number</h2>
+                                    <h1 className="font-bold ml-2 mr-2">-</h1>
+                                    <h1 className="text-right w-1/2">{NIC}</h1>
+                                </div>
                             </div>
-                            <div className="flex justify-center mt-8 mb-8">
-                                <h2 className="text-left w-1/2">Email</h2>
-                                <h1 className="font-bold ml-2 mr-2">-</h1>
-                                <h1 className="text-right w-1/2">{Email}</h1>
+                            <div className=" flex justify-center ">
+                                <Link href={'/edit-profile'} className=" text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[20px] ml-auto mt-5 mb-5  mr-auto">Edit Profile</Link>
+                                <h1 className=" cursor-pointer text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[20px] ml-auto mt-5 mb-5  mr-auto" onClick={handle_logout}>Logout</h1>
                             </div>
-                            <div className="flex justify-center mt-8 mb-8">
-                                <h2 className="text-left w-1/2">Mobile Number</h2>
-                                <h1 className="font-bold ml-2 mr-2">-</h1>
-                                <h1 className="text-right w-1/2">{phone}</h1>
-                            </div>
-                            <div className="flex justify-center mt-8 mb-8">
-                                <h2 className="text-left w-1/2">Gender</h2>
-                                <h1 className="font-bold ml-2 mr-2">-</h1>
-                                <h1 className="text-right w-1/2">{Gender}</h1>
-                            </div>
-                            <div className="flex justify-center mt-8 mb-8">
-                                <h2 className="text-left w-1/2">NIC Number</h2>
-                                <h1 className="font-bold ml-2 mr-2">-</h1>
-                                <h1 className="text-right w-1/2">{NIC}</h1>
-                            </div>
-                        </div>
-                        <div className=" flex justify-center ">
-                            <Link href={'/edit-profile'} className=" font-bold text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[20px] ml-auto mt-5 mb-5  mr-auto">Edit Profile</Link>
-                            <h1 className=" cursor-pointer font-bold text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[20px] ml-auto mt-5 mb-5  mr-auto" onClick={handle_logout}>Logout</h1>
                         </div>
                     </div>
                 </div>
+
             </div>
+            <Link href="https://jepsoft.com" className="mt-5 flex justify-center">
+                <h1 className=" text-white text-center mb-5 ">©2024 <span className="">Jepsoft</span>. All Rights Reserved.</h1>
+            </Link>
         </div>
     )
 }
