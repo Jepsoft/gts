@@ -219,19 +219,19 @@ export default function Home() {
                 <div className=" absolute left-0 right-0 md:block hidden mt-5" id="navbar-user">
                   <ul className="flex  justify-center p-4 mt-4 md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-medium">
                     <li>
-                      <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
+                      <a href="#" className="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
                     </li>
                     <li>
-                      <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+                      <a href="#" className="block py-2 px-3  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
                     </li>
                     <li>
-                      <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+                      <a href="#" className="block py-2 px-3  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
                     </li>
                     <li>
-                      <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Blog</a>
+                      <a href="#" className="block py-2 px-3  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Blog</a>
                     </li>
                     <li>
-                      <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                      <a href="#" className="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
                     </li>
                   </ul>
                 </div>
@@ -306,19 +306,20 @@ export default function Home() {
               </Link>
               <Link data-aos="fade-left" href='/tires' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Find_job} alt="tires" className="h-20 sm:h-24  p-2lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Find a Job</span>
+                <br />
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-5 max-w-[120px]">Find a Job</span>
               </Link>
               <Link data-aos="fade-left" href='/parts' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Pot_job} alt="parts" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Post a Job</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-5 max-w-[120px]">Post a Job</span>
               </Link>
               <Link data-aos="fade-left" href='/service' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Insurese} alt="service" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]" style={{ textAlign: "center" }}>Insurance</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-5 max-w-[120px]" style={{ textAlign: "center" }}>Insurance</span>
               </Link>
               <Link data-aos="fade-right" href="/post-ad" className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Tour} alt="post ad" className="h-20 sm:h-24  p-2lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Tour Operations</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-5 max-w-[120px]">Tour Operations</span>
               </Link>
               <Link data-aos="fade-left" href="/vehicle" className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Logistic} alt="car" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
@@ -331,11 +332,11 @@ export default function Home() {
               </Link>
               <Link data-aos="fade-right" href='/bike' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Air} alt="bike" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Air Ticketing</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-5 max-w-[120px]">Air Ticketing</span>
               </Link>
               <Link data-aos="fade-right" href='/tires' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Counselling} alt="tires" className="h-20 p-2 sm:h-24 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
-                <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Counseling</span>
+                <span className="block text-white text-sm sm:text-base lg:text-lg mt-5 max-w-[120px]">Counseling</span>
               </Link>
               <Link data-aos="fade-left" href='/parts' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Real} alt="parts" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
@@ -383,6 +384,7 @@ export default function Home() {
                 <div className='flex justify-center'>
                   <Image src={A_DIR} className="flex w-32 h-32  items-center object-cover  rounded-full mb-1" />
                 </div>
+                <br />
                 <span className="h-svh text-white">Mr. Priyantha Dangamuwa</span><br />
                 <span className="h-svh text-white">Director</span>
               </Link>
@@ -430,15 +432,15 @@ export default function Home() {
                       value={formData.email}
                       onChange={handleChange}
                     /><br />
-                    <input
-                      type="text"
-                      name="message"
+                    <textarea
+                      name="messag"
                       placeholder="Let Us Know How We Can Help You"
-                      className="text-white p-2 rounded-[18px] mt-5 mb-5 w-full bg-[#d9d9d920]"
-                      value={formData.message}
+                      className="text-white p-2 rounded-[18px] mt-5 h-28 w-full bg-[#d9d9d920]"
+                      value={formData.messag}
                       onChange={handleChange}
-                    /><br />
-                    <div className="flex justify-center mt-5 mb-5">
+                    ></textarea>
+                    <br />
+                    <div className="flex justify-center mb-5">
                       <button type="submit" className="bg-blue-600 rounded-[15px] text-center mt-5 mb-5 p-2 text-bold text-white ml-5 mr-5 pl-5 pr-5 cursor-pointer">
                         Submit
                       </button>

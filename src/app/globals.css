@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 body {
   background: linear-gradient(to right, #011521, #03395A);
@@ -15,7 +16,7 @@ body::-webkit-scrollbar {
   display: none;
 }
 * {
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+ font-family: 'Poppins', sans-serif;
 }
 
 .span_g {

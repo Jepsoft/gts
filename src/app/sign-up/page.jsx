@@ -258,15 +258,15 @@ export default function Sign_up() {
                                         name="gender"
                                         value={formData.gender}
                                         onChange={handleChange}
-                                        className="ml-3 mr-3 p-2 rounded-[18px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
+                                        className="mr-3 ml-3 p-2 rounded-[18px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white text-opacity-40"
                                     >
                                         <option value="" disabled selected hidden>
                                             Gender
                                         </option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
-                                        <option value="prefer_not_to_say">Prefer not to say</option>
+                                        <option className="text-black" value="male">Male</option>
+                                        <option className="text-black" value="female">Female</option>
+                                        <option className="text-black" value="other">Other</option>
+                                        <option className="text-black" value="prefer_not_to_say">Prefer not to say</option>
                                     </select>
                                 </div>
                                 <div className="flex justify-end w-full">
