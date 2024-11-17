@@ -219,16 +219,16 @@ export default function Edit_profile() {
     return (
         <div>
             <div className={`${hide_item} z-10 flex justify-center items-center absolute left-0 right-0 top-0 bottom-0 h-full mt-auto mb-auto`}>
-                <div tabindex="-1" aria-hidden="true" className=" ">
-                    <div class="relative p-4 w-full max-w-md max-h-full">
-                        <div class="relative bg-white bg-opacity-30 bg-blur rounded-lg shadow ">
-                            <h3 class="text-xl text-white dark:text-white text-center pt-5 ">
+                <div tabIndex="-1" aria-hidden="true" className=" ">
+                    <div className="relative p-4 w-full max-w-md max-h-full">
+                        <div className="relative bg-white bg-opacity-30 bg-blur rounded-lg shadow ">
+                            <h3 className="text-xl text-white dark:text-white text-center pt-5 ">
                                 Verify Your Phone
                             </h3>
-                            <div class="p-4 md:p-5">
-                                <form class="space-y-4" action="#">
+                            <div className="p-4 md:p-5">
+                                <form className="space-y-4" action="#">
                                     <div>
-                                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Verification Code</label>
+                                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Verification Code</label>
                                         <input
                                             type="text"
                                             name="code"
@@ -240,8 +240,8 @@ export default function Edit_profile() {
                                             required
                                         />
                                     </div>
-                                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={verify_code}>Verify</button>
-                                    <div class="text-sm font-medium text-white text-center">
+                                    <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={verify_code}>Verify</button>
+                                    <div className="text-sm font-medium text-white text-center">
                                         Didn't Get Code? <a href="#" onClick={handle_verify} className={`${setenabledornot} text-blue-700 hover:underline dark:text-blue-700`}>Resend</a>
                                     </div>
                                 </form>
@@ -252,7 +252,7 @@ export default function Edit_profile() {
             </div>
             <div className={`${blurscreen}`}>
                 <div className={`fixed left-0 right-0 top-0 bottom-0 -z-50 `}>
-                    <Image src={BG} className=' object-cover w-full h-full opacity-15' />
+                    <Image src={BG} alt="bg" className=' object-cover w-full h-full opacity-15' />
                 </div>
                 <div className="min-h-[100vh] flex flex-col">
                     <nav className="p-4  md:p-10 text-white">
@@ -285,7 +285,7 @@ export default function Edit_profile() {
                             </div>
                             <div className={`absolute right-10 text-white top-8 text-center special-signup_in_button ${user_login_done}`}>
                                 <Link href='/profile'>
-                                    <Image src={User} className=' bg-white h-[40px] w-[40px] rounded-full p-1.5' />
+                                    <Image alt="user" src={User} className=' bg-white h-[40px] w-[40px] rounded-full p-1.5' />
                                 </Link>
                             </div>
                         </div>
@@ -300,6 +300,7 @@ export default function Edit_profile() {
                                         <h2 className="text-white text-left w-full md:w-auto mb-2 md:mb-0">Mobile</h2>
                                         <div className="flex justify-end w-full">
                                             <Image
+                                            alt="status"
                                                 src={status}
                                                 unoptimized
                                                 width={50}

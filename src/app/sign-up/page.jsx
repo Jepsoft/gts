@@ -13,7 +13,11 @@ export default function Sign_up() {
     const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const [vefify_update, setVerify_update] = useState(red_verify);
     const [status, setstatus] = useState('');
+    const [isChecked, setIsChecked] = useState(false);
     const [enableornot, setenabledornot] = useState();
+    const handleCheckboxChange = (event) => {
+        setIsChecked(event.target.checked);
+    };
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -51,45 +55,49 @@ export default function Sign_up() {
             [e.target.name]: e.target.value,
         });
     };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        // Validate form data before sending
-        if (formData.password !== formData.confirmPassword) {
-            enqueueSnackbar("Passwords do not match", { variant: 'error' });
-            return;
-        }
-
-        if (formData.password.length < 8) {
-            enqueueSnackbar("Password must be 8 characters", { variant: 'error' });
-            return;
-        }
-
-        try {
-            if (status == true) {
-                const response = await axios.post(`${apiUrl}/signup`, {
-                    First_Name: formData.firstName,
-                    Last_Name: formData.lastName,
-                    email: formData.email,
-                    phone: formData.phone,
-                    status: status,
-                    password: formData.password,
-                    password_confirmation: formData.confirmPassword,
-                    Gender: formData.gender,
-                    NIC_Number: formData.nic,
-                });
-                enqueueSnackbar("Registration Successfully", { variant: 'success' });
-                setTimeout(() => {
-                    window.location.href = './';
-                }, 2000);
-            } else {
-                enqueueSnackbar("Verify Phone", { variant: 'info' });
+   
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            if (isChecked) {
+            // Validate form data before sending
+            if (formData.password !== formData.confirmPassword) {
+                enqueueSnackbar("Passwords do not match", { variant: 'error' });
+                return;
             }
-        } catch (error) {
-            enqueueSnackbar("Registration Failed", { variant: 'error' });
+
+            if (formData.password.length < 8) {
+                enqueueSnackbar("Password must be 8 characters", { variant: 'error' });
+                return;
+            }
+
+            try {
+                if (status == true) {
+                    const response = await axios.post(`${apiUrl}/signup`, {
+                        First_Name: formData.firstName,
+                        Last_Name: formData.lastName,
+                        email: formData.email,
+                        phone: formData.phone,
+                        status: status,
+                        password: formData.password,
+                        password_confirmation: formData.confirmPassword,
+                        Gender: formData.gender,
+                        NIC_Number: formData.nic,
+                    });
+                    enqueueSnackbar("Registration Successfully", { variant: 'success' });
+                    setTimeout(() => {
+                        window.location.href = './';
+                    }, 2000);
+                } else {
+                    enqueueSnackbar("Verify Phone", { variant: 'info' });
+                }
+            } catch (error) {
+                enqueueSnackbar("Registration Failed", { variant: 'error' });
+            }
+        }else{
+            enqueueSnackbar("Please Accept Terms & Conditions", { variant: 'info' });
         }
-    };
+        };
+    
     const [blurscreen, setBlurscreen] = useState('');
     const [hide_item, sethideitem] = useState('hidden');
     const blur_contrall = () => {
@@ -279,6 +287,18 @@ export default function Sign_up() {
                                         className="mr-3 ml-3 p-2 rounded-[18px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
                                     />
                                 </div>
+                            </div>
+                            <div className=" flex justify-center">
+                                <input
+                                    type="checkbox"
+                                    id="vehicle1"
+                                    className="mr-2"
+                                    name="vehicle1"
+                                    value="Bike"
+                                    checked={isChecked}
+                                    onChange={handleCheckboxChange}
+                                />
+                                <p className=" text-white ">I have read and Accept<Link href="/terms_and_conditions" className=" cursor-pointer" ><span className="text-blue-500 cursor-pointer"> Terms & conditions</span></Link></p>
                             </div>
                             <div className="flex justify-center">
                                 <h2

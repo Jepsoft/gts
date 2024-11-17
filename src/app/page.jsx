@@ -200,10 +200,10 @@ export default function Home() {
     <>
       <div className='all'>
         <div className={`fixed left-0 right-0 top-0 bottom-0 -z-50 ${background}`}>
-          <Image src={BG} className=' object-cover w-full h-full opacity-15' />
+          <Image alt="img" src={BG} className=' object-cover w-full h-full opacity-15' />
         </div>
-        <div class={` flex-grow flex flex-col justify-center  items-center h-svh fixed left-0 right-0  top-0 bottom-0 z-20 ${loaderStatus}`}>
-          <Image unoptimized src={loader} alt='loader' className='w-20' />
+        <div className={` flex-grow flex flex-col justify-center  items-center h-svh fixed left-0 right-0  top-0 bottom-0 z-20 ${loaderStatus}`}>
+          <Image  unoptimized src={loader} alt='loader' className='w-20' />
         </div>
         <div className={`${background}`}>
           <div className="flex flex-col">
@@ -211,7 +211,7 @@ export default function Home() {
               <div className=" max-w-screen-xl flex flex-wrap items-center justify-between mx-auto h-full">
                 <div></div>
                 <Link href='cursor-pointer special_logo absolute h-40 w-52 left-3 top-[-14px] sm:left-1'>
-                  <Image src={Logo} data-aos="fade-up" alt="gts logo" className="cursor-pointer special_logo absolute h-40 w-52 left-3 top-[-14px] sm:left-1 " />
+                  <Image  src={Logo} data-aos="fade-up" alt="gts logo" className="cursor-pointer special_logo absolute h-40 w-52 left-3 top-[-14px] sm:left-1 " />
                 </Link>
                 <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                   <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown"></div>
@@ -219,19 +219,19 @@ export default function Home() {
                 <div className=" absolute left-0 right-0 md:block hidden mt-5" id="navbar-user">
                   <ul className="flex  justify-center p-4 mt-4 md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-medium">
                     <li>
-                      <a href="#" className="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
+                      <a href="#" className="block py-2 px-3 rounded  md:hover:bg-transparent  md:p-0 text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
                     </li>
                     <li>
-                      <a href="#" className="block py-2 px-3  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+                      <a href="#" className="block py-2 px-3  rounded  md:hover:bg-transparent  md:p-0 text-white  md:dark:hover:bg-transparent dark:border-gray-700">About</a>
                     </li>
                     <li>
-                      <a href="#" className="block py-2 px-3  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+                      <a href="#" className="block py-2 px-3  rounded  md:hover:bg-transparent md:p-0 text-white   md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
                     </li>
                     <li>
-                      <a href="#" className="block py-2 px-3  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Blog</a>
+                      <a href="#" className="block py-2 px-3  rounded  md:hover:bg-transparent  md:p-0 text-white   md:dark:hover:bg-transparent dark:border-gray-700">Blog</a>
                     </li>
                     <li>
-                      <a href="#" className="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                      <a href="#" className="block py-2 px-3 rounded  md:hover:bg-transparent  md:p-0 text-white  md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
                     </li>
                   </ul>
                 </div>
@@ -251,7 +251,7 @@ export default function Home() {
                 </div>
                 <div className={`absolute right-10 text-white top-8 text-center special-signup_in_button ${user_login_done}`}>
                   <Link href='/profile'>
-                    <Image src={User} className=' bg-white h-[40px] w-[40px] rounded-full p-1.5' />
+                    <Image alt="img" src={User} className=' bg-white h-[40px] w-[40px] rounded-full p-1.5' />
                   </Link>
                 </div>
               </div>
@@ -267,7 +267,7 @@ export default function Home() {
                 </div>
                 <div className="flex justify-center mt-4 w-full">
                   <input type="search" placeholder="Search Here..." className="w-3/4 max-w-lg p-1.5 md:p-2.5 pl-5 text-white bg-[#D9D9D9] bg-opacity-30 rounded-3xl" />
-                  <Image src={Search} alt="search icon" className="w-7 p-1 h-8 mt-1 -ml-10 cursor-pointer" />
+                  <Image  src={Search} alt="search icon" className="w-7 p-1 h-8 mt-1 -ml-10 cursor-pointer" />
                 </div>
                 <div id="default-carousel" className="mt-5 mb-5 flex justify-center" data-carousel="slide">
                   <div className="relative min-h-44 rounded-lg bg-opacity-30 -z-10 w-[70%]">
@@ -277,7 +277,7 @@ export default function Home() {
                         className={`absolute w-full flex max-h-[450px] lg:max-h-[550px] sm:max-h-[440px] transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
                         style={{ zIndex: index === currentIndex ? 10 : 1 }}>
                         <Link href='#'>
-                          <Image
+                          <Image 
                             src={poster}
                             unoptimized
                             className="absolute block w-full max-h-[550px] lg:max-h-[550px] sm:max-h-[440px] object-contain cursor-pointer rounded-[20px]"
@@ -297,28 +297,28 @@ export default function Home() {
           <div className="flex flex-wrap justify-center ml-[5%] mr-[5%]">
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               <Link data-aos="fade-right" href="/Event-Planning" className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
-                <Image src={Event} alt="car" className="h-20 sm:h-24 lg:h-28 w-20 p-2 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
+                <Image  src={Event} alt="car" className="h-20 sm:h-24 lg:h-28 w-20 p-2 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
                 <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Event Planning</span>
               </Link>
               <Link data-aos="fade-right" href='/Web-Designing' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
-                <Image src={Web} alt="bike" className="h-20 sm:h-24 lg:h-28 w-20 p-2 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
+                <Image  src={Web} alt="bike" className="h-20 sm:h-24 lg:h-28 w-20 p-2 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
                 <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Web Designing</span>
               </Link>
               <Link data-aos="fade-left" href='/tires' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
-                <Image src={Find_job} alt="tires" className="h-20 sm:h-24  p-2lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
+                <Image  src={Find_job} alt="tires" className="h-20 sm:h-24  p-2lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
                 <br />
                 <span className="block text-white text-sm sm:text-base lg:text-lg mt-5 max-w-[120px]">Find a Job</span>
               </Link>
               <Link data-aos="fade-left" href='/parts' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
-                <Image src={Pot_job} alt="parts" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
+                <Image  src={Pot_job} alt="parts" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
                 <span className="block text-white text-sm sm:text-base lg:text-lg mt-5 max-w-[120px]">Post a Job</span>
               </Link>
-              <Link data-aos="fade-left" href='/service' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
-                <Image src={Insurese} alt="service" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
+              <Link data-aos="fade-left" href='/insurance' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
+                <Image  src={Insurese} alt="service" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
                 <span className="block text-white text-sm sm:text-base lg:text-lg mt-5 max-w-[120px]" style={{ textAlign: "center" }}>Insurance</span>
               </Link>
               <Link data-aos="fade-right" href="/post-ad" className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
-                <Image src={Tour} alt="post ad" className="h-20 sm:h-24  p-2lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
+                <Image  src={Tour} alt="post ad" className="h-20 sm:h-24  p-2lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
                 <span className="block text-white text-sm sm:text-base lg:text-lg mt-5 max-w-[120px]">Tour Operations</span>
               </Link>
               <Link data-aos="fade-left" href="/vehicle" className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
@@ -326,24 +326,24 @@ export default function Home() {
                 <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Logistic Service</span>
               </Link>
               <Link data-aos="fade-left" href="/post-ad" className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
-                <Image src={Social} alt="post ad" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
+                <Image  src={Social} alt="post ad" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
                 <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Social media
                   marketing</span>
               </Link>
               <Link data-aos="fade-right" href='/bike' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
-                <Image src={Air} alt="bike" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
+                <Image  src={Air} alt="bike" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
                 <span className="block text-white text-sm sm:text-base lg:text-lg mt-5 max-w-[120px]">Air Ticketing</span>
               </Link>
               <Link data-aos="fade-right" href='/tires' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
-                <Image src={Counselling} alt="tires" className="h-20 p-2 sm:h-24 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
+                <Image  src={Counselling} alt="tires" className="h-20 p-2 sm:h-24 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
                 <span className="block text-white text-sm sm:text-base lg:text-lg mt-5 max-w-[120px]">Counseling</span>
               </Link>
               <Link data-aos="fade-left" href='/parts' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
-                <Image src={Real} alt="parts" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
+                <Image  src={Real} alt="parts" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
                 <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]">Real estate management </span>
               </Link>
               <Link data-aos="fade-right" href='/service' className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
-                <Image src={Import} alt="service" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
+                <Image  src={Import} alt="service" className="h-20 sm:h-24 p-2 lg:h-28 w-20 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
                 <span className="block text-white text-sm sm:text-base lg:text-lg mt-2 max-w-[120px]" style={{ textAlign: "center" }}>Import & Export</span>
               </Link>
             </div>
@@ -367,14 +367,14 @@ export default function Home() {
 
               <Link href="#" className="bg-white bg-opacity-30 w-44 text-center rounded-xl m-2 sm:m-10 h-35 p-3">
                 <div className='flex justify-center'>
-                  <Image src={Aravinda} className="flex w-32 h-32 items-center object-cover  rounded-full mb-1" />
+                  <Image alt="img" src={Aravinda} className="flex w-32 h-32 items-center object-cover  rounded-full mb-1" />
                 </div><br />
                 <span className="h-svh text-white">Mr. Aravinda koralage</span><br />
                 <span className="h-svh text-white">Managing Director</span>
               </Link>
               <Link href="#" className="bg-white bg-opacity-30 w-44 text-center rounded-xl m-2 sm:m-10 h-35 p-3">
                 <div className='flex justify-center'>
-                  <Image src={one_of_one} className="flex w-32 h-32 items-center object-cover rounded-full mb-1" />
+                  <Image alt="img" src={one_of_one} className="flex w-32 h-32 items-center object-cover rounded-full mb-1" />
                 </div>
                 <br />
                 <span className="h-svh text-white">Mrs. Chandi koralage</span><br />
@@ -382,13 +382,12 @@ export default function Home() {
               </Link>
               <Link href="#" className="bg-white bg-opacity-30 w-44 text-center rounded-xl m-2 sm:m-10 h-35 p-3">
                 <div className='flex justify-center'>
-                  <Image src={A_DIR} className="flex w-32 h-32  items-center object-cover  rounded-full mb-1" />
+                  <Image alt="img" src={A_DIR} className="flex w-32 h-32  items-center object-cover  rounded-full mb-1" />
                 </div>
                 <br />
                 <span className="h-svh text-white">Mr. Priyantha Dangamuwa</span><br />
                 <span className="h-svh text-white">Director</span>
               </Link>
-
             </div>
           </div>
           <br />

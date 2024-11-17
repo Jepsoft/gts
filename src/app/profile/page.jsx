@@ -36,7 +36,8 @@ export default function Profile() {
             }
         } catch (error) {
         }
-    }, []); const handle_logout = () => {
+    }, []); 
+    const handle_logout = () => {
         const isloged_In = localStorage.getItem("gts_token");
         if (isloged_In) {
             enqueueSnackbar("User Logout...", { variant: 'success' });
@@ -58,7 +59,7 @@ export default function Profile() {
     return (
         <div>
             <div className={`fixed left-0 right-0 top-0 bottom-0 -z-50 `}>
-                <Image src={BG} className=' object-cover w-full h-full opacity-15' />
+                <Image src={BG} alt="bg" className=' object-cover w-full h-full opacity-15' />
             </div>
             <div className="min-h-[100vh] flex flex-col">
                 <nav className="p-4  md:p-10 text-white">
@@ -91,7 +92,7 @@ export default function Profile() {
                         </div>
                         <div className={`absolute right-10 text-white top-8 text-center special-signup_in_button ${user_login_done}`}>
                             <Link href='/profile'>
-                                <Image src={User} className=' bg-white h-[40px] w-[40px] rounded-full p-1.5' />
+                                <Image src={User} alt="user" className=' bg-white h-[40px] w-[40px] rounded-full p-1.5' />
                             </Link>
                         </div>
                     </div>
