@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -119,22 +118,19 @@ public function contact(Request $request) {
     $validatedData = $request->validate([
         'name' => 'required',
         'email' => 'required|email',
-        'message' => 'required'
+        'messag' => 'required'
     ]);
     $sender_email = $validatedData['email'];
-
     // Send email to the user
     Mail::send('emails.test', $validatedData, function ($message) use ($sender_email) {
         $message->to($sender_email)
-                ->subject('Test Email');
+                ->subject('Your Message Received');
     });
-
     // Send email to your info email
     Mail::send('emails.us', $validatedData, function ($message) {
         $message->to('info@gtsglobaltalentsolutions.com')
-                ->subject('Test Email');
+                ->subject('Email Received');
     });
-
     return 'Email sent successfully!';
 }
 

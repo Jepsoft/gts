@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProcessController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::post('/apply',[ProcessController::class, 'apply']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/contact', [UserController::class, 'contact']);
 Route::post('/signup', [UserController::class, 'signup']);
