@@ -56,7 +56,7 @@ export default function Sign_in() {
                     </div>
                 </nav>
                 <br />
-                <div class="flex-grow flex flex-col justify-center items-center mt-28 lg:mt-0 md:mt-">
+                <div className="flex-grow flex flex-col justify-center items-center mt-28 lg:mt-0 md:mt-">
                     <div className="w-[80%] md:w-[50%] lg:w-[30%] h-[80vh] flex items-center justify-center ">
                         <div className="w-full bg-white bg-opacity-25 p-5 rounded-[20px]">
                             <h1 className="text-center text-3xl font-bold text-white mb-10 mt-10">Sign In Now</h1>
