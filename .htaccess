@@ -12,6 +12,7 @@ RewriteRule ^profile/?$ profile.html [NC,L]
 RewriteRule ^sign-in/?$ sign-in.html [NC,L]
 RewriteRule ^backend/?$ /backend [NC,L]
 RewriteRule ^sign-up/?$ sign-up.html [NC,L]
+RewriteRule ^insurance/?$ insurance.html [NC,L]
 RewriteRule ^event-planning/?$ Event-Planning.html [NC,L]
 RewriteRule ^web-designing/?$ Web-Designing.html [NC,L]
 
