@@ -85,7 +85,7 @@ export default function insurance() {
                                     name="fullname"
                                     value={formData.fullname}
                                     onChange={handleChange}
-                                    className="ml-3 mr-3 pl-5 pt-2 pb-2  rounded-[30px] h-9 mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
+                                    className="ml-3 mr-3 pl-5 pt-2 pb-2 rounded-[30px] h-9 mt-4 mb-4 w-full md:w-full sm:w-1/2 bg-[#d9d9d920] text-white"
                                 />
                             </div>
                             <div className="flex justify-end w-full">
@@ -95,7 +95,7 @@ export default function insurance() {
                                     name="dob"
                                     value={formData.dob}
                                     onChange={handleChange}
-                                    className="mr-3 ml-3 pl-5 pt-2 pb-2 pr-2 rounded-[30px] h-9 mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
+                                    className="mr-3 ml-3 pl-5 pt-2 pb-2 pr-2 rounded-[30px] h-9 mt-4 mb-4 w-[100%] md:w-full bg-[#d9d9d920] text-white"
                                 />
                             </div>
                         </div>
@@ -305,7 +305,7 @@ export default function insurance() {
                             <div className=" justify-end w-full">
                             </div>
                         </div>
-                        
+
                         <div className="mb-5"></div>
                     </form>
                 </div>
