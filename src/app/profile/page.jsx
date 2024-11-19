@@ -36,7 +36,7 @@ export default function Profile() {
             }
         } catch (error) {
         }
-    }, []); 
+    }, []);
     const handle_logout = () => {
         const isloged_In = localStorage.getItem("gts_token");
         if (isloged_In) {
@@ -128,17 +128,14 @@ export default function Profile() {
                                 </div>
                             </div>
                             <div className=" flex justify-center ">
-                                <Link href={'/edit-profile'} className=" text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[20px] ml-auto mt-5 mb-5  mr-auto">Edit Profile</Link>
-                                <h1 className=" cursor-pointer text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[20px] ml-auto mt-5 mb-5  mr-auto" onClick={handle_logout}>Logout</h1>
+                                <Link href={'/edit-profile'} className=" text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[60px] ml-auto mt-2 mb-5  mr-auto">Edit Profile</Link>
+                                <h1 className=" cursor-pointer text-white bg-blue-700 p-2 pl-5 pr-5 rounded-[60px] ml-auto mt-2 mb-5  mr-auto" onClick={handle_logout}>Logout</h1>
                             </div>
                         </div>
                     </div>
                 </div>
 
             </div>
-            <Link href="https://jepsoft.com" className="mt-5 flex justify-center">
-                <h1 className=" text-white text-center mb-5 ">©2024 <span className="">Jepsoft</span>. All Rights Reserved.</h1>
-            </Link>
         </div>
     )
 }

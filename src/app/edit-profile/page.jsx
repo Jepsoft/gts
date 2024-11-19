@@ -221,7 +221,7 @@ export default function Edit_profile() {
             <div className={`${hide_item} z-10 flex justify-center items-center absolute left-0 right-0 top-0 bottom-0 h-full mt-auto mb-auto`}>
                 <div tabIndex="-1" aria-hidden="true" className=" ">
                     <div className="relative p-4 w-full max-w-md max-h-full">
-                        <div className="relative bg-white bg-opacity-30 bg-blur rounded-lg shadow ">
+                        <div className="relative bg-white bg-opacity-30 bg-blur rounded-[60px] shadow ">
                             <h3 className="text-xl text-white dark:text-white text-center pt-5 ">
                                 Verify Your Phone
                             </h3>
@@ -235,12 +235,12 @@ export default function Edit_profile() {
                                             id="code"
                                             value={code}
                                             onChange={(e) => setCode(e.target.value)}
-                                            className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            className="border border-gray-300p-3  text-gray-900 text-sm rounded-[60px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             placeholder="Verification Code"
                                             required
                                         />
                                     </div>
-                                    <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={verify_code}>Verify</button>
+                                    <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-[60px] text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={verify_code}>Verify</button>
                                     <div className="text-sm font-medium text-white text-center">
                                         Didn't Get Code? <a href="#" onClick={handle_verify} className={`${setenabledornot} text-blue-700 hover:underline dark:text-blue-700`}>Resend</a>
                                     </div>
@@ -262,7 +262,7 @@ export default function Edit_profile() {
                                 <Image src={Logo} data-aos="fade-up" alt="gts logo" className=" cursor-pointer special_logo absolute h-40 w-52 left-3 top-[-14px] sm:left-1" />
                             </Link>
                             <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                                <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown"></div>
+                                <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-[60px] shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown"></div>
                             </div>
                             <div className=" absolute left-0 right-0 md:block hidden top-[17px]" id="navbar-user">
                             <ul className="flex  justify-center p-4 mt-4 md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-medium">
@@ -270,14 +270,14 @@ export default function Edit_profile() {
                                 </ul>
                             </div>
                             <div className={`absolute right-10 text-white top-8 text-center special-signup_in_button ${user_not_login}`}>
-                                <div className=' bg-white bg-opacity-30 flex justify-center  rounded-[20px]'>
+                                <div className=' bg-white bg-opacity-30 flex justify-center  rounded-[60px]'>
                                     <Link href='/sign-in'>
                                         <div className='pr-2 pl-3 p-2 '>
                                             Signin
                                         </div>
                                     </Link>
                                     <Link href='/sign-up'>
-                                        <div className='pl-3 pr-3 p-2 bg-blue-600 rounded-[20px] '>
+                                        <div className='pl-3 pr-3 p-2 bg-blue-600 rounded-[60px] '>
                                             Signup
                                         </div>
                                     </Link>
@@ -293,7 +293,7 @@ export default function Edit_profile() {
                     <div className="flex items-center justify-center h-full p-4 md:p-0 md:mt-[60px]">
                         <div className="text-black bg-white bg-opacity-30 min-w-[90%] md:min-w-[700px]  md:max-w-[600px] rounded-[35px] mx-auto specical_profile">
                             <div className="px-4 md:px-6 p-5">
-                                <div className=" bg-black bg-opacity-30 p-4 rounded-3xl mb-5">
+                                <div className=" bg-black bg-opacity-10 p-4 rounded-[30px] mb-5">
                                     <h2 className="text-white text-left w-full md:w-auto mb-2 md:mb-0">Update Phone</h2>
                                     <div className="flex flex-col md:flex-row justify-between items-center mt-3 mb-3">
 
@@ -305,28 +305,28 @@ export default function Edit_profile() {
                                                 unoptimized
                                                 width={50}
                                                 height={50}
-                                                className="h-[55px] w-[50px] absolute -mt-[12px] cursor-pointer"
+                                                className="h-[68px] w-[70px] absolute -mt-[12px] cursor-pointer"
                                                 onClick={handle_verify}
                                             />
                                             <input
                                                 type="tel"
-                                                className="bg-white bg-opacity-10 text-white ml-2 border-b border-gray-400 outline-none rounded-[20px] h-8 p-1 w-full md:w-10/12"
+                                                className="bg-white bg-opacity-10 p-2.5 text-white ml-2  border-gray-400 outline-none rounded-[60px]   w-full md:w-10/12"
                                                 onChange={phone_proccess}
                                                 value={phone}
                                             />
                                         </div>
                                     </div>
                                     <div className=" cursor-pointer flex justify-between items-center mt-2 mb-2" onClick={() => handle_upadate()}>
-                                        <h2 className="text-white w-full bg-blue-600 p-1.5 rounded-[15px] text-center">Update Phone</h2>
+                                        <h2 className="text-white w-full  bg-blue-600 p-2.5 rounded-[60px] text-center">Update Phone</h2>
                                     </div>
                                 </div>
-                                <div className=" bg-black bg-opacity-30 p-4 rounded-3xl">
+                                <div className=" bg-black bg-opacity-10 p-4 rounded-[30px]">
                                     <h2 className="text-white text-left w-full md:w-auto mb-2 md:mb-0">Change Password</h2>
                                     <div className="flex flex-col md:flex-row justify-between items-center mt-3 mb-3">
                                         <h2 className="text-white w-full md:w-1/4 text-left mb-2 md:mb-0">Password</h2>
                                         <input
                                             type="password"
-                                            className="bg-white bg-opacity-10 text-white ml-2 border-b border-gray-400 outline-none rounded-[20px] p-1 w-full md:w-3/4"
+                                            className="bg-white bg-opacity-10 text-white ml-2 border-gray-400 outline-none p-2.5 rounded-[60px] w-full md:w-3/4"
                                             onChange={(e) => setPassword(e.target.value)}
                                             value={Password}
                                         />
@@ -335,24 +335,21 @@ export default function Edit_profile() {
                                         <h2 className="text-white w-full md:w-1/4 text-left mb-2 md:mb-0">Confirm</h2>
                                         <input
                                             type="password"
-                                            className="bg-white bg-opacity-10 text-white ml-2 border-b border-gray-400 outline-none rounded-[20px] p-1 w-full md:w-3/4"
+                                            className="bg-white bg-opacity-10 p-2.5 text-white ml-2  border-gray-400 outline-none rounded-[60px] w-full md:w-3/4"
                                             onChange={(e) => setConfirmPassword(e.target.value)}
                                             value={ConfirmPassword}
                                         />
                                     </div>
                                     <div className="cursor-pointer flex justify-between items-center mt-2 mb-2" onClick={() => update_password()}>
-                                        <h2 className="text-white w-full bg-blue-600 p-1.5 rounded-[15px] text-center">Update Password</h2>
+                                        <h2 className="text-white w-full bg-blue-600 p-2.5 rounded-[60px] text-center">Update Password</h2>
                                     </div>
                                 </div>
                                 <div className=" cursor-pointer flex justify-between items-center mt-2 mb-2" onClick={() => delete_account()}>
-                                    <h2 className="text-white w-full bg-red-700 p-1.5 rounded-[15px] text-center">Delete Account</h2>
+                                    <h2 className="text-white w-full bg-red-700 p-2.5 rounded-[60px] text-center">Delete Account</h2>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <Link href="https://jepsoft.com" className="mt-5 flex justify-center">
-                <h1 className=" text-white text-center mb-5 ">©2024 <span className="">Jepsoft</span>. All Rights Reserved.</h1>
-            </Link>
                 </div>
             </div>
         </div>

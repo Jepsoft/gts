@@ -15,6 +15,17 @@ export default function Sign_up() {
     const [status, setstatus] = useState('');
     const [isChecked, setIsChecked] = useState(false);
     const [enableornot, setenabledornot] = useState();
+    const [showpass, setshowpass] = useState('password');
+    const [isEnabled, setIsEnabled] = useState(true);
+    const [thephone, setthephone] = useState(null);
+
+    const togglePasswordVisibility = () => {
+        if (showpass == 'password') {
+            setshowpass('text');
+        } else {
+            setshowpass('password')
+        }
+    }
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked);
     };
@@ -29,24 +40,29 @@ export default function Sign_up() {
         nic: '',
     });
     const handle_verify = async () => {
-        if (formData.phone && enableornot != 'disabled:cursor-not-allowed') {
-            const response = await axios.post(`${apiUrl}/verify_phone`, {
-                for: 'send',
-                phone: formData.phone,
-            });
-            if (response.data.result) {
-                const code = response.data.result;
-                localStorage.setItem("gtsvch", code);
-            }
-            blur_contrall();
-            setenabledornot('disabled:cursor-not-allowed')
-            setTimeout(() => {
-                setenabledornot('')
-            }, 60000);
+        if (!/^\d{10}$/.test(formData.phone)) {
+            enqueueSnackbar("Enter Valid Phone Number", { variant: 'info' });
         } else {
-            const response = " Enter Your Phone Number";
-            enqueueSnackbar(response, { variant: 'info' });
+            if (formData.phone && enableornot != 'disabled:cursor-not-allowed') {
+                blur_contrall();
+                const response = await axios.post(`${apiUrl}/verify_phone`, {
+                    for: 'send',
+                    phone: formData.phone,
+                });
+                if (response.data.result) {
+                    const code = response.data.result;
+                    localStorage.setItem("gtsvch", code);
+                }
+                setIsEnabled(!isEnabled);
+                setTimeout(() => {
+                    setenabledornot('')
+                }, 60000);
+            } else {
+                const response = " Enter Your Phone Number";
+                enqueueSnackbar(response, { variant: 'info' });
+            }
         }
+
         //add success or fail message
     }
     const handleChange = (e) => {
@@ -54,11 +70,23 @@ export default function Sign_up() {
             ...formData,
             [e.target.name]: e.target.value,
         });
+        const currentValue = e.target.value;
+        if (thephone != null) {
+            if (thephone != currentValue) {
+                setstatus(false);
+                setVerify_update(red_verify);
+            } else {
+                setstatus(true);
+                setVerify_update(green_verify);
+            }
+        }
+        console.log(thephone, currentValue);
+
     };
-   
-        const handleSubmit = async (e) => {
-            e.preventDefault();
-            if (isChecked) {
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (isChecked) {
             // Validate form data before sending
             if (formData.password !== formData.confirmPassword) {
                 enqueueSnackbar("Passwords do not match", { variant: 'error' });
@@ -84,6 +112,8 @@ export default function Sign_up() {
                         NIC_Number: formData.nic,
                     });
                     enqueueSnackbar("Registration Successfully", { variant: 'success' });
+                    const token = response.data.token;
+                    localStorage.setItem("gts_token", token);
                     setTimeout(() => {
                         window.location.href = './';
                     }, 2000);
@@ -91,13 +121,14 @@ export default function Sign_up() {
                     enqueueSnackbar("Verify Phone", { variant: 'info' });
                 }
             } catch (error) {
+                enqueueSnackbar("Duplicate Email or Password", { variant: 'info' });
                 enqueueSnackbar("Registration Failed", { variant: 'error' });
             }
-        }else{
+        } else {
             enqueueSnackbar("Please Accept Terms & Conditions", { variant: 'info' });
         }
-        };
-    
+    };
+
     const [blurscreen, setBlurscreen] = useState('');
     const [hide_item, sethideitem] = useState('hidden');
     const blur_contrall = () => {
@@ -123,6 +154,7 @@ export default function Sign_up() {
                 setBlurscreen("");
                 sethideitem("hidden");
                 setstatus(true)
+                setthephone(formData.phone)
                 setVerify_update(green_verify);
                 localStorage.removeItem('gtsvch');
             } else {
@@ -178,17 +210,11 @@ export default function Sign_up() {
                         </div>
                         <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
                             <h1 className="font-bold md:text-2xl lg:text-2xl sm:text-xl"><span className="span_g">G</span>lobal <span className="span_t">T</span>alent <span className="span_s">S</span>olutions</h1>
-
                         </div>
-                        <span className=" bg-opacity-30 rounded-3xl pt-3 pb-3 absolute right-10 md:right-10 lg:right-10 top-10 sm:pt-2 sm:pb-2 sm:right-2 sm:top-9">
-                            <Link href="/sign-in">
-                                <span className="bg-[#3E68FD] p-3 text-[14px] md:text-[15px] rounded-3xl ml-1 mt-1 mb-1 mr-1 sm:p-2  text-white">Sign In</span>
-                            </Link>
-                        </span>
                     </div>
                 </nav>
                 <div class="flex-grow flex flex-col justify-center items-center">
-                    <div className="w-11/12 max-w-[800px] bg-white bg-opacity-25 p-5 rounded-[25px]">
+                    <div className="w-11/12 max-w-[800px] bg-white bg-opacity-25 p-5 rounded-[35px]">
                         <h1 className="text-center text-[30px] font-bold text-white mb-5 mt-5">Sign Up Now</h1>
                         <form onSubmit={handleSubmit}>
                             <div className="flex flex-col sm:flex-row justify-center">
@@ -199,7 +225,7 @@ export default function Sign_up() {
                                         name="firstName"
                                         value={formData.firstName}
                                         onChange={handleChange}
-                                        className="ml-3 mr-3 p-2 rounded-[18px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
+                                        className="ml-3 mr-3 p-3 rounded-[60px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
                                     />
                                 </div>
                                 <div className="flex justify-end w-full">
@@ -209,7 +235,7 @@ export default function Sign_up() {
                                         name="lastName"
                                         value={formData.lastName}
                                         onChange={handleChange}
-                                        className="mr-3 ml-3 p-2 rounded-[18px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
+                                        className="mr-3 ml-3 p-3 rounded-[60px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
                                     />
                                 </div>
                             </div>
@@ -221,7 +247,7 @@ export default function Sign_up() {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className="ml-3 mr-3 p-2 rounded-[18px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
+                                        className="ml-3 mr-3 p-3 rounded-[60px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
                                     />
                                 </div>
                                 <div className="flex justify-end w-full">
@@ -231,33 +257,53 @@ export default function Sign_up() {
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleChange}
-                                        className="ml-3 mr-3 p-2 rounded-[18px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
+                                        className="ml-3 mr-3 p-3 rounded-[60px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
                                     />
-                                    <Image src={vefify_update} unoptimized width={88} height={100} alt="Verify" onClick={() => {
-                                        handle_verify();
-                                    }} className="cursor-pointer absolute h-10 mt-4" />
+                                    <Image src={vefify_update} unoptimized width={100} height={100} alt="Verify" onClick={() => {
+                                        if (isEnabled) {
+                                            handle_verify();
+                                        } else {
+                                            enqueueSnackbar("Already Verified", { variant: 'error' });
+                                        }
+                                    }} className={`absolute h-[47px] mt-4 ${!isEnabled ? 'pointer-events-none cursor-not-allowed' : 'cursor-pointer'
+                                        }`} />
                                 </div>
                             </div>
                             <div className="flex flex-col sm:flex-row justify-center">
                                 <div className="flex justify-end w-full">
                                     <input
-                                        type="password"
+                                        type={`${showpass}`}
                                         placeholder="Password"
                                         name="password"
                                         value={formData.password}
                                         onChange={handleChange}
-                                        className="ml-3 mr-3 p-2 rounded-[18px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
+                                        className="ml-3 mr-3 p-3 rounded-[60px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
                                     />
                                 </div>
                                 <div className="flex justify-end w-full">
                                     <input
-                                        type="password"
+                                        type={`${showpass}`}
                                         placeholder="Confirm Password"
                                         name="confirmPassword"
                                         value={formData.confirmPassword}
                                         onChange={handleChange}
-                                        className="mr-3 ml-3 p-2 rounded-[18px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
+                                        className="mr-3 ml-3 p-3 rounded-[60px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
                                     />
+                                </div>
+                            </div>
+                            <div className="flex justify-end mr-[5%] md:mr-[3%]">
+                                <div className="flex items-right space-x-2 ">
+                                    <input
+                                        type="checkbox"
+                                        id="show-password"
+                                        onClick={togglePasswordVisibility}
+                                        className="cursor-pointer"
+                                    />
+                                    <label
+                                        htmlFor="show-password"
+                                        className="cursor-pointer text-white text-sm">
+                                        Show Password
+                                    </label>
                                 </div>
                             </div>
                             <div className="flex flex-col sm:flex-row justify-center">
@@ -266,7 +312,7 @@ export default function Sign_up() {
                                         name="gender"
                                         value={formData.gender}
                                         onChange={handleChange}
-                                        className="mr-3 ml-3 p-2 rounded-[18px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white text-opacity-40"
+                                        className="mr-3 ml-3 p-3 rounded-[60px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white text-opacity-40"
                                     >
                                         <option value="" disabled selected hidden>
                                             Gender
@@ -284,10 +330,11 @@ export default function Sign_up() {
                                         name="nic"
                                         value={formData.nic}
                                         onChange={handleChange}
-                                        className="mr-3 ml-3 p-2 rounded-[18px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
+                                        className="mr-3 ml-3 p-3 rounded-[60px] mt-4 mb-4 w-full bg-[#d9d9d920] text-white"
                                     />
                                 </div>
                             </div>
+                            <br />
                             <div className=" flex justify-center">
                                 <input
                                     type="checkbox"
@@ -300,22 +347,19 @@ export default function Sign_up() {
                                 />
                                 <p className=" text-white ">I have read and Accept<Link href="/terms_and_conditions" className=" cursor-pointer" ><span className="text-blue-500 cursor-pointer"> Terms & conditions</span></Link></p>
                             </div>
+                            <br />
                             <div className="flex justify-center">
                                 <h2
-                                    className=" pl-10 pr-10 m-3 text-center text-white cursor-pointer bg-blue-700 p-2 rounded-[15px]"
+                                    className=" pt-2 pb-2 pl-10 pr-10 m-3 text-center text-white cursor-pointer bg-blue-700  rounded-[60px]"
                                     onClick={handleSubmit}
                                 >
                                     Sign Up
                                 </h2>
                             </div>
-                            <div className="mb-5"></div>
                         </form>
                     </div>
                 </div>
             </div>
-            <Link href="https://jepsoft.com" className="mt-5 flex justify-center">
-                <h1 className=" text-white text-center mb-5 ">©2024 <span className="">Jepsoft</span>. All Rights Reserved.</h1>
-            </Link>
         </div>
     )
 }
