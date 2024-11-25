@@ -61,9 +61,9 @@ export default function Sign_in() {
                     </div>
                 </nav>
                 <br />
-                <div className="flex-grow flex flex-col justify-center items-center mt-28 lg:mt-0 md:mt-">
-                    <div className="w-[80%] md:w-[50%] lg:w-[30%] h-[80vh] flex items-center justify-center ">
-                        <div className="w-full bg-white bg-opacity-25 p-5 rounded-[35px]">
+                <div className="flex-grow flex flex-col justify-center items-center mt-28 lg:mt-0 ">
+                    <div className="w-[80%] md:w-[50%] lg:w-[30%] flex items-center justify-center ">
+                        <div className="w-full bg-white bg-opacity-25 p-5 rounded-[35px] mb-10">
                             <h1 className="text-center text-3xl font-bold text-white mb-10 mt-10">Sign In Now</h1>
                             <form onSubmit={handleSubmit} className="w-full">
                                 <div className="ml-3 mr-3">
@@ -78,7 +78,7 @@ export default function Sign_in() {
                                         <Image
                                             src={email_icon}
                                             alt="Email icon"
-                                            className="absolute right-3 top-3 h-6 w-6"
+                                            className="absolute right-4 top-3 h-6 w-6"
                                         />
                                     </div>
                                     <br />
@@ -93,7 +93,7 @@ export default function Sign_in() {
                                         <Image
                                             src={password_icon}
                                             alt="Password icon"
-                                            className="absolute right-3 top-3 h-6 w-6"
+                                            className="absolute right-4 top-3 h-6 w-6"
                                         />
                                     </div>
                                     <div className="flex items-center justify-between ml-[2%]">

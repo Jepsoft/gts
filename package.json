@@ -12,6 +12,7 @@
     "aos": "^2.3.4",
     "axios": "^1.7.2",
     "next": "14.2.3",
+    "next-svgr": "^0.0.2",
     "notistack": "^3.0.1",
     "particles.js": "^2.0.0",
     "react": "^18",
@@ -21,6 +22,7 @@
     "sharp": "^0.33.4"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",

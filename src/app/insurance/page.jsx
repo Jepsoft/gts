@@ -305,7 +305,6 @@ export default function insurance() {
                             <div className=" justify-end w-full">
                             </div>
                         </div>
-
                         <div className="mb-5"></div>
                     </form>
                 </div>
