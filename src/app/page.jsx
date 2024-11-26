@@ -152,7 +152,6 @@ export default function Home() {
       nextSlide();
     }, 5000);
 
-    // Cleanup function to clear interval on component unmount
     return () => clearInterval(interval);
   }, []);
   const [boxcolor, setboxcolor] = useState('');
@@ -211,7 +210,7 @@ export default function Home() {
               <div className=" max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
                 <div></div>
                 <Link href='cursor-pointer absolute h-40 w-52 left-[-40px] md:left-3  top-[-14px]'>
-                  <Image src={Logo} data-aos="fade-up" alt="gts logo" className=" cursor-pointer md:left-3 left-[-35px] sm:ml-[30px]   md:ml-auto top-[-18px] sm:top-[-25px] absolute h-24 w-40 mt-[10px] ml-[12px] sm:w-40 sm:h-40  md:w-52   " />
+                  <Image src={Logo} data-aos="fade-up" alt="gts logo" className=" cursor-pointer md:left-3 left-[-35px] sm:ml-[30px]   md:ml-auto top-[-18px] sm:top-[-25px] absolute h-28 w-40 mt-[15px] ml-[12px] sm:w-40 sm:h-40  md:w-52   " />
                 </Link>
                 <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                   <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown"></div>
@@ -235,7 +234,7 @@ export default function Home() {
                     </li>
                   </ul>
                 </div>
-                <div className={`absolute right-10 text-white top-5 sm:top-7 text-center special-signup_in_button ${user_not_login} `}>
+                <div className={`absolute right-10 text-white top-7 sm:top-7 text-center special-signup_in_button ${user_not_login} `}>
                   <div className={`${boxcolor} flex justify-center rounded-[20px]`}>
                     <Link href='/sign-in' onMouseEnter={hadleanimate} onMouseLeave={hadleleave}>
                       <div className='pr-1 pl-2  p-1.5 transition-all rounded-[20px] font-semibold text-[12px] sm:text-[16px]  hover:-pr-5 duration-500 ease-in-out transform  hover:scale-100 hover:shadow-lg'>
@@ -282,7 +281,7 @@ export default function Home() {
                     {posters.map((poster, index) => (
                       <div
                         key={index}
-                        className={`absolute w-full  flex h-[1050px] lg:max-h-[550px] sm:max-h-[440px] transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
+                        className={`absolute w-full  flex h-auto lg:max-h-[550px] sm:max-h-[440px] transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
                         style={{ zIndex: index === currentIndex ? 10 : 1 }}>
                         <Link href='#'>
                           <Image
@@ -302,7 +301,7 @@ export default function Home() {
           <h1 className="text-3xl font-bold text-center text-white">Our Services</h1>
           <br />
           <br />
-          <div className="flex flex-wrap justify-center ml-[5%] mr-[5%]">
+          <div className="flex flex-wrap justify-center ml-[5%] mr-[5%] z-50">
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               <Link data-aos="fade-right" href="/Event-Planning" className=" md:ml-5 md:mr-5 sm:ml-2 sm:mr-2 lg:ml-10 lg-mr-10 mb-2 mt-2 bg-white bg-opacity-30 text-center rounded-xl p-4">
                 <Image src={Event} alt="car" className="h-20 sm:h-24 lg:h-28 w-20 p-2 sm:w-24 lg:w-28 object-contain mx-auto" unoptimized />
@@ -444,7 +443,7 @@ export default function Home() {
                       type="text"
                       name="name"
                       placeholder="Enter Your Name"
-                      className="p-3 rounded-[60px] placeholder:font-bold mt-5 mb-5 w-full bg-white placeholder:text-white text-white bg-opacity-35"
+                      className="p-3 rounded-[60px] mt-5 mb-5 w-full bg-white placeholder:text-white text-white bg-opacity-35"
                       value={formData.name}
                       onChange={handleChange}
                     /><br />
@@ -452,14 +451,14 @@ export default function Home() {
                       type="email"
                       name="email"
                       placeholder="Enter Your Email Address"
-                      className="text-white placeholder:font-bold p-3 rounded-[60px] mt-5 mb-5 w-full bg-white placeholder:text-white bg-opacity-35 text-white"
+                      className="text-white p-3 rounded-[60px] mt-5 mb-5 w-full bg-white placeholder:text-white bg-opacity-35"
                       value={formData.email}
                       onChange={handleChange}
                     /><br />
                     <textarea
                       name="messag"
                       placeholder="Let Us Know How We Can Help You"
-                      className="text-white placeholder:font-bold p-3 rounded-[25px] mt-5 h-28 w-full bg-white placeholder:text-white bg-opacity-35 text-white"
+                      className="text-white p-3 rounded-[25px] mt-5 h-28 w-full bg-white placeholder:text-white bg-opacity-35"
                       value={formData.messag}
                       onChange={handleChange}
                     ></textarea>
