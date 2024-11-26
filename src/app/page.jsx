@@ -435,7 +435,7 @@ export default function Home() {
             <br />
             <div className="flex justify-center  ml-[5%] mr-[5%]">
               <div className="w-full md:w-1/2 flex justify-center">
-                <div className="bg-white bg-opacity-25 p-2 rounded-[60px] w-full md:max-w-[430px] pl-[5%] pr-[5%]">
+                <div className="bg-white bg-opacity-25 p-2 rounded-[40px] w-full md:max-w-[430px] pl-[5%] pr-[5%]">
                   <h1 className="text-center text-white font-semibold mt-10 mb-1 text-[30px]">Get In Touch</h1>
                   <p className="text-white text-center font-medium ">We are here for you! How can we help?</p>
                   <form onSubmit={handleSubmitmessage} className="mt-8 mb-5">
@@ -458,7 +458,7 @@ export default function Home() {
                     <textarea
                       name="messag"
                       placeholder="Let Us Know How We Can Help You"
-                      className="text-white p-3 rounded-[25px] mt-5 h-28 w-full bg-white placeholder:text-white bg-opacity-35"
+                      className="text-white p-3 rounded-[25px] mt-5 h-28 w-full bg-white placeholder:text-white bg-opacity-35 "
                       value={formData.messag}
                       onChange={handleChange}
                     ></textarea>
