@@ -12,11 +12,14 @@ import GRO from "../icons/gro.svg"
 import Helth from "../icons/helth.svg"
 import Pro from "../icons/pro.svg"
 import INS01 from "../icons/image.png"
+import Edu from "../icons/edu.svg"
 import Link from 'next/link';
 import User from "../icons/user.svg";
-
+import R1 from "../reviews/r1.svg";
+import Aravindha from "../director/arvinda.svg";
 import { enqueueSnackbar } from 'notistack';
 import axios from 'axios';
+import { IMAGES_MANIFEST } from 'next/dist/shared/lib/constants';
 
 export default function Home() {
   var token;
@@ -24,6 +27,7 @@ export default function Home() {
   const [user_not_login, set_not_login_done] = useState('blur');
   const [loaderStatus, setLoaderStatus] = useState('visible');
   const [background, setBackgroundStatus] = useState('blur');
+  const [imganimaton1, setimageanimation1] = useState('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -38,6 +42,40 @@ export default function Home() {
   const [boxcolor, setboxcolor] = useState('');
   const [signincolor, setsignincolor] = useState('');
   const [signuploer, setsignupcolor] = useState('');
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const items = [
+    { title: 'Health', description: 'Health insurance provides financial protection against  medical expenses,ensuring access to quality healthcare without the burden of high costs. It covers a range of services, including doctor visits, hospital stays, medications, and preventive care. By sharing the riskof healthcare expenses among a poolof insured individuals, health insurance offers peace of mind and promoteswell-being, making it an essential component of a secure and healthy life.' },
+    { title: 'Protection', description: 'Protection gives you peace of mind by keeping you andyour belongings saf from unexpectedrisks  It covers damages, losses,and liabilities, helping you recover from unexpected events. With tailored solutions it reduces financial stressand ensures stability,  allowing you to focus on what matters most.Protection is key to a secure and confident future.' },
+    { title: 'Topic 3', description: 'This is the description for Topic 3.' },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prevIndex) => {
+        const newIndex = (prevIndex + 1) % items.length;
+        console.log('Active Index:', newIndex); // Log the active index
+        return newIndex;
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [items.length]); // Only depend on items.length
+
+  const load_data = () => {
+
+  }
+  const showNext = () => {
+    setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
+    load_data();
+
+  };
+
+  const showPrev = () => {
+    setActiveIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
+    load_data();
+
+  };
   useEffect(() => {
     setsignincolor("bg-white");
     setboxcolor("bg-white text-blue-600");
@@ -132,9 +170,10 @@ export default function Home() {
                   <h1 className='text-[48px] w-[90%] font-bold text-left  ml-14  text-[#FFFF]'>With Counseling Industry Experts</h1>
                 </div>
               </div>
+              <br />
               <div className='flex justify-center'>
                 <div className='bg-black w-[90%] rounded-[40px] z-[-2]'>
-                  <Image unoptimized src='https://download.shutterstock.com/gatekeeper/W3siZCI6ICJzaHV0dGVyc3RvY2stdXBsb2FkcyIsICJrIjogInBlbmRpbmdfcGhvdG8vMzY1ODc3MDU1Ny9tZWRpdW0uanBnIiwgImUiOiAxNzMyNjI5NjY3LCAibSI6IDB9LCAiZE5KVmpQdi9EazF3MTZCUzRGeHpaZjJvMG1NIl0=/3658770557_medium.jpg' alt="img" width={10} height={10} className='bg-black opacity-70  bg-opacity-25 w-full h-[80vh] object-cover rounded-[40px]  mx-auto' />
+                  <Image unoptimized src='https://images.pexels.com/photos/1128317/pexels-photo-1128317.jpeg' alt="img" width={10} height={10} className='bg-black opacity-70  bg-opacity-25 w-full h-[80vh] object-cover rounded-[40px]  mx-auto' />
                 </div>
               </div>
               <div className='flex justify-between items-center mx-auto w-[85%] mt-[-50px]'>
@@ -142,6 +181,7 @@ export default function Home() {
                 <Image src={Pro} alt="img" className=' rounded-full w-[130px]   cursor-pointer' />
                 <Image src={SAV} alt="img" className=' rounded-full w-[130px]   cursor-pointer' />
                 <Image src={GRO} alt="img" className=' rounded-full w-[130px]  cursor-pointer' />
+                <Image src={Edu} alt="img" className=' rounded-full w-[130px]   cursor-pointer' />
                 <Image src={RET} alt="img" className=' rounded-full w-[130px]   cursor-pointer' />
               </div>
             </div>
@@ -155,6 +195,176 @@ export default function Home() {
             step of the way. Our expert advisors are available anytime to help you make informed decisions
             tailored to your needs.</p>
           <br />
+          <div className="ml-[5%] mr-[5%] mt-[5%] mb-[5%] ">
+            <div className='flex justify-between '>
+              <div className=" items-center space-y-4 w-[30%]">
+                <img
+                  src="https://images.pexels.com/photos/1390403/pexels-photo-1390403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  className={`w-56 h-56 object-cover  shadow-sm shadow-black rounded-full self-start border-[#FBAC1A] border-[3px] transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-[#000] ${activeIndex === 0 ? 'duration-300 animate-popup shadow-lg shadow-[#000]' : ''}`}
+                />
+                <img
+                  src="https://images.pexels.com/photos/29565581/pexels-photo-29565581/free-photo-of-beachside-yoga-session-in-morocco.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  className="w-20 h-20 invisible object-cover rounded-full shadow-sm mr-[-50px] shadow-black border-[#FBAC1A]  border-[3px] transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-[#000]"
+                />
+                <img
+                  src="https://images.pexels.com/photos/29565581/pexels-photo-29565581/free-photo-of-beachside-yoga-session-in-morocco.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  className={`w-56 h-56 object-cover rounded-full shadow-sm mr-[-50px] shadow-black border-[#FBAC1A] self-start  border-[3px] transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-[#000] ${activeIndex === 2 ? 'duration-300 animate-popup scale-110 shadow-lg shadow-[#000]' : ''}`}
+                />
+              </div>
+              <div className=" items-center space-y-4 w-[40%]">
+                <img
+                  src="https://images.pexels.coms/1390403/pexels-photo-1390403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  className="w-40 h-40 object-cover  invisible shadow-sm shadow-black rounded-full self-start border-[#FBAC1A] border-[3px] transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-[#000]"
+                />
+                <img
+                  src="https://images.pexels.com/photos/29565581/pexels-photo-29565581/free-photo-of-beachside-yoga-session-in-morocco.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  className={`w-56 h-56 object-cover rounded-full shadow-sm mr-[-50px] shadow-black border-[#FBAC1A]  border-[3px] transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-[#000] ${activeIndex === 1 ? 'duration-300 animate-popup scale-110 shadow-lg shadow-[#000]' : ''}`}
+                />
+                <img
+                  src="https://images.pexels.com/photos81/pexels-photo-29565581/free-photo-of-beachside-yoga-session-in-morocco.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  className="w-20 h-20 object-cover invisible rounded-full shadow-sm mr-[-50px] shadow-black border-[#FBAC1A] self-start  border-[3px] transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-[#000]"
+                />
+              </div>
+
+              <div className="relative bg-white bg-opacity-25 w-[80%] rounded-[60px] flex justify-center items-center overflow-hidden shadow-md shadow-[#FBAC1A]">
+                {/* Carousel Items */}
+                <div className="relative w-full h-56 rounded-lg">
+                  {items.map((item, index) => (
+                    <div
+                      key={index}
+                      className={`absolute inset-0 transition-transform duration-1000 ease-in-out ${activeIndex === index ? 'opacity-100 scale-110 duration-1000 ' : 'opacity-0 scale-75 duration-1000 ease-in-out'}`}
+
+                    >
+                      <div className="flex flex-col items-center justify-center h-full text-center">
+                        <h2 className={`text-3xl font-bold text-white mb-5 animate-popup`}>{item.title}</h2>
+                        <p className=" w-[70%] text-white ">{item.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Previous Button */}
+                <button
+                  type="button"
+                  className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                  onClick={showPrev}
+                >
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-[#FBAC1A]">
+                    <svg
+                      className="w-4 h-4 text-[#FBAC1A] rtl:rotate-180"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 6 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M5 1 1 5l4 4"
+                      />
+                    </svg>
+                    <span className="sr-only">Previous</span>
+                  </span>
+                </button>
+
+                {/* Next Button */}
+                <button
+                  type="button"
+                  className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                  onClick={showNext}
+                >
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-[#FBAC1A]">
+                    <svg
+                      className="w-4 h-4 text-[#FBAC1A]"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 6 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="m1 9 4-4-4-4"
+                      />
+                    </svg>
+                    <span className="sr-only">Next</span>
+                  </span>
+                </button>
+
+                <style jsx>{`
+        .scale-75 {
+          transform: scale(0.75);
+        }
+
+        .scale-100 {
+          transform: scale(1);
+        }
+      `}</style>
+              </div>
+
+            </div>
+          </div>
+          <div className=' ml-[5%] mr-[5%]'>
+            <h1 className='text-center text-3xl font-bold text-white'>Plan Your Future Today</h1>
+            <div className='bg-white opacity-25 rounded-[60px] p-5 min-h-[330px] mt-[50px]'></div>
+          </div>
+          <div className=' ml-[5%] mr-[5%] mt-10 mb-10'>
+            <h1 className='text-center text-3xl font-bold text-white'>Plan Your Future Today</h1>
+            <div className=' flex justify-between'>
+              <div className='bg-white bg-opacity-25 shadow-md shadow-[#FBAC1A] rounded-[40px] p-5 max-h-[410px] w-full ml-[5%] mr-[5%]  mt-[50px]'>
+                <div>
+                  <br />
+                  <p className=' text-center text-white text-sm'>This counseling service was outstanding!
+                    The team was professional, understanding, and attentive to my concerns. They provided personalized advice that exceeded my expectations. I felt supported and valued throughout the process. Their dedication and expertise truly stood out. I highly recommend theirservices to anyone seeking reliable andcaring guidance!</p>
+                  <Image src={R1} width={160} alt='reviews' className='mt-5 ml-auto mr-auto' />
+                  <br />
+                  <div className='flex justify-center '>
+                    <Image src={Aravindha} width={50} height={50} alt='reviews' className='w-14 h-14 mr-5 rounded-full object-cover' />
+                    <div className='mt-1'>
+                      <h1 className='text-white font-bold'>Aravindha Koralage</h1>
+                      <h1 className='text-[#FBAC1A] text-sm'>Entrepreneur</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='bg-white bg-opacity-25 shadow-md shadow-[#FBAC1A] rounded-[40px] p-5 max-h-[410px] w-full ml-[5%] mr-[5%]  mt-[50px]'>
+                <div>
+                  <br />
+                  <p className=' text-center text-white text-sm'>This counseling service was outstanding!
+                    The team was professional, understanding, and attentive to my concerns. They provided personalized advice that exceeded my expectations. I felt supported and valued throughout the process. Their dedication and expertise truly stood out. I highly recommend theirservices to anyone seeking reliable andcaring guidance!</p>
+                  <Image src={R1} width={160} alt='reviews' className='mt-5 ml-auto mr-auto' />
+                  <br />
+                  <div className='flex justify-center '>
+                    <Image src={Aravindha} width={50} height={50} alt='reviews' className='w-14 h-14 mr-5 rounded-full object-cover' />
+                    <div className='mt-1'>
+                      <h1 className='text-white font-bold'>Aravindha Koralage</h1>
+                      <h1 className='text-[#FBAC1A] text-sm'>Entrepreneur</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='bg-white bg-opacity-25 shadow-md shadow-[#FBAC1A] rounded-[40px] p-5 max-h-[410px] w-full ml-[5%] mr-[5%]  mt-[50px]'>
+                <div>
+                  <br />
+                  <p className=' text-center text-white text-sm'>This counseling service was outstanding!
+                    The team was professional, understanding, and attentive to my concerns. They provided personalized advice that exceeded my expectations. I felt supported and valued throughout the process. Their dedication and expertise truly stood out. I highly recommend theirservices to anyone seeking reliable andcaring guidance!</p>
+                  <Image src={R1} width={160} alt='reviews' className='mt-5 ml-auto mr-auto' />
+                  <br />
+                  <div className='flex justify-center '>
+                    <Image src={Aravindha} width={50} height={50} alt='reviews' className='w-14 h-14 mr-5 rounded-full object-cover' />
+                    <div className='mt-1'>
+                      <h1 className='text-white font-bold'>Aravindha Koralage</h1>
+                      <h1 className='text-[#FBAC1A] text-sm'>Entrepreneur</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
           <footer className="bg-black bg-opacity-50  text-white">
             <div className="container mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
               <div className="md:flex md:justify-between">
