@@ -17,7 +17,7 @@ export default function Sign_up() {
     const [enableornot, setenabledornot] = useState();
     const [showpass, setshowpass] = useState('password');
     const [isEnabled, setIsEnabled] = useState(true);
-    const [thephone, setthephone] = useState(null);
+    const [thephone, setthephone] = useState('no');
 
     const togglePasswordVisibility = () => {
         if (showpass == 'password') {
@@ -70,20 +70,20 @@ export default function Sign_up() {
             ...formData,
             [e.target.name]: e.target.value,
         });
-        const currentValue = e.target.value;
-        if (thephone != null) {
-            if (thephone != currentValue) {
-                setstatus(false);
-                setVerify_update(red_verify);
-            } else {
-                setstatus(true);
-                setVerify_update(green_verify);
-            }
-        }
-        console.log(thephone, currentValue);
-
     };
-
+    useEffect(() => {
+        btn_status();
+    }, [formData])
+    const btn_status = () => {
+        if (thephone != formData.phone) {
+            setstatus(false);
+            setVerify_update(red_verify);
+        } else {
+            setstatus(true);
+            setVerify_update(green_verify);
+        }
+        console.log(thephone);
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (isChecked) {
@@ -121,6 +121,7 @@ export default function Sign_up() {
                     enqueueSnackbar("Verify Phone", { variant: 'info' });
                 }
             } catch (error) {
+                console.log(error);
                 enqueueSnackbar("Duplicate Email or Password", { variant: 'info' });
                 enqueueSnackbar("Registration Failed", { variant: 'error' });
             }

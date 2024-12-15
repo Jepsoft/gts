@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
 import Image from "next/image";
+import Right_Arrow from "../icons/right-arrow-svgrepo-com.svg";
 import Location from "../icons/location.svg"
 import Contact from "../icons/contact.svg"
 import BG from "../icons/background.svg";
@@ -164,25 +165,60 @@ export default function Home() {
                 </div>
               </nav>
               <br />
-              <div className=' flex justify-center bottom-[20%] absolute left-0 right-0'>
-                <div className=' w-[90%]'>
-                  <h1 className='  text-[68px] w-[90%] font-bold text-left  ml-14  text-[#FFC107]'>Get your best insurance coverage</h1>
-                  <h1 className='text-[48px] w-[90%] font-bold text-left  ml-14  text-[#FFFF]'>With Counseling Industry Experts</h1>
+              <div className="flex justify-center bottom-[50%] md:top-[40%] top-[200px] sm:top-[300px] lg:top-[400px]  absolute left-0 right-0">
+                <div className="w-[95%] md:w-[90%]">
+                  <h1 className="text-[25px] sm:text-[37px]  md:text-[43px] lg:text-[53px] w-full font-bold text-center  text-[#FFC107]">
+                    Get your best insurance coverage
+                  </h1>
+                  <h1 className="text-[20px] sm:text-[33px]  md:text-[40px] lg:text-[45px] w-full font-bold text-center  text-white">
+                    With Counseling Industry Experts
+                  </h1>
                 </div>
               </div>
               <br />
-              <div className='flex justify-center'>
-                <div className='bg-black w-[90%] rounded-[40px] z-[-2]'>
-                  <Image unoptimized src='https://images.pexels.com/photos/1128317/pexels-photo-1128317.jpeg' alt="img" width={10} height={10} className='bg-black opacity-70  bg-opacity-25 w-full h-[80vh] object-cover rounded-[40px]  mx-auto' />
+              <div className="flex justify-center">
+                <div className="bg-black w-[95%] md:w-[90%] rounded-[20px]  md:rounded-[40px] z-[-2]">
+                  <Image
+                    unoptimized
+                    src="https://images.pexels.com/photos/1128317/pexels-photo-1128317.jpeg"
+                    alt="img"
+                    width={10}
+                    height={10}
+                    className="bg-black opacity-70 bg-opacity-25 w-full md:h-[60vh] lg:h-[80vh] object-cover rounded-[20px] md:rounded-[40px] mx-auto "
+                  />
                 </div>
               </div>
-              <div className='flex justify-between items-center mx-auto w-[85%] mt-[-50px]'>
-                <Image src={Helth} alt="img" className=' rounded-full w-[130px]   cursor-pointer' />
-                <Image src={Pro} alt="img" className=' rounded-full w-[130px]   cursor-pointer' />
-                <Image src={SAV} alt="img" className=' rounded-full w-[130px]   cursor-pointer' />
-                <Image src={GRO} alt="img" className=' rounded-full w-[130px]  cursor-pointer' />
-                <Image src={Edu} alt="img" className=' rounded-full w-[130px]   cursor-pointer' />
-                <Image src={RET} alt="img" className=' rounded-full w-[130px]   cursor-pointer' />
+              <div className="grid grid-cols-3 gap-4 lg:flex lg:justify-between items-center mx-auto w-[95%] md:w-[85%] mt-[-20px] md:mt-[-50px]">
+                <Image
+                  src={Helth}
+                  alt="Health"
+                  className="rounded-full w-[80px] md:w-[130px] cursor-pointer mx-auto"
+                />
+                <Image
+                  src={Pro}
+                  alt="Professional"
+                  className="rounded-full w-[80px] md:w-[130px] cursor-pointer mx-auto"
+                />
+                <Image
+                  src={SAV}
+                  alt="Savings"
+                  className="rounded-full w-[80px] md:w-[130px] cursor-pointer mx-auto"
+                />
+                <Image
+                  src={GRO}
+                  alt="Growth"
+                  className="rounded-full w-[80px] md:w-[130px] cursor-pointer mx-auto"
+                />
+                <Image
+                  src={Edu}
+                  alt="Education"
+                  className="rounded-full w-[80px] md:w-[130px] cursor-pointer mx-auto"
+                />
+                <Image
+                  src={RET}
+                  alt="Retirement"
+                  className="rounded-full w-[80px] md:w-[130px] cursor-pointer mx-auto"
+                />
               </div>
             </div>
           </div>
@@ -197,7 +233,7 @@ export default function Home() {
           <br />
           <div className="ml-[5%] mr-[5%] mt-[5%] mb-[5%] ">
             <div className='flex justify-between '>
-              <div className=" items-center space-y-4 w-[30%]">
+              <div className=" items-center space-y-4 w-[30%] hidden xl:block">
                 <img
                   src="https://images.pexels.com/photos/1390403/pexels-photo-1390403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                   className={`w-56 h-56 object-cover  shadow-sm shadow-black rounded-full self-start border-[#FBAC1A] border-[3px] transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-[#000] ${activeIndex === 0 ? 'duration-300 animate-popup shadow-lg shadow-[#000]' : ''}`}
@@ -211,7 +247,7 @@ export default function Home() {
                   className={`w-56 h-56 object-cover rounded-full shadow-sm mr-[-50px] shadow-black border-[#FBAC1A] self-start  border-[3px] transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-[#000] ${activeIndex === 2 ? 'duration-300 animate-popup scale-110 shadow-lg shadow-[#000]' : ''}`}
                 />
               </div>
-              <div className=" items-center space-y-4 w-[40%]">
+              <div className=" items-center space-y-4 w-[40%] hidden  xl:block ">
                 <img
                   src="https://images.pexels.coms/1390403/pexels-photo-1390403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                   className="w-40 h-40 object-cover  invisible shadow-sm shadow-black rounded-full self-start border-[#FBAC1A] border-[3px] transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-[#000]"
@@ -226,9 +262,9 @@ export default function Home() {
                 />
               </div>
 
-              <div className="relative bg-white bg-opacity-25 w-[80%] rounded-[60px] flex justify-center items-center overflow-hidden shadow-md shadow-[#FBAC1A]">
+              <div className="relative bg-white bg-opacity-25 w-full h-full  pt-10 pb-10 rounded-[30px] md:rounded-[60px] flex justify-center items-center overflow-hidden shadow-md shadow-[#FBAC1A]">
                 {/* Carousel Items */}
-                <div className="relative w-full h-56 rounded-lg">
+                <div className="relative w-full h-[400px] rounded-lg">
                   {items.map((item, index) => (
                     <div
                       key={index}
@@ -246,7 +282,7 @@ export default function Home() {
                 {/* Previous Button */}
                 <button
                   type="button"
-                  className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                  className="absolute hidden sm:block top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                   onClick={showPrev}
                 >
                   <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-[#FBAC1A]">
@@ -271,7 +307,7 @@ export default function Home() {
                 {/* Next Button */}
                 <button
                   type="button"
-                  className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                  className="absolute top-0  hidden sm:block  end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                   onClick={showNext}
                 >
                   <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-[#FBAC1A]">
@@ -306,65 +342,158 @@ export default function Home() {
 
             </div>
           </div>
-          <div className=' ml-[5%] mr-[5%]'>
+          <div className=' ml-[5%] mr-[5%] mt-10'>
             <h1 className='text-center text-3xl font-bold text-white'>Plan Your Future Today</h1>
-            <div className='bg-white opacity-25 rounded-[60px] p-5 min-h-[330px] mt-[50px]'></div>
+            <div className='bg-white opacity-25 rounded-[30px] md:rounded-[60px] p-5 min-h-[330px] mt-[50px]'></div>
           </div>
-          <div className=' ml-[5%] mr-[5%] mt-10 mb-10'>
-            <h1 className='text-center text-3xl font-bold text-white'>Plan Your Future Today</h1>
-            <div className=' flex justify-between'>
-              <div className='bg-white bg-opacity-25 shadow-md shadow-[#FBAC1A] rounded-[40px] p-5 max-h-[410px] w-full ml-[5%] mr-[5%]  mt-[50px]'>
+          <div className=' ml-[5%] mr-[5%] mt-10 mb-20'>
+            <h1 className='text-center text-3xl font-bold text-white mb-10 mt-10'>What Our Client's Say</h1>
+            <div className="flex flex-wrap justify-center lg:justify-between ">
+              {/* Card 1 */}
+              <div className="bg-white bg-opacity-25 shadow-md transition-transform duration-300 ease-in-out md:hover:scale-110 hover:shadow-lg hover:shadow-[#000] shadow-[#FBAC1A] rounded-[30px] p-5 max-h-[410px] w-[90%] sm:w-[48%] lg:w-[30%] mx-auto mt-5">
                 <div>
-                  <br />
-                  <p className=' text-center text-white text-sm'>This counseling service was outstanding!
-                    The team was professional, understanding, and attentive to my concerns. They provided personalized advice that exceeded my expectations. I felt supported and valued throughout the process. Their dedication and expertise truly stood out. I highly recommend theirservices to anyone seeking reliable andcaring guidance!</p>
-                  <Image src={R1} width={160} alt='reviews' className='mt-5 ml-auto mr-auto' />
-                  <br />
-                  <div className='flex justify-center '>
-                    <Image src={Aravindha} width={50} height={50} alt='reviews' className='w-14 h-14 mr-5 rounded-full object-cover' />
-                    <div className='mt-1'>
-                      <h1 className='text-white font-bold'>Aravindha Koralage</h1>
-                      <h1 className='text-[#FBAC1A] text-sm'>Entrepreneur</h1>
+                  <p className="text-center text-white text-sm">
+                    This counseling service was outstanding! The team was professional, understanding, and attentive to my
+                    concerns. They provided personalized advice that exceeded my expectations. I felt supported and valued
+                    throughout the process. Their dedication and expertise truly stood out. I highly recommend their services to
+                    anyone seeking reliable and caring guidance!
+                  </p>
+                  <Image src={R1} width={160} alt="reviews" className="mt-5 mx-auto" />
+                  <div className="flex justify-center mt-5">
+                    <Image
+                      src={Aravindha}
+                      width={50}
+                      height={50}
+                      alt="reviews"
+                      className="w-14 h-14 mr-5 rounded-full object-cover"
+                    />
+                    <div className="mt-1">
+                      <h1 className="text-white font-bold">Aravindha Koralage</h1>
+                      <h1 className="text-[#FBAC1A] text-sm">Entrepreneur</h1>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className='bg-white bg-opacity-25 shadow-md shadow-[#FBAC1A] rounded-[40px] p-5 max-h-[410px] w-full ml-[5%] mr-[5%]  mt-[50px]'>
+              {/* Card 2 */}
+              <div className="bg-white bg-opacity-25 shadow-md transition-transform duration-300 ease-in-out md:hover:scale-110 hover:shadow-lg hover:shadow-[#000] shadow-[#FBAC1A] rounded-[30px] p-5 max-h-[410px] w-[90%] sm:w-[48%] lg:w-[30%] mx-auto mt-5">
                 <div>
-                  <br />
-                  <p className=' text-center text-white text-sm'>This counseling service was outstanding!
-                    The team was professional, understanding, and attentive to my concerns. They provided personalized advice that exceeded my expectations. I felt supported and valued throughout the process. Their dedication and expertise truly stood out. I highly recommend theirservices to anyone seeking reliable andcaring guidance!</p>
-                  <Image src={R1} width={160} alt='reviews' className='mt-5 ml-auto mr-auto' />
-                  <br />
-                  <div className='flex justify-center '>
-                    <Image src={Aravindha} width={50} height={50} alt='reviews' className='w-14 h-14 mr-5 rounded-full object-cover' />
-                    <div className='mt-1'>
-                      <h1 className='text-white font-bold'>Aravindha Koralage</h1>
-                      <h1 className='text-[#FBAC1A] text-sm'>Entrepreneur</h1>
+                  <p className="text-center text-white text-sm">
+                    This counseling service was outstanding! The team was professional, understanding, and attentive to my
+                    concerns. They provided personalized advice that exceeded my expectations. I felt supported and valued
+                    throughout the process. Their dedication and expertise truly stood out. I highly recommend their services to
+                    anyone seeking reliable and caring guidance!
+                  </p>
+                  <Image src={R1} width={160} alt="reviews" className="mt-5 mx-auto" />
+                  <div className="flex justify-center mt-5">
+                    <Image
+                      src={Aravindha}
+                      width={50}
+                      height={50}
+                      alt="reviews"
+                      className="w-14 h-14 mr-5 rounded-full object-cover"
+                    />
+                    <div className="mt-1">
+                      <h1 className="text-white font-bold">Aravindha Koralage</h1>
+                      <h1 className="text-[#FBAC1A] text-sm">Entrepreneur</h1>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className='bg-white bg-opacity-25 shadow-md shadow-[#FBAC1A] rounded-[40px] p-5 max-h-[410px] w-full ml-[5%] mr-[5%]  mt-[50px]'>
+              <div className='pt-3 pb-3'></div>
+
+              {/* Card 3 */}
+              <div className="bg-white bg-opacity-25 shadow-md transition-transform duration-300 ease-in-out md:hover:scale-110 hover:shadow-lg hover:shadow-[#000] shadow-[#FBAC1A] rounded-[30px] p-5 max-h-[410px] w-[90%] sm:w-[48%] lg:w-[30%] mx-auto mt-5">
                 <div>
-                  <br />
-                  <p className=' text-center text-white text-sm'>This counseling service was outstanding!
-                    The team was professional, understanding, and attentive to my concerns. They provided personalized advice that exceeded my expectations. I felt supported and valued throughout the process. Their dedication and expertise truly stood out. I highly recommend theirservices to anyone seeking reliable andcaring guidance!</p>
-                  <Image src={R1} width={160} alt='reviews' className='mt-5 ml-auto mr-auto' />
-                  <br />
-                  <div className='flex justify-center '>
-                    <Image src={Aravindha} width={50} height={50} alt='reviews' className='w-14 h-14 mr-5 rounded-full object-cover' />
-                    <div className='mt-1'>
-                      <h1 className='text-white font-bold'>Aravindha Koralage</h1>
-                      <h1 className='text-[#FBAC1A] text-sm'>Entrepreneur</h1>
+                  <p className="text-center text-white text-sm">
+                    This counseling service was outstanding! The team was professional, understanding, and attentive to my
+                    concerns. They provided personalized advice that exceeded my expectations. I felt supported and valued
+                    throughout the process. Their dedication and expertise truly stood out. I highly recommend their services to
+                    anyone seeking reliable and caring guidance!
+                  </p>
+                  <Image src={R1} width={160} alt="reviews" className="mt-5 mx-auto" />
+                  <div className="flex justify-center mt-5">
+                    <Image
+                      src={Aravindha}
+                      width={50}
+                      height={50}
+                      alt="reviews"
+                      className="w-14 h-14 mr-5 rounded-full object-cover"
+                    />
+                    <div className="mt-1">
+                      <h1 className="text-white font-bold">Aravindha Koralage</h1>
+                      <h1 className="text-[#FBAC1A] text-sm">Entrepreneur</h1>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className='pt-3 pb-3'></div>
+
+          </div>
+          <div className="ml-[5%] mr-[5%] mt-10">
+            <h1 className="text-center text-3xl font-bold text-white">Counseling</h1>
+            <div className="flex flex-wrap md:flex-row justify-between items-center mt-5 gap-5">
+              {/* Left Section */}
+              <div className="rounded-[60px] p-5 mt-[50px] w-full md:max-w-[50%]">
+                <h1 className="text-white w-full text-xl md:text-2xl  font-bold text-center md:text-left">
+                  Choose Your Best Insurance Coverage Counseling With Industry Expert
+                </h1>
+                <br />
+                <br />
+                <p className="text-white text-sm md:text-base md:max-w-[90%] text-center md:text-left">
+                  Choosing the right insurance can be overwhelming, but I am here to help. I offer personalized guidance to ensure
+                  you make confident, informed decisions. Whether it's health, protection, savings, education, group insurance, or
+                  retirement, I am committed to finding the best solutions for you. Let's secure your future together.
+                </p>
+                <br />
+                <br />
+                <h1 className="text-white  w-full md:w-[50%] text-center text-sm md:text-[15px] bg-[#FBAC1A] p-2 rounded-[20px] font-bold transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer hover:shadow-lg hover:shadow-[#000]">
+                  Book A Free Session
+                </h1>
+              </div>
+
+              {/* Right Section */}
+              <div className="w-full md:max-w-[35%] flex justify-center items-center">
+                <div className="bg-white rounded-[30px] w-full bg-opacity-40 pb-10 shadow-md shadow-[#FBAC1A]">
+                  <div className="bg-white rounded-[30px] w-full h-36"></div>
+                  <div className="flex justify-center mt-[-55px]">
+                    <Image
+                      src={Aravindha}
+                      unoptimized
+                      alt="Mr. Aravinda Koralage"
+                      className="bg-white bg-opacity-35 rounded-full object-cover w-36 h-36 border-[#FBAC1A] border-[5px]"
+                    />
+                  </div>
+                  <h1 className="w-full text-center text-white text-2xl md:text-3xl font-bold mt-3">
+                    Mr. Aravinda Koralage
+                  </h1>
+                  <div className="mx-[5%] mt-5">
+                    <p className="text-center text-white">Managing Director At Global Talent Solutions</p>
+                    <p className="text-center text-white">Branch Manager At HNB Insurance Galle</p>
+                  </div>
+                  <div className="flex justify-between mx-[3%] mt-5">
+                    <div className="text-center w-[33.33%]">
+                      <h1 className="mt-[5%] text-3xl font-bold text-white">15 +</h1>
+                      <p className="text-white text-[15px] mt-2">Experience</p>
+                    </div>
+                    <div className="text-center w-[33.33%]">
+                      <h1 className="mt-[5%] text-3xl font-bold text-white">8 +</h1>
+                      <p className="text-white text-[15px] mt-2">MDRT Winner (2014-2023)</p>
+                    </div>
+                    <div className="text-center w-[33.33%]">
+                      <h1 className="mt-[5%] text-3xl font-bold text-white">4 +</h1>
+                      <p className="text-white text-[15px] mt-2">Super Gold Winner (2013-2020)</p>
+                    </div>
+                  </div>
+                  <div className="flex justify-center mt-10">
+                    <h1 className="bg-white rounded-[35px] pt-2 pb-2 pl-4 pr-4">View Profile ➜</h1>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-
+          <br /><br />
           <footer className="bg-black bg-opacity-50  text-white">
             <div className="container mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
               <div className="md:flex md:justify-between">
