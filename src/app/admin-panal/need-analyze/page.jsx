@@ -118,6 +118,7 @@ export default function NeedAnalyze() {
     const [totneedr, settotneedr] = useState('');
     const [rexsol, setrexsol] = useState('');
     const [d1, setd1] = useState('Ready');
+    const[exf,setexf]=useState('');
     const [d1color, setd1color] = useState('bg-blue-700');
 
     const [d2, setd2] = useState('Ready');
@@ -194,7 +195,7 @@ export default function NeedAnalyze() {
                     },
                 ],
             });
-            
+
 
         } else {
             const gap = need - Solution;
@@ -271,7 +272,7 @@ export default function NeedAnalyze() {
             setd5color("bg-blue-700");
             setd5("Ready");
         }
-        
+
 
     }
     const handleCalculation4 = () => {
@@ -285,9 +286,9 @@ export default function NeedAnalyze() {
         settotneedr(val_gt);
         const acreal = val_gt * 120;
         setrexsol(acreal);
-        const gap = val_gt - monsal;
-        const gapPercentage = (gap / val_gt) * 100;
-        const solutionPercentage = (monsal / val_gt) * 100;
+        const gap = rexsol - exf;
+        const gapPercentage = (gap / rexsol) * 100;
+        const solutionPercentage = (exf / rexsol) * 100;
 
         setData4({
             labels: ["Solution", "Gap"],
@@ -314,7 +315,7 @@ export default function NeedAnalyze() {
             setd4color("bg-blue-700");
             setd4("Ready");
         }
-        
+
     }
     const handleCalculation3 = () => {
         let thegap = ygap;
@@ -355,7 +356,7 @@ export default function NeedAnalyze() {
             setd3color("bg-blue-700");
             setd3("Ready");
         }
-        
+
 
     }
 
@@ -364,7 +365,7 @@ export default function NeedAnalyze() {
     }, [sxsaving, ygaps, stotalneed, sEXSISTINGSAVINGS]);
     useEffect(() => {
         handleCalculation4();
-    }, [monsal, rrate, totneedr, rexsol]);
+    }, [monsal, rrate, totneedr, rexsol,exf]);
     useEffect(() => {
         handleCalculation();
     }, [need, Solution]);
@@ -392,6 +393,9 @@ export default function NeedAnalyze() {
     const [mi, setMi] = useState('');
     const [email, setEmail] = useState('');
     const [dob, setDob] = useState('');
+    const [rtn, setrtn] = useState('');
+    const [rexs, setrexs] = useState('');
+    const [rgap, setrgap] = useState('');
 
     const handleback = () => {
         if (current >= 2) {
@@ -450,18 +454,18 @@ export default function NeedAnalyze() {
                 "h_tn": need,
                 "h_exs": Solution,
                 "h_gap": Gap,
-                "p_tn":ptotal,
-                "p_exs":pes,
-                "p_gap":ptotal - pes,
-                "e_tn":acneed,
-                "e_exs":esol,
-                "e_gap":acneed - esol,
-                "r_tn":"1212",
-                "r_exs":"1212",
-                "r_gap":"1212",
-                "s_tn":stotalneed,
-                "s_exs":sEXSISTINGSAVINGS,
-                "s_gap":stotalneed - sEXSISTINGSAVINGS,
+                "p_tn": ptotal,
+                "p_exs": pes,
+                "p_gap": ptotal - pes,
+                "e_tn": acneed,
+                "e_exs": esol,
+                "e_gap": acneed - esol,
+                "r_tn": rexsol,
+                "r_exs": exf,
+                "r_gap": rexsol-exf,
+                "s_tn": stotalneed,
+                "s_exs": sEXSISTINGSAVINGS,
+                "s_gap": stotalneed - sEXSISTINGSAVINGS,
 
 
 
@@ -477,7 +481,7 @@ export default function NeedAnalyze() {
                 setTimeout(() => {
                     enqueueSnackbar("Redirecting to Report...", { variant: 'info' });
                     setTimeout(() => {
-                        window.location.href = '/report';
+                        window.location.href = 'https://gtsglobaltalentsolutions.com/admin-panal/need-analyze';
                     }, 2000);
                 }, 2000);
 
@@ -485,12 +489,6 @@ export default function NeedAnalyze() {
 
         } catch (error) {
             enqueueSnackbar(error.response.data.message, { variant: 'error' });
-            // setTimeout(() => {
-            //     enqueueSnackbar("Redirecting to home...", { variant: 'info' });
-            //     setTimeout(() => {
-            //         window.location.href = '../';
-            //     }, 2000);
-            // }, 2000);
         }
     };
     return (
@@ -768,8 +766,9 @@ export default function NeedAnalyze() {
                     <div className="flex flex-wrap justify-center gap-6 w-full">
                         <div className="p-5 rounded-[25px] w-full sm:w-[45%] lg:w-[60%]">
                             <h1 className="text-left text-white text-lg sm:text-xl">Retirement</h1>
-                            <div className="bg-white p-6 sm:p-8 rounded-[25px] bg-opacity-25 flex justify-center">
-                                <div className="mx-3 w-full">
+                            <div className="bg-white p-6 sm:p-8 rounded-[25px] bg-opacity-25 flex flex-wrap justify-center">
+                                {/* First Column */}
+                                <div className="mx-3 w-full sm:w-1/3">
                                     <div className="relative mb-4">
                                         <input
                                             type="number"
@@ -790,7 +789,9 @@ export default function NeedAnalyze() {
                                         />
                                     </div>
                                 </div>
-                                <div className="mx-3 w-full">
+
+                                {/* Second Column */}
+                                <div className="mx-3 w-full sm:w-1/3">
                                     <div className="relative mb-4">
                                         <input
                                             type="number"
@@ -805,13 +806,28 @@ export default function NeedAnalyze() {
                                     <div className="relative mb-4">
                                         <input
                                             type="number"
+                                            placeholder="Exsiting Solution"
+                                            className="p-3 rounded-[60px] w-full bg-[#d9d9d920] text-white"
+                                            onChange={(e) => {
+                                                setexf(e.target.value);
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Third Column */}
+                                <div className="mx-3 w-full sm:w-1/3 md:w-[70%]">
+                                    <div className="relative mb-4">
+                                        <input
+                                            type="text"
+                                            placeholder="Total Need"
                                             value={rexsol}
-                                            placeholder="Human Value"
                                             className="p-3 rounded-[60px] w-full bg-[#d9d9d920] text-white"
                                         />
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
 

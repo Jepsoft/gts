@@ -35,8 +35,9 @@ export default function Report_list() {
             setLoading(false);
         }
     };
-    const handleViewReport = (reportId) => {
+    const handleViewReport = (reportId,Report_email) => {
         localStorage.setItem('report_id', reportId);
+        localStorage.setItem('report_email', Report_email);
         window.location.href = 'report-list/reports';
     };
 
@@ -107,7 +108,7 @@ export default function Report_list() {
                                 <div className="w-full sm:w-auto flex justify-center sm:justify-end">
                                     <h1
                                         className="bg-green-500 flex items-center justify-center px-4 py-2 text-xs sm:text-base font-bold text-white rounded-3xl cursor-pointer hover:bg-green-600 transition-all"
-                                        onClick={() => handleViewReport(report.report_id)}
+                                        onClick={() => handleViewReport(report.report_id,report.u_id)}
                                     >
                                         View Report
                                     </h1>
