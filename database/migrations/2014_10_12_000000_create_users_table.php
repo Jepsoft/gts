@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('status');
             $table->string('password');
+            $table->string('position')->default("customer");
             $table->string('Gender');
             $table->string('NIC_Number');
             $table->rememberToken();

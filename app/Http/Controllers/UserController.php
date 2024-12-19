@@ -12,6 +12,16 @@ class UserController extends Controller
 {
 
     //user register
+
+    public function permission(Request $request)
+    {
+        $position = $request->user()->position;
+        if($position == "admin" || $position == "employee"){
+            return response()->json(['result' => 'success'], 200);
+        }else{
+            return response()->json(['result' => 'fail'], 201);
+        }
+    }
     public function signup(Request $request)
     {
         $validatedData = $request->validate([
@@ -28,7 +38,7 @@ class UserController extends Controller
             'First_Name' => $validatedData['First_Name'],
             'Last_Name' => $validatedData['Last_Name'],
             'email' => $validatedData['email'],
-            'Phone' => $validatedData['phone'],
+            'phone' => $validatedData['phone'],
             'status' => $validatedData['status'],
             'password' => Hash::make($validatedData['password']),
             'Gender' => $validatedData['Gender'],
@@ -67,9 +77,10 @@ class UserController extends Controller
             'Last_Name' => $request->user()->Last_Name,
             'Email' => $request->user()->email,
             'Status' => $request->user()->status,
-            'Phone' => $request->user()->Phone,
+            'Phone' => $request->user()->phone,
             'Gender' => $request->user()->Gender,
-            'NIC' => $request->user()->NIC_Number
+            'NIC' => $request->user()->NIC_Number,
+             'Position' => $request->user()->position
         ];
         return response()->json(['result' => $userDetails], 200);
     }

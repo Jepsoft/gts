@@ -16,17 +16,21 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::post('/apply',[ProcessController::class, 'apply']);
+
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/contact', [UserController::class, 'contact']);
 Route::post('/signup', [UserController::class, 'signup']);
 Route::post('/verify', [MessageController::class, 'send']);
 Route::post('/verify_phone', [MessageController::class, 'send']);
 Route::post('/forgot-password', [UserController::class, 'reset']);
-
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/profile', [UserController::class, 'get_user_data']);
     Route::post('/delete_account', [UserController::class, 'delete_account']);
+    Route::post('/analyze_need', [ProcessController::class, 'save_need_analyze']);
     Route::post('/update_password', [UserController::class, 'update_password']);
     Route::post('/update_profile', [UserController::class, 'update_user_data']);
+    Route::post('/check_permission', [UserController::class, 'permission']);
+    Route::post('/load_reports', [ProcessController::class, 'load_reports']);
+    Route::post('/load_report', [ProcessController::class, 'load_report']);
+
 });
