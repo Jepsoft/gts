@@ -266,3 +266,6 @@ body::-webkit-scrollbar {
   .animate-popup {
     animation: popupAnimation 1s ease-in-out forwards;
   }
+  .bg_color{
+    background: linear-gradient(to right, #011521, #03395A);
+  }

@@ -147,13 +147,10 @@ export default function Reports() {
             function formatNumber(value) {
                 if (value === null || value === undefined) return '0';
 
-                // Round to two decimal places
                 let roundedValue = parseFloat(value).toFixed(2);
 
-                // Convert the value to a number to deal with larger or smaller values
                 let numValue = parseFloat(roundedValue);
 
-                // Format the number according to its size
                 if (numValue >= 1000000) {
                     return (numValue / 1000000).toFixed(1) + 'M';
                 } else if (numValue >= 100000) {
@@ -301,11 +298,29 @@ export default function Reports() {
             setthev('hidden');
             console.error("Error fetching data:", error);
         }
+        setcontent(contentRef.current);
     };
+    const[seth,setseth]=['hidden']
     const [cdate, setcdate] = useState('Loading...');
     const contentRef = useRef();
     const [thev, setthev] = useState('hidden');
+    const[content,setcontent]=useState(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768); // Example breakpoint for mobile devices
+        };
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
     const saveAsPdf = async () => {
+        if (isMobile) {
+            alert("PDF download is not supported on mobile devices.");
+            return;
+        }
+
         try {
             const content = contentRef.current;
             if (!content) {
@@ -313,55 +328,39 @@ export default function Reports() {
                 return;
             }
 
-            // Use html2canvas to render the content to a canvas
             const canvas = await html2canvas(content, {
-                scale: 2, // Increase resolution for better image quality
+                scale: 1.5, // Adjust scale for smaller file size
                 useCORS: true,
             });
 
-            // Convert the canvas to image data
-            const imgData = canvas.toDataURL("image/png");
+            const imgData = canvas.toDataURL("image/jpeg", 0.7); // Use JPEG for compression
             const pdf = new jsPDF("p", "mm", "a4");
 
             const pageWidth = pdf.internal.pageSize.getWidth();
             const pageHeight = pdf.internal.pageSize.getHeight();
-            const imgWidth = pageWidth; // Scale image to fit the page width
-            const imgHeight = (canvas.height * imgWidth) / canvas.width; // Maintain aspect ratio
+            const imgWidth = pageWidth;
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
             let yPosition = 0;
-            // Add the first page with the image
-            pdf.addImage(imgData, "PNG", 0, yPosition, imgWidth, imgHeight);
 
-            // If the image is too tall, split it across pages
             if (imgHeight > pageHeight) {
-                let remainingHeight = imgHeight - pageHeight;
-                let offset = pageHeight;
-
-                while (remainingHeight > 0) {
-                    // Add a new page
-                    pdf.addPage();
-                    // Add a section of the image on the new page
-                    pdf.addImage(
-                        imgData,
-                        "PNG",
-                        0,
-                        -offset, // Pull up the image by the offset
-                        imgWidth,
-                        imgHeight
-                    );
-
-                    // Update remaining height and offset
-                    remainingHeight -= pageHeight;
+                let offset = 0;
+                while (offset < imgHeight) {
+                    pdf.addImage(imgData, "JPEG", 0, yPosition - offset, imgWidth, imgHeight);
                     offset += pageHeight;
+                    if (offset < imgHeight) pdf.addPage();
                 }
+            } else {
+                pdf.addImage(imgData, "JPEG", 0, yPosition, imgWidth, imgHeight);
             }
 
-            // Save the PDF with the given file name
-            pdf.save("GTS_Report_For_Maneth_Dulwan.pdf");
+            pdf.save("Report.pdf");
         } catch (error) {
             console.error("An error occurred while generating the PDF:", error);
         }
     };
+    
+    
 
     const [helthtotalneed, sethelthtotalneed] = useState('Loading...');
     const [helthexsolution, sethelthexsolution] = useState('Loading...');
@@ -416,13 +415,11 @@ export default function Reports() {
                     </span>
                 </div>
             </nav>
-            <div className={`${thev}`}>
-                <div className="bg-white h-80 mt-10 mt-20  rounded-3xl bg-opacity-25 ml-[5%] md:hidden lg:hidden xl:hidden visible mr-[5%] flex items-center justify-center">
-                    <h1 className="text-white font-bold">No Preview For Mobile Devices</h1>
-                </div>
-                <div className="flex justify-center items-center mt-[50px] hidden md:block md:flex">
+            <div className={`  mt-5 overflow-y-scroll w-screen`}>
+                
+                    <div className={`  justify-center items-center mt-[50px]   md:visible md:flex`}>
                     <div
-                        className={` ${thev} text-sm min-w-[210mm] min-h-[296mm]  overflow-hidden`}
+                        className={`  text-sm min-w-[210mm] min-h-[296mm]  overflow-hidden`}
                         ref={contentRef}
                         style={{
                             width: "210mm",

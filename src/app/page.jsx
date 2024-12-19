@@ -86,6 +86,12 @@ export default function Home() {
           setNIC(data.result.NIC);
           setGender(data.result.Gender);
           setEmail(data.result.Email);
+          const pos=data.result.Position;
+          if(pos=="admin"){
+            localStorage.setItem("O(*#%^&&^", "*(&@^#(*&@%$(*&%@$");
+          }else{
+            localStorage.setItem("O(*#%^&&^", "*@#$&^(*#&%^");
+          }
           localStorage.setItem("firstName", data.result.First_Name);
           localStorage.setItem("lastName", data.result.Last_Name);
           localStorage.setItem("phone", data.result.Phone);

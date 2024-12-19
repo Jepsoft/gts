@@ -118,7 +118,7 @@ export default function NeedAnalyze() {
     const [totneedr, settotneedr] = useState('');
     const [rexsol, setrexsol] = useState('');
     const [d1, setd1] = useState('Ready');
-    const[exf,setexf]=useState('');
+    const [exf, setexf] = useState('');
     const [d1color, setd1color] = useState('bg-blue-700');
 
     const [d2, setd2] = useState('Ready');
@@ -365,7 +365,7 @@ export default function NeedAnalyze() {
     }, [sxsaving, ygaps, stotalneed, sEXSISTINGSAVINGS]);
     useEffect(() => {
         handleCalculation4();
-    }, [monsal, rrate, totneedr, rexsol,exf]);
+    }, [monsal, rrate, totneedr, rexsol, exf]);
     useEffect(() => {
         handleCalculation();
     }, [need, Solution]);
@@ -396,7 +396,13 @@ export default function NeedAnalyze() {
     const [rtn, setrtn] = useState('');
     const [rexs, setrexs] = useState('');
     const [rgap, setrgap] = useState('');
-
+    const [Age, setAge] = useState('');
+    useEffect(() => {
+        const birthDate = new Date(dob);
+      const today = new Date();
+      let calculatedAge = today.getFullYear() - birthDate.getFullYear();
+      setAge(calculatedAge);
+    },[dob])
     const handleback = () => {
         if (current >= 2) {
             const cc = current - 1;
@@ -462,7 +468,7 @@ export default function NeedAnalyze() {
                 "e_gap": acneed - esol,
                 "r_tn": rexsol,
                 "r_exs": exf,
-                "r_gap": rexsol-exf,
+                "r_gap": rexsol - exf,
                 "s_tn": stotalneed,
                 "s_exs": sEXSISTINGSAVINGS,
                 "s_gap": stotalneed - sEXSISTINGSAVINGS,
@@ -514,23 +520,37 @@ export default function NeedAnalyze() {
                     </span>
                 </div>
             </nav>
-            <div className={`duration-500 ease-in-out ${group1} `}>
+            <div className={`duration-500 ease-in-out bg-white bg-opacity-20 rounded-[25px] p-5 m-10 ${group1} `}>
                 <div className="rounded-[25px] mx-[5%] mt-20">
 
-                    <h1 className="text-left text-white text-md mb-1">User Email</h1>
-                    <div className="relative mb-4 w-full ">
-                        <input
-                            type="email"
-                            placeholder="Enter Email"
-                            // value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="p-3 rounded-[60px] w-full bg-[#d9d9d920] text-white"
-                        />
-                    </div>
+
                     <h1 className="text-left text-white text-md ">Personal Details</h1>
-                    <div className="bg-white p-4 sm:p-6 lg:p-10 rounded-[25px] bg-opacity-10">
+                    <div className=" p-4  rounded-[25px] bg-opacity-10">
+                    <div className="mx-3 flex flex-wrap md:flex-nowrap justify-center gap-x-4 gap-y-4">
+                            <div className="relative mb-4 w-full ">
+                                <h1 className="text-left text-white text-md mb-1">User Email</h1>
+                                <input
+                                    type="email"
+                                    placeholder="Enter Email"
+                                    // value={need}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="p-3 rounded-[60px] w-full bg-[#d9d9d920] text-white"
+                                />
+                            </div>
+                            <div className="relative mb-4 w-full ">
+                                <h1 className="text-left text-white text-md mb-1">User Age</h1>
+
+                                <input
+                                    type="number"
+                                    value={Age}
+                                    placeholder="User Age"
+                                    className="p-3 rounded-[60px] w-full bg-[#d9d9d920] text-white"
+                                />
+                            </div>
+                        </div>
                         <div className="mx-3 flex flex-wrap md:flex-nowrap justify-center gap-x-4 gap-y-4">
                             <div className="relative mb-4 w-full ">
+                                <h1 className="text-left text-white text-md mb-1">Birthday</h1>
                                 <input
                                     type="date"
                                     placeholder="Date of Birth"
@@ -540,6 +560,8 @@ export default function NeedAnalyze() {
                                 />
                             </div>
                             <div className="relative mb-4 w-full ">
+                                <h1 className="text-left text-white text-md mb-1">Monthly Income</h1>
+
                                 <input
                                     type="number"
                                     // value={Solution}
@@ -551,6 +573,8 @@ export default function NeedAnalyze() {
                         </div>
                         <div className="mx-3 flex flex-wrap md:flex-nowrap justify-center gap-x-4 gap-y-4">
                             <div className="relative mb-4 w-full ">
+                                <h1 className="text-left text-white text-md mb-1">Occupation</h1>
+
                                 <input
                                     type="text"
                                     placeholder="Occupation"
@@ -560,6 +584,8 @@ export default function NeedAnalyze() {
                                 />
                             </div>
                             <div className="relative mb-4 w-full ">
+                                <h1 className="text-left text-white text-md mb-1">Monthly Expenses</h1>
+
                                 <input
                                     type="number"
                                     // value={Solution}
@@ -574,12 +600,13 @@ export default function NeedAnalyze() {
 
                 <div className="flex flex-wrap justify-center bg-white mt-14 mx-[5%] rounded-[35px] bg-opacity-10">
                     <div className="flex flex-wrap justify-center gap-6 w-full">
-                        <div className="p-5 rounded-[25px] w-full sm:w-[45%] lg:w-[60%]">
+                        <div className="p-5 rounded-[25px] w-full lg:w-[60%]">
                             <h1 className="text-left text-white text-lg sm:text-xl">Health</h1>
-                            <div className="bg-white p-6 sm:p-8 rounded-[25px] bg-opacity-25">
+                            <div className=" mt-5 mb-5 rounded-[25px] bg-opacity-25">
 
-                                <div className="mx-3">
+                                <div className="relative mb-4">
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Total Need</h1>
                                         <input
                                             type="number"
                                             placeholder="Total Need"
@@ -589,6 +616,7 @@ export default function NeedAnalyze() {
                                         />
                                     </div>
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Existing Solution</h1>
                                         <input
                                             type="number"
                                             value={Solution}
@@ -598,6 +626,7 @@ export default function NeedAnalyze() {
                                         />
                                     </div>
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Total Need</h1>
                                         <input
                                             type="number"
                                             placeholder="Total Need"
@@ -610,8 +639,9 @@ export default function NeedAnalyze() {
                         </div>
 
                         {/* Doughnut Chart Section */}
-                        <div className="w-full sm:w-[45%] lg:w-[30%] max-w-[250px] ">
-                            <div className="py-6 relative">
+                        <div className="w-full sm:w-[45%] lg:w-[30%] max-w-[250px] my-auto">
+                            <div className="py-6 relative flex items-center justify-center">
+                                <div className="bg-[#22DF4B] mt-8 h-[228px] -z-20 w-[228px] absolute rounded-full"></div>
                                 <Doughnut data={data} options={options} />
                                 <div className={`${d1color} h-40 w-40 rounded-full absolute top-[55%] left-[50%] transform -translate-x-[50%] -translate-y-[50%]`}>
                                     <h1 className="text-white text-center leading-none mt-[74px] font-bold">{d1}</h1>
@@ -622,14 +652,15 @@ export default function NeedAnalyze() {
                 </div>
             </div>
 
-            <div className={`duration-500 ease-in-out ${group2}`}>
+            <div className={`duration-500 ease-in-out bg-white bg-opacity-20 p-5 m-10 rounded-[35px] ${group2}`}>
                 <div className="flex flex-wrap justify-center bg-white mt-14 mx-[5%] rounded-[35px] bg-opacity-10">
-                    <div className="flex flex-wrap justify-center gap-6 w-full">
-                        <div className="p-5 rounded-[25px] w-full sm:w-[45%] lg:w-[60%]">
+                    <div className="flex flex-wrap justify-center gap-6 w-full  items-center">
+                        <div className="p-5 rounded-[25px] w-full sm:w-[45%] lg:w-[70%]">
                             <h1 className="text-left text-white text-lg sm:text-xl">Protection</h1>
-                            <div className="bg-white p-6 sm:p-8 rounded-[25px] bg-opacity-25 flex justify-center">
+                            <div className="rounded-[25px] bg-opacity-25 flex justify-center mt-5">
                                 <div className="mx-3 w-full">
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Monthly Salary</h1>
                                         <input
                                             type="number"
                                             placeholder="Monthly Salary"
@@ -641,6 +672,7 @@ export default function NeedAnalyze() {
                                         />
                                     </div>
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Total Need</h1>
                                         <input
                                             type="number"
                                             value={ptotal}
@@ -651,6 +683,7 @@ export default function NeedAnalyze() {
                                 </div>
                                 <div className="mx-3 w-full">
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Interest Rate</h1>
                                         <input
                                             type="number"
                                             placeholder="Interest Rate"
@@ -662,6 +695,7 @@ export default function NeedAnalyze() {
                                         />
                                     </div>
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Existing Solution</h1>
                                         <input
                                             type="number"
                                             onChange={(e) => {
@@ -680,7 +714,8 @@ export default function NeedAnalyze() {
 
                         {/* Doughnut Chart Section */}
                         <div className="w-full sm:w-[45%] lg:w-[30%] max-w-[250px] ">
-                            <div className="py-6 relative">
+                            <div className="py-6 relative flex items-center justify-center">
+                            <div className="bg-[#22DF4B] mt-8 h-[228px] -z-20 w-[228px] absolute rounded-full"></div>
                                 <Doughnut data={newData} options={options} />
                                 <div className={`${d2color} h-40 w-40 rounded-full absolute top-[55%] left-[50%] transform -translate-x-[50%] -translate-y-[50%]`}>
                                     <h1 className="text-white text-center leading-none mt-[74px] font-bold">{d2}</h1>
@@ -691,12 +726,13 @@ export default function NeedAnalyze() {
                 </div>
 
                 <div className="flex flex-wrap justify-center bg-white mt-14 mx-[5%] rounded-[35px] bg-opacity-10">
-                    <div className="flex flex-wrap justify-center gap-6 w-full">
-                        <div className="p-5 rounded-[25px] w-full sm:w-[45%] lg:w-[60%]">
+                    <div className="flex items-center flex-wrap justify-center gap-6 w-full">
+                        <div className="p-5 rounded-[25px] w-full sm:w-[45%] lg:w-[70%]">
                             <h1 className="text-left text-white text-lg sm:text-xl">Education</h1>
-                            <div className="bg-white p-6 sm:p-8 rounded-[25px] bg-opacity-25 flex justify-center">
+                            <div className="rounded-[25px] bg-opacity-25 flex justify-center mt-5">
                                 <div className="mx-3 w-full">
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Total Need</h1>
                                         <input
                                             type="number"
                                             placeholder="Total Need"
@@ -709,6 +745,7 @@ export default function NeedAnalyze() {
                                         />
                                     </div>
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Existing Solution</h1>
                                         <input
                                             type="number"
                                             // value={Solution}
@@ -723,6 +760,7 @@ export default function NeedAnalyze() {
                                 </div>
                                 <div className="mx-3 w-full">
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Year Group</h1>
                                         <input
                                             type="number"
                                             placeholder="Year Group"
@@ -735,6 +773,7 @@ export default function NeedAnalyze() {
                                         />
                                     </div>
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Actual Need</h1>
                                         <input
                                             type="number"
                                             value={acneed}
@@ -750,8 +789,9 @@ export default function NeedAnalyze() {
 
 
                         {/* Doughnut Chart Section */}
-                        <div className="w-full sm:w-[45%] lg:w-[30%] max-w-[250px] ">
-                            <div className="py-6 relative">
+                        <div className="w-full sm:w-[45%] lg:w-[30%] max-w-[250px]   ">
+                            <div className="py-6 relative flex items-center justify-center">
+                            <div className="bg-[#22DF4B] mt-8 h-[228px] -z-20 w-[228px] absolute rounded-full"></div>
                                 <Doughnut data={data3} options={options} />
                                 <div className={` ${d3color} h-40 w-40 rounded-full absolute top-[55%] left-[50%] transform -translate-x-[50%] -translate-y-[50%]`}>
                                     <h1 className="text-white text-center leading-none mt-[74px] font-bold">{d3}</h1>
@@ -761,15 +801,16 @@ export default function NeedAnalyze() {
                     </div>
                 </div>
             </div>
-            <div className={` duration-500 ease-in-out ${group3}`}>
+            <div className={` duration-500 ease-in-out bg-white bg-opacity-20 p-5 m-10 rounded-[35px] ${group3}`}>
                 <div className="flex flex-wrap justify-center bg-white mt-14 mx-[5%] rounded-[35px] bg-opacity-10">
                     <div className="flex flex-wrap justify-center gap-6 w-full">
-                        <div className="p-5 rounded-[25px] w-full sm:w-[45%] lg:w-[60%]">
-                            <h1 className="text-left text-white text-lg sm:text-xl">Retirement</h1>
-                            <div className="bg-white p-6 sm:p-8 rounded-[25px] bg-opacity-25 flex flex-wrap justify-center">
+                        <div className="rounded-[25px] p-5  w-full sm:w-[45%] lg:w-[70%]">
+                            <h1 className="text-left text-white text-lg sm:text-xl pt-5 pl-12">Retirement</h1>
+                            <div className=" rounded-[25px] bg-opacity-25 flex flex-wrap  p-5 m-5 justify-center">
                                 {/* First Column */}
                                 <div className="mx-3 w-full sm:w-1/3">
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Monthly Salary</h1>
                                         <input
                                             type="number"
                                             placeholder="Monthly Salary"
@@ -781,6 +822,7 @@ export default function NeedAnalyze() {
                                         />
                                     </div>
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Actual Salary</h1>
                                         <input
                                             type="number"
                                             value={totneedr}
@@ -793,6 +835,7 @@ export default function NeedAnalyze() {
                                 {/* Second Column */}
                                 <div className="mx-3 w-full sm:w-1/3">
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Year Gap</h1>
                                         <input
                                             type="number"
                                             placeholder="Year Gap"
@@ -804,6 +847,7 @@ export default function NeedAnalyze() {
                                         />
                                     </div>
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Exsiting Solution</h1>
                                         <input
                                             type="number"
                                             placeholder="Exsiting Solution"
@@ -818,6 +862,7 @@ export default function NeedAnalyze() {
                                 {/* Third Column */}
                                 <div className="mx-3 w-full sm:w-1/3 md:w-[70%]">
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Total Need</h1>
                                         <input
                                             type="text"
                                             placeholder="Total Need"
@@ -833,8 +878,9 @@ export default function NeedAnalyze() {
 
 
                         {/* Doughnut Chart Section */}
-                        <div className="w-full sm:w-[45%] lg:w-[30%] max-w-[250px] ">
-                            <div className="py-6 relative">
+                        <div className="w-full sm:w-[45%] lg:w-[30%] max-w-[250px] my-auto">
+                            <div className="py-6 relative flex justify-center items-center ">
+                            <div className="bg-[#22DF4B] mt-8 h-[228px] -z-20 w-[228px] absolute rounded-full"></div>
                                 <Doughnut data={data4} options={options} />
                                 <div className={`${d4color} h-40 w-40 rounded-full absolute top-[55%] left-[50%] transform -translate-x-[50%] -translate-y-[50%]`}>
                                     <h1 className="text-white text-center leading-none mt-[74px] font-bold">{d4}</h1>
@@ -848,9 +894,10 @@ export default function NeedAnalyze() {
                     <div className="flex flex-wrap justify-center gap-6 w-full">
                         <div className="p-5 rounded-[25px] w-full sm:w-[45%] lg:w-[60%]">
                             <h1 className="text-left text-white text-lg sm:text-xl">Savings</h1>
-                            <div className="bg-white p-6 sm:p-8 rounded-[25px] bg-opacity-25 flex justify-center">
+                            <div className=" p-5 mt-5 mb-5 rounded-[25px] bg-opacity-25 flex justify-center">
                                 <div className="mx-3 w-full">
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Expected Saving</h1>
                                         <input
                                             type="number"
                                             placeholder="Expected Saving"
@@ -863,6 +910,7 @@ export default function NeedAnalyze() {
                                         />
                                     </div>
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Actual Savings</h1>
                                         <input
                                             type="number"
                                             value={stotalneed}
@@ -873,6 +921,7 @@ export default function NeedAnalyze() {
                                 </div>
                                 <div className="mx-3 w-full">
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Year Gap</h1>
                                         <input
                                             type="number"
                                             placeholder="Year Gap"
@@ -885,6 +934,7 @@ export default function NeedAnalyze() {
                                         />
                                     </div>
                                     <div className="relative mb-4">
+                                    <h1 className="text-left text-white text-md mb-1">Existing Savings</h1>
                                         <input
                                             type="number"
                                             // value={setecneed}
@@ -903,8 +953,9 @@ export default function NeedAnalyze() {
 
 
                         {/* Doughnut Chart Section */}
-                        <div className="w-full sm:w-[45%] lg:w-[30%] max-w-[250px] ">
-                            <div className="py-6 relative">
+                        <div className="w-full sm:w-[45%] lg:w-[30%] max-w-[250px] my-auto">
+                            <div className="py-6 relative flex justify-center items-center ">
+                            <div className="bg-[#22DF4B] mt-8 h-[228px] -z-20 w-[228px] absolute rounded-full"></div>
                                 <Doughnut data={data5} options={options} />
                                 <div className={`${d5color} h-40 w-40 rounded-full absolute top-[55%] left-[50%] transform -translate-x-[50%] -translate-y-[50%]`}>
                                     <h1 className="text-white text-center leading-none mt-[74px] font-bold">{d5}</h1>
