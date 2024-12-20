@@ -17,9 +17,13 @@ class ProcessController extends Controller
         if ($position === "admin") {
             $reports = Reports::orderBy('created_at', 'desc')->get();
             $formattedReports = $reports->map(function ($report) {
+                $user = User::where('email', $report->u_id)->first();
+                if ($user) {
+                    $report->first_name = $user->First_Name;
+                    $report->last_name = $user->Last_Name;
+                }
                 return $report->toArray();
             });
-
             return response()->json([
                 'reports' => $formattedReports,
             ], 200);
@@ -28,6 +32,11 @@ class ProcessController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get();
             $formattedReports = $reports->map(function ($report) {
+                $user = User::where('email', $report->u_id)->first();
+                if ($user) {
+                    $report->first_name = $user->First_Name;
+                    $report->last_name = $user->Last_Name;
+                }
                 return $report->toArray();
             });
 
